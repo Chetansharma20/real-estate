@@ -129,10 +129,9 @@ export default function AboutPage() {
                     src={p.image}
                     alt={p.name}
                     fill
-                    className="object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700"
+                    className="object-cover group-hover:scale-105 transition-all duration-700"
                     sizes="(max-width: 768px) 100vw, 256px"
                   />
-                  <div className="absolute inset-0 bg-[#C9A84C] mix-blend-color opacity-40 group-hover:opacity-0 transition-opacity duration-700" />
                 </div>
 
                 <div className="flex-1 text-center md:text-left">

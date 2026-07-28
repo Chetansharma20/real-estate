@@ -560,8 +560,10 @@ export default function ProjectDetailPage() {
                         {/* Left: Main Image */}
                         <div className="lg:w-2/3">
                           <div className="rounded-2xl overflow-hidden border border-gray-100 bg-gray-50 flex items-center justify-center relative min-h-[400px] lg:min-h-[500px] h-full">
-                            {currentFloorPlan && (
+                            {currentFloorPlan ? (
                               <Image src={getMediaUrl(currentFloorPlan.url)} alt="Floor Plan" fill sizes="(max-width: 768px) 100vw, 66vw" className="object-contain p-6" />
+                            ) : (
+                              <p className="text-gray-400 italic">No floor plan available</p>
                             )}
                           </div>
                         </div>
