@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Image as ImageIcon, X, ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import NextImage from "next/image";
 
 interface TruvaGalleryProps {
   images: { id?: string; url: string; isCover?: boolean; type?: string }[];
@@ -29,7 +30,7 @@ const MediaElement = ({ src, alt, className, autoPlay = false, isThumbnail = fal
       </div>
     );
   }
-  return <img src={src} alt={alt} className={className} />;
+  return <NextImage src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className={className} priority={!isThumbnail} />;
 };
 
 export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
