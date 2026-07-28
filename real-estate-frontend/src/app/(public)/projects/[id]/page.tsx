@@ -148,20 +148,27 @@ export default function ProjectDetailPage() {
 
   // Scroll Spy logic for tabs
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const sections = ["about", "floor-plan", "flat-images", "amenities", "price"];
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top >= 0 && rect.top <= 300) {
-            setActiveTab(section);
-            break;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const sections = ["about", "floor-plan", "flat-images", "amenities", "price"];
+          for (const section of sections) {
+            const el = document.getElementById(section);
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top >= 0 && rect.top <= 300) {
+                setActiveTab(prev => prev !== section ? section : prev);
+                break;
+              }
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
