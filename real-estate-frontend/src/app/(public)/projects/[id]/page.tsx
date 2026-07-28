@@ -110,7 +110,7 @@ export default function ProjectDetailPage() {
 
             <Button 
               type="button" 
-              onClick={() => window.open("https://wa.me/919321783441?text=Hi%20there!%20I'm%20interested%20in%20your%20properties.", "_blank")}
+              onClick={() => window.open("https://wa.me/919987510672?text=Hi%20there!%20I'm%20interested%20in%20your%20properties.", "_blank")}
               className="w-full h-12 bg-[#172033] hover:bg-[#172033]/90 text-white font-bold text-sm"
             >
               <MessageSquare className="w-4 h-4 mr-2 text-[#25D366]" />
