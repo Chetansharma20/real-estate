@@ -34,6 +34,7 @@ const MediaElement = ({ src, alt, className, autoPlay = false, isThumbnail = fal
 
 export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [mobileIdx, setMobileIdx] = useState(0);
   
   if (!images || images.length === 0) {
     return (
@@ -43,7 +44,7 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
     );
   }
 
-  const mainImage = images[0];
+  const mainImage = images[mobileIdx] || images[0];
   const gridImages = images.slice(1, 5);
   const remainingCount = images.length - 5;
 
@@ -51,7 +52,7 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
     <Dialog>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:h-[500px] rounded-xl overflow-hidden relative group">
         {/* Main Image */}
-        <DialogTrigger render={<button type="button" className="md:col-span-2 h-[300px] md:h-full cursor-pointer relative overflow-hidden bg-gray-100 p-0 text-left w-full border-none" onClick={() => setCurrentIdx(0)} />}>
+        <DialogTrigger render={<button type="button" className="md:col-span-2 h-[300px] md:h-full cursor-pointer relative overflow-hidden bg-gray-100 p-0 text-left w-full border-none" onClick={() => setCurrentIdx(mobileIdx)} />}>
             <MediaElement 
               src={mainImage.url} 
               alt={`${title} - Main`} 
@@ -89,11 +90,29 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
           <div className="hidden md:block col-span-2 bg-gray-50" />
         )}
 
+        {/* Mobile Navigation Arrows */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setMobileIdx(prev => prev === 0 ? images.length - 1 : prev - 1); }}
+              className="md:hidden absolute left-4 top-[150px] -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white z-10 hover:bg-black/60 transition-colors"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <button
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setMobileIdx(prev => prev === images.length - 1 ? 0 : prev + 1); }}
+              className="md:hidden absolute right-4 top-[150px] -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white z-10 hover:bg-black/60 transition-colors"
+            >
+              <ChevronRight size={16} />
+            </button>
+          </>
+        )}
+
         {/* Mobile Show All Button */}
-        <div className="absolute bottom-4 right-4 md:hidden">
-           <DialogTrigger render={<Button variant="secondary" className="shadow-lg gap-2 text-xs font-semibold" onClick={() => setCurrentIdx(0)} />}>
+        <div className="absolute bottom-4 right-4 md:hidden z-10">
+           <DialogTrigger render={<Button variant="secondary" className="shadow-lg gap-2 text-xs font-semibold" onClick={() => setCurrentIdx(mobileIdx)} />}>
                <ImageIcon className="w-4 h-4" />
-               1 / {images.length}
+               {mobileIdx + 1} / {images.length}
            </DialogTrigger>
         </div>
       </div>

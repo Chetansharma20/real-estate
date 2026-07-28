@@ -417,7 +417,7 @@ export default function ProjectDetailPage() {
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                     <div>
                       <p className="text-sm uppercase tracking-widest text-gray-500 font-bold mb-1">
-                        {isConfigView ? "Total Price" : "Starting Price"}
+                        STARTING PRICE
                       </p>
                       <h2 className="text-4xl md:text-5xl font-bold text-[#172033]">
                         INR {formatPrice(currentPrice)} {isConfigView ? "" : "*"}

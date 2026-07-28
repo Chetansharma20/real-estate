@@ -18,8 +18,9 @@ export default function PropertyCard({ property, onClick, priority = false }: Pr
   const isProject = !!property._isProject;
   const variants: any[] = property._variants ?? [];
   
-  const loc = property.locality || property.township?.locality || "Location";
-  const cty = property.city || property.township?.city || "TBD";
+  const loc = property.locality || property.township?.locality;
+  const cty = property.city || property.township?.city;
+  const displayLocation = (loc && cty) ? `${loc}, ${cty}` : (property.address || "Location, TBD");
   const title = property.township ? `${property.township.name} - ${property.title}` : property.title;
 
   const rawImages = (isProject ? (property.media || property.images) : property.images) || [];
@@ -85,7 +86,7 @@ export default function PropertyCard({ property, onClick, priority = false }: Pr
           </h3>
           <div className="flex items-center text-[#172033]/60 group-hover:text-blue-100 text-sm transition-colors">
             <MapPin className="w-4 h-4 mr-1 text-[#D4AF37] group-hover:text-white transition-colors" />
-            <span className="truncate">{loc}, {cty}</span>
+            <span className="truncate">{displayLocation}</span>
           </div>
         </div>
 

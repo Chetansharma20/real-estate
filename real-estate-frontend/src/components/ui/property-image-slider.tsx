@@ -102,14 +102,14 @@ export function PropertyImageSlider({ images, title, disableHoverPause = false, 
       {/* Navigation Arrows (Visible on hover) */}
       <button
         onClick={goToPrev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 hover:bg-white/40 transition-all duration-300 z-10"
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white opacity-100 sm:opacity-0 sm:group-hover/slider:opacity-100 hover:bg-white/40 transition-all duration-300 z-10"
         aria-label="Previous image"
       >
         <ChevronLeft size={16} />
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 hover:bg-white/40 transition-all duration-300 z-10"
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white opacity-100 sm:opacity-0 sm:group-hover/slider:opacity-100 hover:bg-white/40 transition-all duration-300 z-10"
         aria-label="Next image"
       >
         <ChevronRight size={16} />
