@@ -11,7 +11,7 @@ export const getAllAmenities = async () => {
 /**
  * Create a new amenity
  */
-export const createAmenity = async (name: string) => {
+export const createAmenity = async (name: string, category: string = "General") => {
   if (!name) {
     throw new ApiError(400, "Amenity name is required");
   }
@@ -26,7 +26,7 @@ export const createAmenity = async (name: string) => {
     throw new ApiError(400, "Amenity already exists");
   }
 
-  return AmenityRepository.create({ name });
+  return AmenityRepository.create({ name, category });
 };
 
 /**

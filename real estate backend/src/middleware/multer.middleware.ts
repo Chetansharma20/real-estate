@@ -14,7 +14,13 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
+    let prefix = file.fieldname;
+    if (file.fieldname === "coverImage") prefix = "cover";
+    if (file.fieldname === "flatImages") prefix = "flat_images";
+    if (file.fieldname === "amenityImages") prefix = "amenities";
+    if (file.fieldname === "floorPlans") prefix = "floor_plan";
+    
+    cb(null, prefix + "-" + uniqueSuffix + path.extname(file.originalname));
   }
 });
 
@@ -35,3 +41,38 @@ export const upload = multer({
     }
   }
 });
+
+/**
+ * Multi-field upload for project media:
+ * - "images"        → gallery photos (IMAGE)
+ * - "coverImage"    → project cover photo (IMAGE, isCover: true)
+ * - "brochure"      → PDF brochure (BROCHURE)
+ * - "floorPlans"    → floor plan images (FLOOR_PLAN)
+ * - "flatImages"    → rooms / flat interior photos (IMAGE)
+ * - "amenityImages" → amenities photos (IMAGE)
+ */
+export const uploadProjectMedia = multer({
+  storage: storage,
+  limits: {
+    fileSize: 10 * 1024 * 1024, // 10MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    const isImage = /jpeg|jpg|png|webp/.test(path.extname(file.originalname).toLowerCase());
+    const isPdf = /pdf/.test(path.extname(file.originalname).toLowerCase());
+    const mimetypeImg = /jpeg|jpg|png|webp/.test(file.mimetype);
+    const mimetypePdf = /pdf/.test(file.mimetype);
+
+    if ((mimetypeImg && isImage) || (mimetypePdf && isPdf)) {
+      return cb(null, true);
+    } else {
+      cb(new Error("Only images (.jpeg, .jpg, .png, .webp) and PDF are allowed"));
+    }
+  }
+}).fields([
+  { name: "images",        maxCount: 20 },
+  { name: "coverImage",    maxCount: 1 },
+  { name: "brochure",      maxCount: 1 },
+  { name: "floorPlans",    maxCount: 10 },
+  { name: "flatImages",    maxCount: 20 },
+  { name: "amenityImages", maxCount: 20 },
+]);

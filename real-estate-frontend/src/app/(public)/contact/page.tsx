@@ -69,8 +69,8 @@ export default function ContactPage() {
           className="text-center max-w-3xl mx-auto space-y-2"
         >
           <span className="text-xs uppercase tracking-[0.35em] text-[#D4AF37] font-semibold">— Get In Touch</span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#0B132B] font-bold">Contact Bricksage</h1>
-          <p className="text-[#0B132B]/50 font-light text-sm sm:text-base">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold">Contact Bricksage</h1>
+          <p className="text-[#172033]/50 font-light text-sm sm:text-base">
             Reach out to our advisory experts or request a consultation regarding commercial property acquisitions and luxury home listings.
           </p>
         </motion.div>
@@ -82,41 +82,41 @@ export default function ContactPage() {
           <div className="space-y-6">
             
             {/* Call Center */}
-            <Card className="border border-[#0B132B]/10 rounded-2xl bg-white p-6 shadow-sm flex items-start gap-4">
+            <Card className="border border-[#172033]/10 rounded-2xl bg-white p-6 shadow-sm flex items-start gap-4">
               <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] shrink-0">
                 <Phone className="w-5 h-5" />
               </div>
               <div className="space-y-1">
-                <p className="text-[10px] text-[#0B132B]/40 uppercase tracking-widest font-bold">Phone Consultation</p>
-                <a href="tel:02234125357" className="font-semibold text-[#0B132B] text-sm block hover:text-[#D4AF37] transition-colors">022 34125357</a>
-                <p className="text-xs text-[#0B132B]/50">Mon-Sat, 9:00 AM - 7:00 PM</p>
+                <p className="text-[10px] text-[#172033]/40 uppercase tracking-widest font-bold">Phone Consultation</p>
+                <a href="tel:02234125357" className="font-semibold text-[#172033] text-sm block hover:text-[#D4AF37] transition-colors">022 34125357</a>
+                <p className="text-xs text-[#172033]/50">Mon-Sat, 9:00 AM - 7:00 PM</p>
               </div>
             </Card>
 
             {/* Email Center */}
             <motion.div variants={fadeUpVariant}>
-              <Card className="border border-[#0B132B]/10 rounded-2xl bg-white p-6 shadow-sm flex items-start gap-4">
+              <Card className="border border-[#172033]/10 rounded-2xl bg-white p-6 shadow-sm flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] text-[#0B132B]/40 uppercase tracking-widest font-bold">Advisory Inbox</p>
-                  <a href="mailto:business@bricksage.in" className="font-semibold text-[#0B132B] text-sm block hover:text-[#D4AF37] transition-colors">business@bricksage.in</a>
-                  <p className="text-xs text-[#0B132B]/50">Typically replies within 24 hours</p>
+                  <p className="text-[10px] text-[#172033]/40 uppercase tracking-widest font-bold">Advisory Inbox</p>
+                  <a href="mailto:business@bricksage.in" className="font-semibold text-[#172033] text-sm block hover:text-[#D4AF37] transition-colors">business@bricksage.in</a>
+                  <p className="text-xs text-[#172033]/50">Typically replies within 24 hours</p>
                 </div>
               </Card>
             </motion.div>
 
             {/* Office Locations */}
-            <Card className="border border-[#0B132B]/10 rounded-2xl bg-white p-6 shadow-sm flex items-start gap-4">
+            <Card className="border border-[#172033]/10 rounded-2xl bg-white p-6 shadow-sm flex items-start gap-4">
               <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] shrink-0">
                 <MapPin className="w-5 h-5" />
               </div>
               <div className="space-y-3 w-full">
                 <div>
-                  <p className="text-[10px] text-[#0B132B]/40 uppercase tracking-widest font-bold mb-1">Corporate HQ</p>
-                  <p className="font-semibold text-[#0B132B] text-sm leading-snug">Office No. 415, Avior Corporate Park</p>
-                  <p className="text-xs text-[#0B132B]/50 mt-1 leading-relaxed">
+                  <p className="text-[10px] text-[#172033]/40 uppercase tracking-widest font-bold mb-1">Corporate HQ</p>
+                  <p className="font-semibold text-[#172033] text-sm leading-snug">Office No. 415, Avior Corporate Park</p>
+                  <p className="text-xs text-[#172033]/50 mt-1 leading-relaxed">
                     LBS Marg, Opposite Johnson & Johnson,<br />Mulund-West, Mumbai
                   </p>
                 </div>
@@ -131,7 +131,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            <Card className="border border-[#0B132B]/10 rounded-2xl bg-white shadow-lg shadow-[#0B132B]/5 overflow-hidden">
+            <Card className="border border-[#172033]/10 rounded-2xl bg-white shadow-lg shadow-[#172033]/5 overflow-hidden">
               <div className="bg-gradient-to-r from-[#172033] to-[#25324D] p-6 text-center border-b border-[#D4AF37]/30">
                 <h3 className="text-xl font-serif font-bold text-white tracking-wide">Consultation Form</h3>
                 <p className="text-xs text-white/70 mt-1.5 font-light">Fill in the fields below to schedule a callback or property sell request.</p>
@@ -158,8 +158,8 @@ export default function ContactPage() {
                   
                   {/* Name */}
                   <div className="space-y-1.5">
-                    <Label htmlFor="name" className="text-xs text-[#0B132B]/80 font-medium">Your Name</Label>
-                    <div className="relative focus-within:text-[#D4AF37] text-[#0B132B]/40 transition-colors duration-300">
+                    <Label htmlFor="name" className="text-xs text-[#172033]/80 font-medium">Your Name</Label>
+                    <div className="relative focus-within:text-[#D4AF37] text-[#172033]/40 transition-colors duration-300">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-current transition-colors duration-300" />
                       <Input
                         id="name"
@@ -167,15 +167,15 @@ export default function ContactPage() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="John Doe"
-                        className="pl-9 h-11 border-[#0B132B]/10 focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none rounded-lg text-[#0B132B] transition-all duration-300 bg-white"
+                        className="pl-9 h-11 border-[#172033]/10 focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none rounded-lg text-[#172033] transition-all duration-300 bg-white"
                       />
                     </div>
                   </div>
 
                   {/* Phone */}
                   <div className="space-y-1.5">
-                    <Label htmlFor="phone" className="text-xs text-[#0B132B]/80 font-medium">Phone Number</Label>
-                    <div className="relative focus-within:text-[#D4AF37] text-[#0B132B]/40 transition-colors duration-300">
+                    <Label htmlFor="phone" className="text-xs text-[#172033]/80 font-medium">Phone Number</Label>
+                    <div className="relative focus-within:text-[#D4AF37] text-[#172033]/40 transition-colors duration-300">
                       <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-current transition-colors duration-300" />
                       <Input
                         id="phone"
@@ -184,19 +184,19 @@ export default function ContactPage() {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="+91 XXXXX XXXXX"
-                        className="pl-9 h-11 border-[#0B132B]/10 focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none rounded-lg text-[#0B132B] transition-all duration-300 bg-white"
+                        className="pl-9 h-11 border-[#172033]/10 focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none rounded-lg text-[#172033] transition-all duration-300 bg-white"
                       />
                     </div>
                   </div>
 
                   {/* Type */}
                   <div className="col-span-1 sm:col-span-2 space-y-1.5">
-                    <Label htmlFor="type" className="text-xs text-[#0B132B]/80 font-medium">Request Action</Label>
+                    <Label htmlFor="type" className="text-xs text-[#172033]/80 font-medium">Request Action</Label>
                     <Select value={type} onValueChange={(v) => setType(v ?? "")}>
-                      <SelectTrigger className="w-full h-11 border-[#0B132B]/10 focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none rounded-lg text-[#0B132B] px-3 bg-white flex items-center justify-between transition-all duration-300">
+                      <SelectTrigger className="w-full h-11 border-[#172033]/10 focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none rounded-lg text-[#172033] px-3 bg-white flex items-center justify-between transition-all duration-300">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-white text-[#0B132B] border border-[#0B132B]/10 p-1 shadow-xl rounded-lg">
+                      <SelectContent className="bg-white text-[#172033] border border-[#172033]/10 p-1 shadow-xl rounded-lg">
                         <SelectItem value="CALLBACK">
                           Request Callback Consultation
                         </SelectItem>
@@ -209,15 +209,15 @@ export default function ContactPage() {
 
                   {/* Message */}
                   <div className="col-span-1 sm:col-span-2 space-y-1.5">
-                    <Label htmlFor="message" className="text-xs text-[#0B132B]/80 font-medium">Message / Inquiry Details</Label>
-                    <div className="relative focus-within:text-[#D4AF37] text-[#0B132B]/40 transition-colors duration-300">
+                    <Label htmlFor="message" className="text-xs text-[#172033]/80 font-medium">Message / Inquiry Details</Label>
+                    <div className="relative focus-within:text-[#D4AF37] text-[#172033]/40 transition-colors duration-300">
                       <MessageSquare className="absolute left-3 top-3.5 w-4 h-4 text-current transition-colors duration-300" />
                       <textarea
                         id="message"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="Please write details about what location or budget properties you are looking for..."
-                        className="flex min-h-[120px] w-full rounded-lg border border-[#0B132B]/10 bg-transparent pl-9 pr-3 py-3 text-sm focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none disabled:opacity-50 text-[#0B132B] transition-all duration-300 bg-white"
+                        className="flex min-h-[120px] w-full rounded-lg border border-[#172033]/10 bg-transparent pl-9 pr-3 py-3 text-sm focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none disabled:opacity-50 text-[#172033] transition-all duration-300 bg-white"
                       />
                     </div>
                   </div>
@@ -225,7 +225,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Submit */}
-                <div className="flex justify-end pt-4 border-t border-[#0B132B]/5">
+                <div className="flex justify-end pt-4 border-t border-[#172033]/5">
                   <Button
                     type="submit"
                     disabled={isSubmitting}

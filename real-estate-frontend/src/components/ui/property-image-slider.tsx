@@ -9,23 +9,23 @@ interface PropertyImageSliderProps {
   images: { url: string; alt?: string }[];
   title: string;
   disableHoverPause?: boolean;
+  priority?: boolean;
 }
 
-export function PropertyImageSlider({ images, title, disableHoverPause = false }: PropertyImageSliderProps) {
+export function PropertyImageSlider({ images, title, disableHoverPause = false, priority = false }: PropertyImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
   // Auto-slide effect
   useEffect(() => {
     if (images.length <= 1) return;
-    if (isHovered && !disableHoverPause) return;
 
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
     }, 3500); // Change image every 3.5 seconds
 
     return () => clearInterval(timer);
-  }, [images.length, isHovered, disableHoverPause]);
+  }, [images.length]);
 
   const goToNext = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -54,6 +54,7 @@ export function PropertyImageSlider({ images, title, disableHoverPause = false }
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover group-hover:scale-105 transition-transform duration-500"
+        priority={priority}
       />
     );
   }
@@ -67,6 +68,7 @@ export function PropertyImageSlider({ images, title, disableHoverPause = false }
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover group-hover:scale-105 transition-transform duration-500"
+        priority={priority}
       />
     );
   }
@@ -92,6 +94,7 @@ export function PropertyImageSlider({ images, title, disableHoverPause = false }
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
+            priority={priority && currentIndex === 0}
           />
         </motion.div>
       </AnimatePresence>

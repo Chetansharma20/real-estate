@@ -18,9 +18,9 @@ export const getAllAmenities = asyncHandler(async (req: Request, res: Response) 
  * Create a new amenity
  */
 export const createAmenity = asyncHandler(async (req: Request, res: Response) => {
-  const { name } = req.body;
+  const { name, category } = req.body;
 
-  const newAmenity = await amenityService.createAmenity(name);
+  const newAmenity = await amenityService.createAmenity(name, category);
 
   res.status(201).json(
     new ApiResponse(201, newAmenity, "Amenity created successfully")

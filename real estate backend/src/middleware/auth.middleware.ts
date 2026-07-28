@@ -30,3 +30,10 @@ export const verifyJWT = asyncHandler(async (req: CustomRequest, res: Response, 
     throw new ApiError(401, "Invalid access token");
   }
 });
+
+export const verifyAdmin = (req: CustomRequest, res: Response, next: NextFunction) => {
+  if (req.user?.role !== "ADMIN") {
+    throw new ApiError(403, "Forbidden: Admin access required");
+  }
+  next();
+};

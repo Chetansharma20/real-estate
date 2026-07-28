@@ -1,6 +1,6 @@
 import * as LeadRepository from "../repositories/LeadRepository";
 import { ApiError } from "../utils/ApiError";
-import { LeadStatus } from "@prisma/client";
+import { LeadStatus, LeadType } from "@prisma/client";
 
 /**
  * Submit a new lead/inquiry (public)
@@ -9,7 +9,7 @@ export const submitLead = async (data: {
   name: string;
   phone: string;
   type: string;
-  propertyId?: string;
+  projectId?: string;
   userId?: string;
   message?: string;
   preferredDate?: string;
@@ -19,6 +19,10 @@ export const submitLead = async (data: {
     throw new ApiError(400, "Name, phone and type are required");
   }
 
+  if (!Object.values(LeadType).includes(data.type as any)) {
+    throw new ApiError(400, `Invalid lead type: '${data.type}'. Allowed values: ${Object.values(LeadType).join(", ")}`);
+  }
+
   return LeadRepository.create({
     name: data.name,
     phone: data.phone,
@@ -26,7 +30,7 @@ export const submitLead = async (data: {
     message: data.message,
     preferredDate: data.preferredDate ? new Date(data.preferredDate) : undefined,
     preferredSlot: data.preferredSlot,
-    property: data.propertyId ? { connect: { id: data.propertyId } } : undefined,
+    project: data.projectId ? { connect: { id: data.projectId } } : undefined,
     user: data.userId ? { connect: { id: data.userId } } : undefined,
   });
 };
@@ -44,7 +48,7 @@ export const getAllLeads = async (
 
   if (filters.status) whereClause.status = filters.status;
   if (filters.type) whereClause.type = filters.type;
-  if (filters.propertyId) whereClause.propertyId = filters.propertyId;
+  if (filters.projectId) whereClause.projectId = filters.projectId;
 
   const [leads, totalItems] = await Promise.all([
     LeadRepository.findMany(whereClause, {

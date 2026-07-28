@@ -6,7 +6,7 @@
   --font-sans: var(--font-dm-sans);
   --font-serif: var(--font-cormorant);
 
-  --color-background: #0B132B;
+  --color-background: #172033;
   --color-foreground: #F4F6F9;
 
   --color-card: #1C2541;
@@ -16,7 +16,7 @@
   --color-popover-foreground: #F4F6F9;
 
   --color-primary: #D4AF37;
-  --color-primary-foreground: #0B132B;
+  --color-primary-foreground: #172033;
 
   --color-secondary: #1C2541;
   --color-secondary-foreground: #F4F6F9;
@@ -49,4 +49,44 @@
   html {
     @apply font-sans;
   }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Admin panel light theme override */
+.admin-theme {
+  color: #172033;
+  --color-background: #ffffff;
+  --color-foreground: #172033;
+  --color-card: #ffffff;
+  --color-card-foreground: #172033;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #172033;
+  --color-secondary: #f4f6f9;
+  --color-secondary-foreground: #172033;
+  --color-muted: #f4f6f9;
+  --color-muted-foreground: #6b7280;
+  --color-border: #e5e7eb;
+  --color-input: #ffffff;
+  --color-ring: #D4AF37;
+}
+
+.admin-theme input,
+.admin-theme select,
+.admin-theme textarea,
+.admin-theme label,
+.admin-theme h1,
+.admin-theme h2,
+.admin-theme h3,
+.admin-theme h4,
+.admin-theme button:not([class*="bg-"]):not([class*="text-"]) {
+  color: #172033;
 }

@@ -39,12 +39,15 @@ export const createBlogPost = async (data: {
 export const getAllBlogPosts = async (
   filters: any,
   page: number = 1,
-  limit: number = 10
+  limit: number = 10,
+  isPublic: boolean = false
 ) => {
   const skip = (page - 1) * limit;
   const whereClause: any = {};
 
-  if (filters.published !== undefined) {
+  if (isPublic) {
+    whereClause.published = true;
+  } else if (filters.published !== undefined) {
     whereClause.published = filters.published === "true" || filters.published === true;
   }
 

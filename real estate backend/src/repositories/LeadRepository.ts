@@ -17,7 +17,7 @@ export const findById = async (id: string) => {
   return prisma.lead.findUnique({
     where: { id },
     include: {
-      property: true,
+      project: true,
       user: true,
     },
   });
@@ -33,7 +33,7 @@ export const findMany = async (
   return prisma.lead.findMany({
     where: whereClause,
     include: {
-      property: true,
+      project: true,
     },
     ...options,
   });

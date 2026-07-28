@@ -1,14 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { LayoutDashboard, Building2, Users, FileText, LogOut } from "lucide-react";
+import { LayoutDashboard, Building2, Users, FileText, LogOut, Sparkles, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 
 const SIDEBAR_LINKS = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Properties", href: "/admin/properties", icon: Building2 },
+  { name: "Townships", href: "/admin/townships", icon: Building2 },
+  { name: "Projects", href: "/admin/projects", icon: Building2 },
+  { name: "Amenities", href: "/admin/amenities", icon: Sparkles },
   { name: "Leads", href: "/admin/leads", icon: Users },
   { name: "Blog Posts", href: "/admin/blogs", icon: FileText },
 ];
@@ -31,11 +33,11 @@ export default function AdminLayout({
     }
   };
   return (
-    <div className="min-h-screen bg-[#F4F6F9] flex font-sans">
+    <div className="admin-theme min-h-screen bg-[#F4F6F9] flex font-sans">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-[#0B132B]/10 flex-col hidden md:flex">
-        <div className="h-20 flex items-center px-8 border-b border-[#0B132B]/10">
-          <span className="font-serif text-xl font-bold text-[#0B132B]">Admin Portal</span>
+      <aside className="w-64 bg-white border-r border-[#172033]/10 flex-col hidden md:flex">
+        <div className="h-20 flex items-center px-8 border-b border-[#172033]/10">
+          <span className="font-serif text-xl font-bold text-[#172033]">Admin Portal</span>
         </div>
         
         <nav className="flex-1 py-8 px-4 space-y-2">
@@ -45,7 +47,7 @@ export default function AdminLayout({
               <Link
                 key={link.name}
                 href={link.href}
-                className="flex items-center gap-3 px-4 py-3 text-sm text-[#0B132B]/70 font-medium hover:bg-[#0B132B]/5 hover:text-[#0B132B] rounded-md transition-colors"
+                className="flex items-center gap-3 px-4 py-3 text-sm text-[#172033]/70 font-medium hover:bg-[#172033]/5 hover:text-[#172033] rounded-md transition-colors"
               >
                 <Icon size={18} />
                 {link.name}
@@ -54,7 +56,7 @@ export default function AdminLayout({
           })}
         </nav>
 
-        <div className="p-4 border-t border-[#0B132B]/10">
+        <div className="p-4 border-t border-[#172033]/10">
           <Button
             variant="ghost"
             onClick={handleLogout}
@@ -69,8 +71,8 @@ export default function AdminLayout({
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col">
         {/* Top Header */}
-        <header className="h-20 bg-white border-b border-[#0B132B]/10 flex items-center justify-between px-8">
-          <h1 className="text-xl font-semibold text-[#0B132B]">Dashboard Overview</h1>
+        <header className="h-20 bg-white border-b border-[#172033]/10 flex items-center justify-between px-8">
+          <h1 className="text-xl font-semibold text-[#172033]">Dashboard Overview</h1>
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">
               AD

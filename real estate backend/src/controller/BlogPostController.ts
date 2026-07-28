@@ -11,7 +11,18 @@ export const getAllBlogPosts = asyncHandler(async (req: Request, res: Response) 
   const page = parseInt(req.query.page as string) || 1;
   const limit = parseInt(req.query.limit as string) || 10;
 
-  const posts = await blogPostService.getAllBlogPosts(req.query, page, limit);
+  const posts = await blogPostService.getAllBlogPosts(req.query, page, limit, true);
+
+  res.status(200).json(
+    new ApiResponse(200, posts, "Blog posts fetched successfully")
+  );
+});
+
+export const getAllBlogPostsAdmin = asyncHandler(async (req: Request, res: Response) => {
+  const page = parseInt(req.query.page as string) || 1;
+  const limit = parseInt(req.query.limit as string) || 10;
+
+  const posts = await blogPostService.getAllBlogPosts(req.query, page, limit, false);
 
   res.status(200).json(
     new ApiResponse(200, posts, "Blog posts fetched successfully")

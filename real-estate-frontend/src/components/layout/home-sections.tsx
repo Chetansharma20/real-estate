@@ -15,9 +15,9 @@ export function HomeSections() {
     <>
       <HeroSection />
       <ProjectsSection />
-      <StatsSection />
       <ServicesSection />
       <TestimonialsSection />
+      <StatsSection />
       <CtaSection />
     </>
   );

@@ -1,82 +1,248 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, ShieldCheck, Trophy, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutPage() {
-  const VALUES = [
+  const PARTNERS = [
     {
+      name: "Kartik Mudaliar",
+      role: "Director & Co-Founder",
+      image: "/kartik mudaliar.png",
+      description:
+        "With 30+ years of real estate experience, Kartik Mudaliar brings deep industry expertise and strategic leadership, driving growth with a customer-first approach.",
+    },
+    {
+      name: "Akshay Mithiya",
+      role: "Director & Co-Founder",
+      image: "/akshay mithiya.png",
+      description:
+        "Years of real estate expertise, driven by trust, integrity, and client-first advisory. Also the Real Estate Developer behind Trishika Elite, delivering quality developments with a commitment to excellence.",
+    },
+    {
+      name: "Somen Ghosh",
+      role: "Managing Director & Co-Founder",
+      image: "/somesh ghosh.png",
+      description:
+        "20+ years of expertise in housing finance and real estate, delivering trusted, client-first advisory.",
+    },
+    {
+      name: "Shyam Mithiya",
+      role: "Chief Operating Officer",
+      image: "/shyam mithiya.png",
+      description:
+        "Chartered Accountancy (CA) background and Co-founder of a 100X.VC-backed startup, with expertise in finance, strategy, and operations.",
+    },
+    {
+      name: "Sandeep Raut",
+      role: "Business Head",
+      image: "/sandeep raut.png",
+      description:
+        "With 19+ years of real estate experience in sales & marketing, Sandeep Raut specializes in business development, sales strategy, and team leadership, driving growth with a client-first approach.",
+    },
+  ];
+
+  const PRINCIPLES = [
+    {
+      numeral: "I",
       title: "Excellence",
-      description: "We set the highest benchmarks in property advisory, ensuring a premium service experience for commercial and luxury residential clients.",
-      icon: Trophy,
+      description:
+        "We set the highest benchmarks in property advisory, ensuring a premium service experience for commercial and luxury residential clients.",
     },
     {
+      numeral: "II",
       title: "Transparency",
-      description: "Honest evaluations, transparent legal routing, and clear base price structures without hidden advisory charges.",
-      icon: ShieldCheck,
+      description:
+        "Honest evaluations, transparent legal routing, and clear base price structures without hidden advisory charges.",
     },
     {
+      numeral: "III",
       title: "Bespoke Curation",
-      description: "Tailor-made properties matches aligned to your exact location, budget, and tag criteria (sea view, city view, ready-to-move).",
-      icon: Sparkles,
+      description:
+        "Tailor-made property matches aligned to your exact location, budget, and preferences — sea view, city view, ready-to-move.",
     },
   ];
 
   return (
-    <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 px-4 sm:px-6">
-      <div className="max-w-5xl mx-auto space-y-16">
-        
-        {/* Title Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <span className="text-xs uppercase tracking-[0.35em] text-[#D4AF37] font-semibold">— Our Agency</span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#0B132B] font-bold">About Bricksage</h1>
-          <p className="text-[#0B132B]/50 font-light text-sm sm:text-base">
-            Bricksage Properties Advisory Pvt. Ltd. is one of India's fastest-growing luxury real estate consulting companies.
+    <div className="bg-[#F4F6F9] min-h-screen">
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-6 border-b border-[#172033]/10">
+        <div className="max-w-5xl mx-auto">
+          <span className="block text-[11px] tracking-[0.35em] uppercase text-[#C9A84C] font-mono font-semibold mb-4">
+            Your Personal Real Estate Advisor
+          </span>
+          <h1 className="font-serif text-4xl sm:text-4xl md:text-5xl text-[#172033] font-semibold leading-[1.15] max-w-3xl">
+            At Bricksage, we believe buying a property is one of life&apos;s biggest decisions, not just a transaction.
+          </h1>
+          <div className="mt-8 space-y-5 text-[#172033]/70 text-base sm:text-lg font-light max-w-2xl leading-relaxed">
+            <p>
+              With over 30 years of real estate experience, we help you make informed decisions with honest advice, market expertise, and complete transparency.
+            </p>
+            <p>
+              We don&apos;t start with projects—we start with you. We understand your goals, compare the right options, and recommend only what we truly believe is the best fit.
+            </p>
+            <p className="font-medium text-[#172033]/90">
+              No pressure. No sales tactics. Just trusted guidance to help you make the smartest real estate decision with confidence.
+            </p>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 border-t border-[#172033]/10 pt-6 max-w-2xl gap-6">
+            {[
+              ["30+", "Years of Experience"],
+              ["500+", "Clients Advised"],
+              ["1000+", "Properties Evaluated"],
+            ].map(([num, label]) => (
+              <div key={label} className="text-center sm:text-left">
+                <div className="font-serif text-3xl sm:text-4xl text-[#172033]">
+                  {num}
+                </div>
+                <div className="mt-1 font-mono text-[10px] uppercase tracking-widest text-[#172033]/50">
+                  {label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-16">
+            <span className="block text-[11px] tracking-[0.35em] uppercase text-[#C9A84C] font-mono font-semibold mb-3">
+              Leadership
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#172033] font-semibold">
+              The Partners
+            </h2>
+          </div>
+
+          <div>
+            {PARTNERS.map((p, i) => (
+              <div
+                key={p.name}
+                className={`group flex flex-col ${
+                  i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
+                } gap-8 md:gap-14 items-center border-t border-[#172033]/10 py-12 first:border-t-0`}
+              >
+                <div className="relative w-full md:w-64 aspect-[4/5] shrink-0 overflow-hidden">
+                  <Image
+                    src={p.image}
+                    alt={p.name}
+                    fill
+                    className="object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700"
+                    sizes="(max-width: 768px) 100vw, 256px"
+                  />
+                  <div className="absolute inset-0 bg-[#C9A84C] mix-blend-color opacity-40 group-hover:opacity-0 transition-opacity duration-700" />
+                </div>
+
+                <div className="flex-1">
+                  <span className="font-mono text-xs text-[#C9A84C] tracking-widest">
+                    PARTNER — {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-2 font-serif text-2xl sm:text-3xl text-[#172033] font-semibold">
+                    {p.name}
+                  </h3>
+                  <p className="mt-1 font-mono text-xs uppercase tracking-widest text-[#172033]/50">
+                    {p.role}
+                  </p>
+                  <p className="mt-4 text-[#172033]/70 leading-relaxed font-light max-w-xl">
+                    {p.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission */}
+      <section className="py-24 px-6 bg-[#172033] text-[#F4F6F9]">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="font-serif italic text-xl sm:text-2xl text-[#C9A84C]">
+            Every property has a price.
+          </p>
+          <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-semibold mt-1 mb-10">
+            The right decision has value.
+          </p>
+
+          <p className="text-left sm:text-justify text-[#F4F6F9]/70 leading-relaxed font-light">
+            <span className="float-left font-serif text-6xl leading-[0.8] pr-3 pt-1 text-[#C9A84C]">
+              A
+            </span>
+            t Bricksage, we exist to help people make decisions they will
+            never regret. With over thirty years of experience in the real
+            estate industry, we&apos;ve learned that buying a home isn&apos;t
+            about finding the most expensive property or the biggest
+            amenities — it&apos;s about finding the place that fits your
+            life, your future, and your ambitions.
+          </p>
+
+          <p className="mt-6 text-[#F4F6F9]/70 leading-relaxed font-light text-left sm:text-justify">
+            That&apos;s why we don&apos;t begin with projects — we begin with
+            people. We listen before we recommend, we understand before we
+            advise, and we compare before we conclude. If we wouldn&apos;t
+            recommend a property to our own family, we won&apos;t recommend
+            it to you.
+          </p>
+
+          <p className="mt-8 font-serif font-semibold text-lg sm:text-xl border-t border-[#F4F6F9]/15 pt-8">
+            We don&apos;t sell property. We help you make the smartest real
+            estate decision of your life.
           </p>
         </div>
+      </section>
 
-        {/* Brand Mission Card */}
-        <Card className="border border-[#0B132B]/10 rounded-2xl bg-white shadow-sm overflow-hidden p-8 sm:p-12 relative">
-          <div className="absolute inset-0 opacity-[0.02]" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230B132B' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-          <div className="space-y-6 relative z-10 max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0B132B]">Our Advisory Philosophy</h2>
-            <p className="text-[#0B132B]/70 leading-relaxed font-light text-sm sm:text-base">
-              We offer comprehensive real estate solutions to some of the biggest names in the industry and boast an enviable track record of retaining clients by delivering exceptional results, time and again.
-            </p>
-            <p className="text-[#0B132B]/70 leading-relaxed font-light text-sm sm:text-base">
-              Whether you are an investor looking for premium IT Office Space in Bandra-Kurla Complex, or a family seeking a luxury Sea-View Apartment in Mumbai, our certified advisors provide strategic market insights, legal diligence routing, and structured deal closures to maximize your portfolio value.
-            </p>
-          </div>
-        </Card>
+      {/* Principles */}
+      <section className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <span className="block text-[11px] tracking-[0.35em] uppercase text-[#C9A84C] font-mono font-semibold mb-3">
+            What Guides Us
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl text-[#172033] font-semibold mb-12">
+            Our Principles
+          </h2>
 
-        {/* Company Core Values */}
-        <div className="space-y-6">
-          <div className="text-center">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0B132B]">Core Values</h2>
-            <p className="text-[#0B132B]/50 text-xs sm:text-sm mt-1">The principles that guide our advisory consultants daily</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {VALUES.map((val, i) => {
-              const Icon = val.icon;
-              return (
-                <Card key={i} className="border border-[#0B132B]/10 rounded-2xl bg-white p-6 shadow-sm hover:border-[#D4AF37]/50 hover:shadow-md transition-all space-y-4">
-                  <div className="w-10 h-10 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37]">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="font-semibold text-base text-[#0B132B]">{val.title}</h3>
-                    <p className="text-xs text-[#0B132B]/60 leading-relaxed font-light">{val.description}</p>
-                  </div>
-                </Card>
-              );
-            })}
+          <div>
+            {PRINCIPLES.map((v) => (
+              <div
+                key={v.numeral}
+                className="flex gap-8 items-baseline border-t border-[#172033]/10 py-8 first:border-t-0"
+              >
+                <span className="font-serif text-3xl text-[#C9A84C] w-10 shrink-0">
+                  {v.numeral}
+                </span>
+                <div>
+                  <h3 className="font-serif text-xl text-[#172033] font-semibold">
+                    {v.title}
+                  </h3>
+                  <p className="mt-2 text-[#172033]/60 font-light leading-relaxed max-w-2xl">
+                    {v.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+      </section>
 
-      </div>
+      {/* CTA */}
+      <section className="py-20 px-6 border-t border-[#172033]/10">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="font-serif text-2xl sm:text-3xl text-[#172033] font-semibold">
+            Ready to make your next move?
+          </h2>
+          <p className="mt-3 text-[#172033]/60 font-light">
+            Speak with an advisor before you decide — no pressure, no hidden
+            agenda.
+          </p>
+          <a
+            href="/contact"
+            className="mt-8 inline-block border border-[#172033] px-8 py-3 font-mono text-xs uppercase tracking-widest text-[#172033] hover:bg-[#172033] hover:text-[#F4F6F9] transition-colors duration-300"
+          >
+            Speak with an Advisor
+          </a>
+        </div>
+      </section>
     </div>
   );
 }

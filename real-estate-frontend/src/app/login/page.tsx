@@ -42,11 +42,11 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-[#F4F6F9] p-4">
       <Card className="w-full max-w-md shadow-2xl border-0 rounded-none bg-white">
         <CardHeader className="space-y-2 text-center pb-8 pt-10">
-          <div className="mx-auto w-12 h-12 bg-[#0B132B]/5 flex items-center justify-center rounded-full mb-4">
-            <Lock className="w-6 h-6 text-[#0B132B]" />
+          <div className="mx-auto w-12 h-12 bg-[#172033]/5 flex items-center justify-center rounded-full mb-4">
+            <Lock className="w-6 h-6 text-[#172033]" />
           </div>
-          <CardTitle className="text-3xl font-serif font-bold text-[#0B132B]">Admin Portal</CardTitle>
-          <CardDescription className="text-[#0B132B]/50 font-light">
+          <CardTitle className="text-3xl font-serif font-bold text-[#172033]">Admin Portal</CardTitle>
+          <CardDescription className="text-[#172033]/50 font-light">
             Enter your credentials to access the dashboard
           </CardDescription>
         </CardHeader>
@@ -54,7 +54,7 @@ export default function LoginPage() {
         <form onSubmit={handleLogin}>
           <CardContent className="space-y-6 px-10">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-xs uppercase tracking-widest text-[#0B132B]/70">
+              <Label htmlFor="email" className="text-xs uppercase tracking-widest text-[#172033]/70">
                 Email Address
               </Label>
               <Input
@@ -64,11 +64,11 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="h-12 rounded-none bg-transparent border-[#0B132B]/20 text-[#0B132B] placeholder:text-[#0B132B]/30 focus-visible:ring-primary focus-visible:border-primary"
+                className="h-12 rounded-none bg-transparent border-[#172033]/20 text-[#172033] placeholder:text-[#172033]/30 focus-visible:ring-primary focus-visible:border-primary"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-xs uppercase tracking-widest text-[#0B132B]/70">
+              <Label htmlFor="password" className="text-xs uppercase tracking-widest text-[#172033]/70">
                 Password
               </Label>
               <Input
@@ -78,7 +78,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="h-12 rounded-none bg-transparent border-[#0B132B]/20 text-[#0B132B] placeholder:text-[#0B132B]/30 focus-visible:ring-primary focus-visible:border-primary"
+                className="h-12 rounded-none bg-transparent border-[#172033]/20 text-[#172033] placeholder:text-[#172033]/30 focus-visible:ring-primary focus-visible:border-primary"
               />
             </div>
             {errorMsg && (
@@ -92,14 +92,14 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full h-14 rounded-none bg-[#0B132B] hover:bg-primary text-white hover:text-[#0B132B] text-sm uppercase tracking-widest font-semibold transition-all duration-300 group"
+              className="w-full h-14 rounded-none bg-[#172033] hover:bg-primary text-white hover:text-[#172033] text-sm uppercase tracking-widest font-semibold transition-all duration-300 group"
             >
               {isLoading ? "Authenticating..." : "Login to Dashboard"}
               {!isLoading && (
                 <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
               )}
             </Button>
-            <p className="text-center text-xs text-[#0B132B]/40 font-light">
+            <p className="text-center text-xs text-[#172033]/40 font-light">
               Secure access restricted to authorized personnel only.
             </p>
           </CardFooter>

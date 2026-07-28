@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Cormorant } from "next/font/google";
 import "./globals.css";
+import { PageLoader } from "@/components/ui/page-loader";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${cormorant.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden">
+        <PageLoader />
         {children}
       </body>
     </html>

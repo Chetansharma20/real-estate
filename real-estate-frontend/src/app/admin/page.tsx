@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState({
-    propertiesCount: 0,
+    projectsCount: 0,
     leadsCount: 0,
     blogsCount: 0,
     totalRevenue: 0,
@@ -21,9 +21,9 @@ export default function AdminDashboardPage() {
       setIsLoading(true);
       const res = await api.get("/admin/dashboard/stats");
       if (res.data.success) {
-        const { propertiesCount, leadsCount, blogsCount, totalRevenue, recentLeads: fetchedLeads } = res.data.data;
+        const { projectsCount, leadsCount, blogsCount, totalRevenue, recentLeads: fetchedLeads } = res.data.data;
         setStats({
-          propertiesCount,
+          projectsCount,
           leadsCount,
           blogsCount,
           totalRevenue,
@@ -67,7 +67,7 @@ export default function AdminDashboardPage() {
   };
 
   const STATS_CARDS = [
-    { name: "Total Properties", value: stats.propertiesCount, icon: Building2, link: "/admin/properties" },
+    { name: "Total Projects", value: stats.projectsCount, icon: Building2, link: "/admin/projects" },
     { name: "Active Leads", value: stats.leadsCount, icon: Users, link: "/admin/leads" },
     { name: "Blog Posts", value: stats.blogsCount, icon: FileText, link: "/admin/blogs" },
     { name: "Portfolio Value", value: formatRevenue(stats.totalRevenue), icon: IndianRupee, link: null },
@@ -75,7 +75,7 @@ export default function AdminDashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-[50vh] flex flex-col items-center justify-center text-[#0B132B]/50">
+      <div className="min-h-[50vh] flex flex-col items-center justify-center text-[#172033]/50">
         <Loader2 className="w-8 h-8 animate-spin mb-4" />
         <p className="text-sm font-medium">Loading dashboard summary...</p>
       </div>
@@ -86,8 +86,8 @@ export default function AdminDashboardPage() {
     <div className="space-y-6">
       {/* Welcome Section */}
       <div>
-        <h2 className="text-2xl font-semibold text-[#0B132B]">Welcome back, Admin!</h2>
-        <p className="text-[#0B132B]/60 text-sm mt-1">Here is what's happening with your properties today.</p>
+        <h2 className="text-2xl font-semibold text-[#172033]">Welcome back, Admin!</h2>
+        <p className="text-[#172033]/60 text-sm mt-1">Here is what's happening with your properties today.</p>
       </div>
 
       {/* Stats Grid */}
@@ -95,17 +95,17 @@ export default function AdminDashboardPage() {
         {STATS_CARDS.map((stat, i) => {
           const Icon = stat.icon;
           const content = (
-            <Card className="border border-[#0B132B]/10 shadow-sm rounded-xl bg-white hover:border-[#D4AF37]/50 hover:shadow-md transition-all h-full cursor-pointer">
+            <Card className="border border-[#172033]/10 shadow-sm rounded-xl bg-white hover:border-[#D4AF37]/50 hover:shadow-md transition-all h-full cursor-pointer">
               <CardHeader className="flex flex-row items-center justify-between pb-2 pt-6 px-6">
-                <CardTitle className="text-xs font-bold text-[#0B132B]/60 uppercase tracking-widest">
+                <CardTitle className="text-xs font-bold text-[#172033]/60 uppercase tracking-widest">
                   {stat.name}
                 </CardTitle>
-                <div className="w-10 h-10 rounded-full bg-[#0B132B]/5 flex items-center justify-center text-[#0B132B]/70">
+                <div className="w-10 h-10 rounded-full bg-[#172033]/5 flex items-center justify-center text-[#172033]/70">
                   <Icon size={18} />
                 </div>
               </CardHeader>
               <CardContent className="px-6 pb-6">
-                <div className="text-3xl font-bold text-[#0B132B]">{stat.value}</div>
+                <div className="text-3xl font-bold text-[#172033]">{stat.value}</div>
               </CardContent>
             </Card>
           );
@@ -123,41 +123,41 @@ export default function AdminDashboardPage() {
       {/* Recent Leads */}
       <div className="mt-8">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-[#0B132B]">Recent Inquiries</h3>
+          <h3 className="text-lg font-semibold text-[#172033]">Recent Inquiries</h3>
           {recentLeads.length > 0 && (
-            <Link href="/admin/leads" className="text-xs font-semibold text-[#D4AF37] hover:text-[#0B132B] transition-colors">
+            <Link href="/admin/leads" className="text-xs font-semibold text-[#D4AF37] hover:text-[#172033] transition-colors">
               View All Leads →
             </Link>
           )}
         </div>
 
         {recentLeads.length === 0 ? (
-          <Card className="border border-[#0B132B]/10 shadow-sm rounded-xl p-12 flex flex-col items-center justify-center text-center bg-white">
-            <Users className="w-12 h-12 text-[#0B132B]/20 mb-4" />
-            <h4 className="text-[#0B132B] font-medium">No recent leads found</h4>
-            <p className="text-sm text-[#0B132B]/50 mt-1 max-w-sm">
+          <Card className="border border-[#172033]/10 shadow-sm rounded-xl p-12 flex flex-col items-center justify-center text-center bg-white">
+            <Users className="w-12 h-12 text-[#172033]/20 mb-4" />
+            <h4 className="text-[#172033] font-medium">No recent leads found</h4>
+            <p className="text-sm text-[#172033]/50 mt-1 max-w-sm">
               When users submit inquiries through the website, they will appear here.
             </p>
           </Card>
         ) : (
-          <div className="bg-white rounded-xl shadow-sm border border-[#0B132B]/10 overflow-hidden">
-            <div className="divide-y divide-[#0B132B]/10">
+          <div className="bg-white rounded-xl shadow-sm border border-[#172033]/10 overflow-hidden">
+            <div className="divide-y divide-[#172033]/10">
               {recentLeads.map((lead) => (
                 <div key={lead.id} className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-[#F4F6F9]/30 transition-colors">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-[#0B132B]">{lead.name}</span>
+                      <span className="font-semibold text-[#172033]">{lead.name}</span>
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${getStatusColor(lead.status)}`}>
                         {lead.status}
                       </span>
                     </div>
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#0B132B]/60">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#172033]/60">
                       <span className="flex items-center gap-1">
-                        <Phone className="w-3.5 h-3.5 text-[#0B132B]/40" />
+                        <Phone className="w-3.5 h-3.5 text-[#172033]/40" />
                         {lead.phone}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5 text-[#0B132B]/40" />
+                        <Calendar className="w-3.5 h-3.5 text-[#172033]/40" />
                         {new Date(lead.createdAt).toLocaleDateString("en-IN", {
                           day: "numeric",
                           month: "short",
@@ -169,15 +169,15 @@ export default function AdminDashboardPage() {
                   </div>
 
                   <div className="flex items-center justify-between sm:justify-end gap-6 text-sm">
-                    {lead.property ? (
-                      <div className="flex items-center gap-1.5 text-xs text-[#0B132B]/80 font-medium">
+                    {lead.project ? (
+                      <div className="flex items-center gap-1.5 text-xs text-[#172033]/80 font-medium">
                         <span className="bg-[#D4AF37]/10 text-[#D4AF37] px-2 py-1 rounded font-bold uppercase tracking-wider text-[9px]">
                           {lead.type.replace("_", " ")}
                         </span>
-                        <span className="max-w-[180px] truncate">{lead.property.title}</span>
+                        <span className="max-w-[180px] truncate">{lead.project.title}</span>
                       </div>
                     ) : (
-                      <span className="text-xs text-[#0B132B]/50 bg-gray-100 px-2 py-1 rounded font-medium">
+                      <span className="text-xs text-[#172033]/50 bg-gray-100 px-2 py-1 rounded font-medium">
                         General Inquiry
                       </span>
                     )}

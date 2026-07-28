@@ -1,17 +1,15 @@
 import * as UserRepository from "./UserRepository";
-import * as PropertyRepository from "./PropertyRepository";
+import * as TownshipRepository from "./TownshipRepository";
+import * as ProjectRepository from "./ProjectRepository";
 import * as AmenityRepository from "./AmenityRepository";
-import * as PropertyImageRepository from "./PropertyImageRepository";
-import * as PropertyAmenityRepository from "./PropertyAmenityRepository";
 import * as LeadRepository from "./LeadRepository";
 import * as BlogPostRepository from "./BlogPostRepository";
 
 export {
   UserRepository,
-  PropertyRepository,
+  TownshipRepository,
+  ProjectRepository,
   AmenityRepository,
-  PropertyImageRepository,
-  PropertyAmenityRepository,
   LeadRepository,
   BlogPostRepository,
 };

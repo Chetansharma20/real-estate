@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0B132B]">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#172033]">
       {/* Logo */}
       <div className="flex flex-col items-center leading-none mb-10 animate-pulse">
         <span

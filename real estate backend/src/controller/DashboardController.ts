@@ -5,12 +5,12 @@ import { ApiResponse } from "../utils/ApiResponse";
 
 export const getDashboardStats = asyncHandler(async (req: Request, res: Response) => {
   const [propertiesCount, leadsCount, blogsCount, aggregateRevenue, recentLeads] = await Promise.all([
-    prisma.property.count(),
+    prisma.project.count(),
     prisma.lead.count(),
     prisma.blogPost.count(),
-    prisma.property.aggregate({
+    prisma.projectConfiguration.aggregate({
       _sum: {
-        basePrice: true,
+        totalPrice: true,
       },
     }),
     prisma.lead.findMany({
@@ -19,18 +19,18 @@ export const getDashboardStats = asyncHandler(async (req: Request, res: Response
         createdAt: "desc",
       },
       include: {
-        property: true,
+        project: true,
       },
     }),
   ]);
 
-  const totalRevenue = aggregateRevenue._sum.basePrice || 0;
+  const totalRevenue = aggregateRevenue._sum.totalPrice || 0;
 
   res.status(200).json(
     new ApiResponse(
       200,
       {
-        propertiesCount,
+        projectsCount: propertiesCount,
         leadsCount,
         blogsCount,
         totalRevenue,

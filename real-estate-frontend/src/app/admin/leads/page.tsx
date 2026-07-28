@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { api } from "@/lib/api";
+import { usePaginationFetch } from "@/hooks/use-pagination-fetch";
+import { Pagination } from "@/components/ui/pagination";
+import { DataTableContent } from "@/components/ui/data-table-skeleton";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -21,35 +24,14 @@ import {
 import { Loader2, Trash2, Phone, Calendar, Clock, ExternalLink } from "lucide-react";
 
 export default function AdminLeadsPage() {
-  const [leads, setLeads] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
-  const fetchLeads = async (page: number = currentPage) => {
-    try {
-      setIsLoading(true);
-      const res = await api.get(`/admin/leads?page=${page}&limit=10`);
-      if (res.data.success) {
-        const responseData = res.data.data.data || res.data.data;
-        if (responseData && responseData.leads) {
-          setLeads(responseData.leads);
-          setTotalPages(responseData.pagination.totalPages);
-          setCurrentPage(responseData.pagination.currentPage);
-        } else {
-          setLeads(responseData || []);
-        }
-      }
-    } catch (error) {
-      console.error("Failed to fetch leads:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchLeads(1);
-  }, []);
+  const {
+    data: leads,
+    setData: setLeads,
+    isLoading,
+    currentPage,
+    totalPages,
+    fetchData: fetchLeads,
+  } = usePaginationFetch<any>({ endpoint: "/admin/leads", limit: 10, dataKey: "leads" });
 
   const handleStatusChange = async (leadId: string, status: string) => {
     try {
@@ -95,43 +77,36 @@ export default function AdminLeadsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-semibold text-[#0B132B]">Leads</h2>
-        <p className="text-[#0B132B]/60 text-sm mt-1">Manage customer inquiries and tour requests</p>
+        <h2 className="text-2xl font-semibold text-[#172033]">Leads</h2>
+        <p className="text-[#172033]/60 text-sm mt-1">Manage customer inquiries and tour requests</p>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-[#0B132B]/10 overflow-hidden">
+      <div className="bg-white rounded-xl shadow-sm border border-[#172033]/10 overflow-hidden">
         <Table>
           <TableHeader className="bg-[#F4F6F9]">
             <TableRow>
-              <TableHead className="font-semibold text-[#0B132B]">Name</TableHead>
-              <TableHead className="font-semibold text-[#0B132B]">Contact</TableHead>
-              <TableHead className="font-semibold text-[#0B132B]">Inquiry Type</TableHead>
-              <TableHead className="font-semibold text-[#0B132B]">Property</TableHead>
-              <TableHead className="font-semibold text-[#0B132B]">Details</TableHead>
-              <TableHead className="font-semibold text-[#0B132B]">Status</TableHead>
+              <TableHead className="font-semibold text-[#172033]">Name</TableHead>
+              <TableHead className="font-semibold text-[#172033]">Contact</TableHead>
+              <TableHead className="font-semibold text-[#172033]">Inquiry Type</TableHead>
+              <TableHead className="font-semibold text-[#172033]">Property</TableHead>
+              <TableHead className="font-semibold text-[#172033]">Details</TableHead>
+              <TableHead className="font-semibold text-[#172033]">Status</TableHead>
               <TableHead className="w-[50px]"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {isLoading ? (
-              <TableRow>
-                <TableCell colSpan={7} className="text-center py-10 text-[#0B132B]/50">
-                  <Loader2 className="w-6 h-6 animate-spin mx-auto mb-2" />
-                  Loading leads...
-                </TableCell>
-              </TableRow>
-            ) : leads.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={7} className="text-center py-10 text-[#0B132B]/50">
-                  No leads found.
-                </TableCell>
-              </TableRow>
-            ) : (
-              leads.map((lead) => (
+            <DataTableContent
+              isLoading={isLoading}
+              isEmpty={leads.length === 0}
+              columnCount={7}
+              loadingMessage="Loading leads..."
+              emptyMessage="No leads found."
+            >
+              {leads.map((lead) => (
                 <TableRow key={lead.id}>
-                  <TableCell className="font-medium text-[#0B132B]">
+                  <TableCell className="font-medium text-[#172033]">
                     {lead.name}
-                    <div className="text-xs text-[#0B132B]/40 font-normal mt-0.5">
+                    <div className="text-xs text-[#172033]/40 font-normal mt-0.5">
                       {new Date(lead.createdAt).toLocaleDateString("en-IN", {
                         day: "numeric",
                         month: "short",
@@ -140,9 +115,9 @@ export default function AdminLeadsPage() {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="flex flex-col gap-1 text-[#0B132B]/70 text-sm">
+                    <div className="flex flex-col gap-1 text-[#172033]/70 text-sm">
                       <span className="flex items-center gap-1.5">
-                        <Phone className="w-3.5 h-3.5 text-[#0B132B]/40" />
+                        <Phone className="w-3.5 h-3.5 text-[#172033]/40" />
                         {lead.phone}
                       </span>
                     </div>
@@ -153,16 +128,16 @@ export default function AdminLeadsPage() {
                     </span>
                   </TableCell>
                   <TableCell>
-                    {lead.property ? (
+                    {lead.project ? (
                       <div className="flex items-center gap-1">
-                        <span className="text-[#0B132B]/80 font-medium line-clamp-1 max-w-[150px]">
-                          {lead.property.title}
+                        <span className="text-[#172033]/80 font-medium line-clamp-1 max-w-[150px]">
+                          {lead.project.title}
                         </span>
                         <a
-                          href={`/properties/${lead.property.id}`}
+                          href={`/projects/${lead.project.id}`}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-[#D4AF37] hover:text-[#0B132B] transition-colors"
+                          className="text-[#D4AF37] hover:text-[#172033] transition-colors"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
@@ -173,12 +148,12 @@ export default function AdminLeadsPage() {
                   </TableCell>
                   <TableCell className="max-w-[200px]">
                     {lead.message && (
-                      <p className="text-xs text-[#0B132B]/70 line-clamp-2" title={lead.message}>
+                      <p className="text-xs text-[#172033]/70 line-clamp-2" title={lead.message}>
                         {lead.message}
                       </p>
                     )}
                     {(lead.preferredDate || lead.preferredSlot) && (
-                      <div className="flex flex-wrap gap-x-2 gap-y-0.5 mt-1 text-[10px] text-[#0B132B]/50 font-medium">
+                      <div className="flex flex-wrap gap-x-2 gap-y-0.5 mt-1 text-[10px] text-[#172033]/50 font-medium">
                         {lead.preferredDate && (
                           <span className="flex items-center gap-1">
                             <Calendar className="w-3 h-3" />
@@ -209,7 +184,7 @@ export default function AdminLeadsPage() {
                       >
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-white text-[#0B132B] border-[#0B132B]/20">
+                      <SelectContent className="bg-white text-[#172033] border-[#172033]/20">
                         <SelectItem value="NEW" className="text-blue-700 hover:bg-blue-50">
                           NEW
                         </SelectItem>
@@ -236,52 +211,17 @@ export default function AdminLeadsPage() {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))
-            )}
+              ))}
+            </DataTableContent>
           </TableBody>
         </Table>
       </div>
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 mt-8">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => fetchLeads(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="bg-white text-[#0B132B] border-[#0B132B]/10 hover:bg-[#F4F6F9]"
-          >
-            Previous
-          </Button>
-          <div className="flex items-center gap-1">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <Button
-                key={page}
-                variant={currentPage === page ? "default" : "outline"}
-                size="sm"
-                onClick={() => fetchLeads(page)}
-                className={
-                  currentPage === page
-                    ? "bg-[#0B132B] text-white hover:bg-[#0B132B]"
-                    : "bg-white text-[#0B132B] border-[#0B132B]/10 hover:bg-[#F4F6F9]"
-                }
-              >
-                {page}
-              </Button>
-            ))}
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => fetchLeads(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="bg-white text-[#0B132B] border-[#0B132B]/10 hover:bg-[#F4F6F9]"
-          >
-            Next
-          </Button>
-        </div>
-      )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={fetchLeads}
+      />
     </div>
   );
 }
