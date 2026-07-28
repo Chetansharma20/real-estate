@@ -7,7 +7,7 @@ export function WhatsAppFloater() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <motion.a
-        href="https://wa.me/918080419573?text=Hi%20there!%20I'm%20interested%20in%20your%20properties."
+        href="https://wa.me/919321783441?text=Hi%20there!%20I'm%20interested%20in%20your%20properties."
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-xl hover:bg-[#20b858] transition-colors relative group"

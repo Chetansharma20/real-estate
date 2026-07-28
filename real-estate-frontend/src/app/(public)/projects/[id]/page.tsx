@@ -108,7 +108,11 @@ export default function ProjectDetailPage() {
               {type === "SITE_VISIT" ? "Schedule a Visit" : "Talk to an Expert"}
             </Button>
 
-            <Button type="button" className="w-full h-12 bg-[#172033] hover:bg-[#172033]/90 text-white font-bold text-sm">
+            <Button 
+              type="button" 
+              onClick={() => window.open("https://wa.me/919321783441?text=Hi%20there!%20I'm%20interested%20in%20your%20properties.", "_blank")}
+              className="w-full h-12 bg-[#172033] hover:bg-[#172033]/90 text-white font-bold text-sm"
+            >
               <MessageSquare className="w-4 h-4 mr-2 text-[#25D366]" />
               Chat on WhatsApp
             </Button>
