@@ -70,7 +70,7 @@ export default function AboutPage() {
           <span className="block text-[11px] tracking-[0.35em] uppercase text-[#C9A84C] font-mono font-semibold mb-4">
             Your Personal Real Estate Advisor
           </span>
-          <h1 className="font-serif text-4xl sm:text-4xl md:text-5xl text-[#172033] font-semibold leading-[1.15] max-w-3xl">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-semibold leading-[1.15] max-w-3xl">
             At Bricksage, we believe buying a property is one of life&apos;s biggest decisions, not just a transaction.
           </h1>
           <div className="mt-8 space-y-5 text-[#172033]/70 text-base sm:text-lg font-light max-w-2xl leading-relaxed">
@@ -124,7 +124,7 @@ export default function AboutPage() {
                   i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
                 } gap-8 md:gap-14 items-center border-t border-[#172033]/10 py-12 first:border-t-0`}
               >
-                <div className="relative w-full md:w-64 aspect-[4/5] shrink-0 overflow-hidden">
+                <div className="relative w-[240px] sm:w-[280px] md:w-64 aspect-[4/5] shrink-0 overflow-hidden mx-auto md:mx-0">
                   <Image
                     src={p.image}
                     alt={p.name}
@@ -135,7 +135,7 @@ export default function AboutPage() {
                   <div className="absolute inset-0 bg-[#C9A84C] mix-blend-color opacity-40 group-hover:opacity-0 transition-opacity duration-700" />
                 </div>
 
-                <div className="flex-1">
+                <div className="flex-1 text-center md:text-left">
                   <span className="font-mono text-xs text-[#C9A84C] tracking-widest">
                     PARTNER — {String(i + 1).padStart(2, "0")}
                   </span>
@@ -145,7 +145,7 @@ export default function AboutPage() {
                   <p className="mt-1 font-mono text-xs uppercase tracking-widest text-[#172033]/50">
                     {p.role}
                   </p>
-                  <p className="mt-4 text-[#172033]/70 leading-relaxed font-light max-w-xl">
+                  <p className="mt-4 text-[#172033]/70 leading-relaxed font-light max-w-xl mx-auto md:mx-0">
                     {p.description}
                   </p>
                 </div>
@@ -206,7 +206,7 @@ export default function AboutPage() {
             {PRINCIPLES.map((v) => (
               <div
                 key={v.numeral}
-                className="flex gap-8 items-baseline border-t border-[#172033]/10 py-8 first:border-t-0"
+                className="flex gap-4 sm:gap-8 items-start sm:items-baseline border-t border-[#172033]/10 py-8 first:border-t-0"
               >
                 <span className="font-serif text-3xl text-[#C9A84C] w-10 shrink-0">
                   {v.numeral}
