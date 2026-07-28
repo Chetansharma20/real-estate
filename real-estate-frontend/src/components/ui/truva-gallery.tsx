@@ -119,7 +119,7 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
       </div>
 
       {/* Wide Centered Gallery Dialog */}
-      <DialogContent className="max-w-[90vw] md:max-w-5xl max-h-[85vh] w-[90vw] h-[80vh] p-0 bg-black/95 border-none flex flex-col overflow-hidden text-white rounded-2xl sm:max-w-[90vw] sm:rounded-2xl gap-0 shadow-2xl">
+      <DialogContent showCloseButton={false} className="max-w-[90vw] md:max-w-5xl max-h-[85vh] w-[90vw] h-[80vh] p-0 bg-black/95 border-none flex flex-col overflow-hidden text-white rounded-2xl sm:max-w-[90vw] sm:rounded-2xl gap-0 shadow-2xl">
         <div className="p-4 flex justify-between items-center w-full z-10 bg-gradient-to-b from-black/80 to-transparent">
           <h2 className="text-lg font-medium">{title}</h2>
           <DialogClose className="rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors focus:outline-none">
@@ -128,7 +128,7 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
           </DialogClose>
         </div>
         
-        <div className="flex-1 flex items-center justify-center p-4 min-h-0 w-full">
+        <div className="flex-1 relative flex items-center justify-center p-4 min-h-0 w-full">
            <div className="relative w-full h-full max-h-[50vh] md:max-h-[65vh]">
              <MediaElement 
                 src={images[currentIdx]?.url} 
@@ -143,7 +143,7 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
                <Button 
                  variant="ghost" 
                  size="icon" 
-                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full h-12 w-12 border border-white/10"
+                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full h-12 w-12 border border-white/10 z-10"
                  onClick={(e) => { e.stopPropagation(); setCurrentIdx((prev) => (prev - 1 + images.length) % images.length); }}
                >
                  <ChevronLeft className="w-8 h-8" />
@@ -151,7 +151,7 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
                <Button 
                  variant="ghost" 
                  size="icon" 
-                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full h-12 w-12 border border-white/10"
+                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full h-12 w-12 border border-white/10 z-10"
                  onClick={(e) => { e.stopPropagation(); setCurrentIdx((prev) => (prev + 1) % images.length); }}
                >
                  <ChevronRight className="w-8 h-8" />
