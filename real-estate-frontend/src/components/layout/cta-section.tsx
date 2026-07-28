@@ -25,6 +25,13 @@ export function CtaSection() {
       return;
     }
 
+    // Phone validation (7-15 digits)
+    const digitsOnly = phone.replace(/\D/g, "");
+    if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+      toast({ title: "Invalid Input", description: "Please enter a valid mobile number.", variant: "destructive" });
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       await api.post("/leads", {

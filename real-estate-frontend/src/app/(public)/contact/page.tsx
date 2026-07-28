@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { api } from "@/lib/api";
+import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -30,9 +31,22 @@ export default function ContactPage() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!name || !phone) {
+      toast({ title: "Error", description: "Name and Phone are required.", variant: "destructive" });
+      return;
+    }
+
+    const digitsOnly = phone.replace(/\D/g, "");
+    if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+      toast({ title: "Invalid Input", description: "Please enter a valid mobile number.", variant: "destructive" });
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const payload = {
@@ -50,8 +64,9 @@ export default function ContactPage() {
         setType("CALLBACK");
         setMessage("");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to submit contact request:", error);
+      toast({ title: "Error", description: error?.response?.data?.message || "Failed to submit request", variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }

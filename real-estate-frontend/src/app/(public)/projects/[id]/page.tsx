@@ -183,6 +183,22 @@ export default function ProjectDetailPage() {
       return;
     }
 
+    // Phone validation (7-15 digits)
+    const digitsOnly = phone.replace(/\D/g, "");
+    if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+      toast({ title: "Invalid Input", description: "Please enter a valid mobile number.", variant: "destructive" });
+      return;
+    }
+
+    // Optional email validation
+    if (email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        toast({ title: "Invalid Input", description: "Please enter a valid email address.", variant: "destructive" });
+        return;
+      }
+    }
+
     setIsSubmitting(true);
     try {
       await api.post("/leads", {
