@@ -128,7 +128,7 @@ export default function PropertyCard({ property, onClick, priority = false }: Pr
       </CardContent>
 
       {/* Footer */}
-      <CardFooter className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0 flex flex-wrap gap-4 justify-between items-center border-t border-[#172033]/5 group-hover:border-[#38486b] bg-[#F8F9FA]/50 group-hover:bg-transparent mt-auto transition-colors">
+      <CardFooter className="px-5 sm:px-6 py-4 sm:py-5 flex flex-wrap gap-4 justify-between items-center border-t border-[#172033]/5 group-hover:border-[#38486b] bg-[#F8F9FA]/50 group-hover:bg-transparent mt-auto transition-colors">
         <div>
           <p className="text-[#172033]/40 group-hover:text-blue-200 text-[10px] uppercase tracking-wider font-bold transition-colors">
             {isProject ? "Starting From" : "Base Price"}

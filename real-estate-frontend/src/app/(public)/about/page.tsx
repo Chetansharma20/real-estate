@@ -124,13 +124,11 @@ export default function AboutPage() {
                   i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
                 } gap-8 md:gap-14 items-center border-t border-[#172033]/10 py-12 first:border-t-0`}
               >
-                <div className="relative w-[240px] sm:w-[280px] md:w-64 aspect-[4/5] shrink-0 overflow-hidden mx-auto md:mx-0">
-                  <Image
+                <div className="relative w-[280px] sm:w-[320px] md:w-[360px] shrink-0 overflow-hidden mx-auto md:mx-0">
+                  <img
                     src={p.image}
                     alt={p.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-all duration-700"
-                    sizes="(max-width: 768px) 100vw, 256px"
+                    className="w-full h-auto group-hover:scale-105 transition-all duration-700 rounded-lg"
                   />
                 </div>
 
