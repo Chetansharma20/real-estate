@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Image as ImageIcon, X, ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import NextImage from "next/image";
 
@@ -122,15 +122,21 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
       <DialogContent className="max-w-[90vw] md:max-w-5xl max-h-[85vh] w-[90vw] h-[80vh] p-0 bg-black/95 border-none flex flex-col overflow-hidden text-white rounded-2xl sm:max-w-[90vw] sm:rounded-2xl gap-0 shadow-2xl">
         <div className="p-4 flex justify-between items-center w-full z-10 bg-gradient-to-b from-black/80 to-transparent">
           <h2 className="text-lg font-medium">{title}</h2>
+          <DialogClose className="rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors focus:outline-none">
+            <X className="w-5 h-5" />
+            <span className="sr-only">Close</span>
+          </DialogClose>
         </div>
         
-        <div className="flex-1 relative flex items-center justify-center p-4 min-h-0">
-           <MediaElement 
-              src={images[currentIdx]?.url} 
-              alt="Gallery Preview"
-              className="max-w-full max-h-[48vh] md:max-h-[52vh] object-contain transition-opacity duration-300 rounded-lg shadow-lg"
-              autoPlay={true}
-           />
+        <div className="flex-1 flex items-center justify-center p-4 min-h-0 w-full">
+           <div className="relative w-full h-full max-h-[50vh] md:max-h-[65vh]">
+             <MediaElement 
+                src={images[currentIdx]?.url} 
+                alt="Gallery Preview"
+                className="object-contain transition-opacity duration-300 rounded-lg"
+                autoPlay={true}
+             />
+           </div>
            
            {images.length > 1 && (
              <>
@@ -159,9 +165,9 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
              <div 
                key={idx} 
                onClick={() => setCurrentIdx(idx)}
-               className={`h-16 w-24 shrink-0 rounded-md overflow-hidden cursor-pointer border-2 transition-all ${currentIdx === idx ? 'border-white opacity-100 scale-105' : 'border-transparent opacity-40 hover:opacity-100'}`}
+               className={`relative h-16 w-24 shrink-0 rounded-md overflow-hidden cursor-pointer border-2 transition-all ${currentIdx === idx ? 'border-white opacity-100 scale-105' : 'border-transparent opacity-40 hover:opacity-100'}`}
              >
-               <MediaElement src={img.url} alt="thumbnail" className="w-full h-full object-cover" isThumbnail={true} />
+               <MediaElement src={img.url} alt="thumbnail" className="object-cover" isThumbnail={true} />
              </div>
            ))}
         </div>
