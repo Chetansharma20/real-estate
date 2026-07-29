@@ -133,9 +133,6 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex-1 text-center md:text-left">
-                  <span className="font-mono text-xs text-[#C9A84C] tracking-widest">
-                    PARTNER — {String(i + 1).padStart(2, "0")}
-                  </span>
                   <h3 className="mt-2 font-serif text-2xl sm:text-3xl text-[#172033] font-semibold">
                     {p.name}
                   </h3>
