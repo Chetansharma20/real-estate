@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   title: "Bricksage Properties Advisory Pvt. Ltd.",
   description:
     "One of India's fastest growing real estate advisory companies. Discover exquisite residences and bespoke commercial spaces.",
+  verification: {
+    google: "Wyp0i-clPerynaT_ZKfDsoBWVYwI_Kz73yLy8QKdW9w",
+  },
 };
 
 import Script from "next/script";
