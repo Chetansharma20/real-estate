@@ -22,6 +22,8 @@ export const metadata: Metadata = {
     "One of India's fastest growing real estate advisory companies. Discover exquisite residences and bespoke commercial spaces.",
 };
 
+import Script from "next/script";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,6 +31,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${cormorant.variable} h-full antialiased`}>
+      <head>
+        {/* Google Analytics Tag */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-DRVPKEMSXX`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-DRVPKEMSXX');
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden">
         <PageLoader />
         {children}
