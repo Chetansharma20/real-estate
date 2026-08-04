@@ -140,22 +140,20 @@ export function TruvaGallery({ images, title = "Gallery" }: TruvaGalleryProps) {
            
            {images.length > 1 && (
              <>
-               <Button 
-                 variant="ghost" 
-                 size="icon" 
-                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full h-12 w-12 border border-white/10 z-10"
-                 onClick={(e) => { e.stopPropagation(); setCurrentIdx((prev) => (prev - 1 + images.length) % images.length); }}
+               <button 
+                 type="button"
+                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full h-12 w-12 border border-white/10 z-50 flex items-center justify-center cursor-pointer transition-colors"
+                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCurrentIdx((prev) => (prev - 1 + images.length) % images.length); }}
                >
                  <ChevronLeft className="w-8 h-8" />
-               </Button>
-               <Button 
-                 variant="ghost" 
-                 size="icon" 
-                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full h-12 w-12 border border-white/10 z-10"
-                 onClick={(e) => { e.stopPropagation(); setCurrentIdx((prev) => (prev + 1) % images.length); }}
+               </button>
+               <button 
+                 type="button"
+                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full h-12 w-12 border border-white/10 z-50 flex items-center justify-center cursor-pointer transition-colors"
+                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCurrentIdx((prev) => (prev + 1) % images.length); }}
                >
                  <ChevronRight className="w-8 h-8" />
-               </Button>
+               </button>
              </>
            )}
         </div>
