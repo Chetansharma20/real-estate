@@ -57,15 +57,15 @@ export const uploadProjectMedia = multer({
     fileSize: 10 * 1024 * 1024, // 10MB limit
   },
   fileFilter: (req, file, cb) => {
-    const isImage = /jpeg|jpg|png|webp/.test(path.extname(file.originalname).toLowerCase());
+    const isImage = /jpeg|jpg|png|webp|svg|gif|heic|heif|jfif/.test(path.extname(file.originalname).toLowerCase());
     const isPdf = /pdf/.test(path.extname(file.originalname).toLowerCase());
-    const mimetypeImg = /jpeg|jpg|png|webp/.test(file.mimetype);
+    const mimetypeImg = /jpeg|jpg|png|webp|svg\+xml|gif|heic|heif|jfif/.test(file.mimetype);
     const mimetypePdf = /pdf/.test(file.mimetype);
 
     if ((mimetypeImg && isImage) || (mimetypePdf && isPdf)) {
       return cb(null, true);
     } else {
-      cb(new Error("Only images (.jpeg, .jpg, .png, .webp) and PDF are allowed"));
+      cb(new Error("Only images (.jpeg, .jpg, .png, .webp, .svg, .gif, .heic) and PDF are allowed"));
     }
   }
 }).fields([

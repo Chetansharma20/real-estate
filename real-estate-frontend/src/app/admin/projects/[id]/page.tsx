@@ -95,9 +95,17 @@ export default function EditProjectPage() {
     }
 
     try {
-      await api.post(`/admin/projects/${id}/media`, formData, {
-        headers: { "Content-Type": "multipart/form-data" }
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/admin/projects/${id}/media`, {
+        method: "POST",
+        body: formData,
+        credentials: "include"
       });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Upload failed (${res.status}): ${errorText}`);
+      }
+
       toast({ title: "Success", description: "Media uploaded successfully" });
       setFiles({ 
         coverImage: null,
@@ -109,8 +117,13 @@ export default function EditProjectPage() {
         floorPlans: null
       });
       fetchProject();
-    } catch (error) {
-      toast({ title: "Error", description: "Failed to upload media", variant: "destructive" });
+    } catch (error: any) {
+      console.error("Upload error details:", error);
+      toast({ 
+        title: "Error", 
+        description: error.message || "Failed to upload media", 
+        variant: "destructive" 
+      });
     }
   };
 

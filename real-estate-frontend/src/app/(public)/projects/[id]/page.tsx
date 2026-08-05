@@ -417,19 +417,12 @@ export default function ProjectDetailPage() {
                 )}
               </div>
 
-              {/* RERA Block */}
-              {(project.reraId || project.reraQrCode) && (
+              {/* RERA ID Block */}
+              {project.reraId && (
                 <div className="flex items-center gap-4 mb-8 p-4 border border-[#172033]/15 bg-gray-50 rounded-xl w-fit min-w-[250px]">
-                  {project.reraQrCode && (
-                    <div className="w-16 h-16 shrink-0 relative bg-white rounded-md border border-[#172033]/10 p-1 flex items-center justify-center">
-                      <Image src={project.reraQrCode} alt="RERA QR Code" fill className="object-contain p-1" />
-                    </div>
-                  )}
                   <div>
                     <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-0.5">RERA Registered</p>
-                    {project.reraId && (
-                      <p className="font-bold text-[#172033] text-sm">{project.reraId}</p>
-                    )}
+                    <p className="font-bold text-[#172033] text-sm">{project.reraId}</p>
                   </div>
                 </div>
               )}
@@ -706,6 +699,20 @@ export default function ProjectDetailPage() {
 
                 </div>
               </div>
+
+              {/* RERA QR Code Block (Bottom) */}
+              {project.reraQrCode && (
+                <div className="border border-gray-200 rounded-2xl bg-white overflow-hidden shadow-sm p-8 flex flex-col items-center justify-center text-center">
+                  <div className="w-40 h-40 relative bg-white rounded-xl border border-[#172033]/10 p-2 mb-6 shadow-sm">
+                    <Image src={project.reraQrCode} alt="RERA QR Code" fill className="object-contain p-2" />
+                  </div>
+                  <h4 className="text-xl font-bold text-[#172033] mb-2">Scan for RERA Details</h4>
+                  <p className="text-sm text-gray-500 max-w-md mx-auto">
+                    Scan this QR code with your smartphone to verify the official RERA registration details for this property.
+                  </p>
+                </div>
+              )}
+
             </div>
 
           </div>
