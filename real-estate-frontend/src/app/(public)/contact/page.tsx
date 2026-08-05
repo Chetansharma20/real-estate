@@ -84,7 +84,7 @@ export default function ContactPage() {
           className="text-center max-w-3xl mx-auto space-y-2"
         >
           <span className="text-xs uppercase tracking-[0.35em] text-[#D4AF37] font-semibold">— Get In Touch</span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold">Contact Bricksage</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold">Contact Bricksage Properties Advisory</h1>
           <p className="text-[#172033]/50 font-light text-sm sm:text-base">
             Reach out to our advisory experts or request a consultation regarding commercial property acquisitions and luxury home listings.
           </p>

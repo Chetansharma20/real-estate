@@ -1,11 +1,16 @@
 import { HomeSections } from "@/components/layout/home-sections";
 
 export const metadata = {
-  title: "Bricksage Properties Advisory Pvt. Ltd. | Luxury Real Estate India",
+  title: "Residential & Commercial Project Advisory in Mumbai & Thane | Bricksage",
   description:
-    "Discover exquisite residences and bespoke commercial spaces across India with Bricksage Properties Advisory.",
+    "Bricksage Properties Advisory offers end-to-end real estate project advisory across Mumbai & Thane — residential & commercial developments. Trusted, RERA-compliant advisory.",
 };
 
 export default function HomePage() {
-  return <HomeSections />;
+  return (
+    <>
+      <h1 className="sr-only">Real Estate Project Advisory in Mumbai & Thane</h1>
+      <HomeSections />
+    </>
+  );
 }

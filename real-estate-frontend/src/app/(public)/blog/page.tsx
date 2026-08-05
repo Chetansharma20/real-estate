@@ -54,7 +54,7 @@ export default function PublicBlogPage() {
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto space-y-2">
           <span className="text-xs uppercase tracking-[0.35em] text-[#D4AF37] font-semibold">— Read Our News</span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold">Insights & Articles</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold">Real Estate Insights & Buying Guides</h1>
           <p className="text-[#172033]/50 font-light text-sm sm:text-base">
             Stay updated with latest real estate trends, luxury home decor advisory, investment guides, and market analysis.
           </p>

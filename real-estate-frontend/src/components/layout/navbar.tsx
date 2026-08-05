@@ -78,7 +78,7 @@ export function Navbar() {
             <div className="relative w-12 h-12 sm:w-14 sm:h-14 transition-opacity duration-300 group-hover:opacity-80">
               <Image
                 src="/logo.png"
-                alt="Bricksage Properties Logo"
+                alt="Bricksage Properties Advisory logo — real estate project advisory Mumbai & Thane"
                 fill
                 sizes="56px"
                 className="object-contain object-left invert"

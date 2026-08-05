@@ -108,7 +108,7 @@ function PropertiesPageContent() {
             — Explore Listings
           </span>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold">
-            Featured Properties
+            Explore Our Residential & Commercial Projects
           </h1>
           <p className="text-[#172033]/50 font-light text-sm sm:text-base">
             Find your dream residential apartments, villas, row houses, or premium commercial spaces across major cities.

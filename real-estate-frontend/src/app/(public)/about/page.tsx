@@ -7,35 +7,40 @@ export default function AboutPage() {
     {
       name: "Kartik Mudaliar",
       role: "Director & Co-Founder",
-      image: "/kartik mudaliar.png",
+      image: "/kartik-mudaliar.png",
+      alt: "Kartik Mudaliar, Director & Co-Founder at Bricksage Properties Advisory, Mumbai & Thane",
       description:
         "With 30+ years of real estate experience, Kartik Mudaliar brings deep industry expertise and strategic leadership, driving growth with a customer-first approach.",
     },
     {
       name: "Akshay Mithiya",
       role: "Director & Co-Founder",
-      image: "/akshay mithiya.png",
+      image: "/akshay-mithiya.png",
+      alt: "Akshay Mithiya, Director & Co-Founder at Bricksage Properties Advisory, Mumbai & Thane",
       description:
         "Years of real estate expertise, driven by trust, integrity, and client-first advisory. Also the Real Estate Developer behind Trishika Elite, delivering quality developments with a commitment to excellence.",
     },
     {
       name: "Somen Ghosh",
       role: "Managing Director & Co-Founder",
-      image: "/somesh ghosh.png",
+      image: "/somen-ghosh.png",
+      alt: "Somen Ghosh, Managing Director & Co-Founder at Bricksage Properties Advisory",
       description:
         "20+ years of expertise in housing finance and real estate, delivering trusted, client-first advisory.",
     },
     {
       name: "Shyam Mithiya",
       role: "Chief Operating Officer",
-      image: "/shyam mithiya.png",
+      image: "/shyam-mithiya.png",
+      alt: "Shyam Mithiya, Chief Operating Officer at Bricksage Properties Advisory",
       description:
         "Chartered Accountancy (CA) background and Co-founder of a 100X.VC-backed startup, with expertise in finance, strategy, and operations.",
     },
     {
       name: "Sandeep Raut",
       role: "Business Head",
-      image: "/sandeep raut.png",
+      image: "/sandeep-raut.png",
+      alt: "Sandeep Raut, Business Head at Bricksage Properties Advisory, Mumbai & Thane",
       description:
         "With 19+ years of real estate experience in sales & marketing, Sandeep Raut specializes in business development, sales strategy, and team leadership, driving growth with a client-first approach.",
     },
@@ -71,7 +76,7 @@ export default function AboutPage() {
             Your Personal Real Estate Advisor
           </span>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-semibold leading-[1.15] max-w-3xl">
-            At Bricksage, we believe buying a property is one of life&apos;s biggest decisions, not just a transaction.
+            About Bricksage Properties Advisory
           </h1>
           <div className="mt-8 space-y-5 text-[#172033]/70 text-base sm:text-lg font-light max-w-2xl leading-relaxed">
             <p>
@@ -127,7 +132,7 @@ export default function AboutPage() {
                 <div className="relative w-[280px] sm:w-[320px] md:w-[360px] shrink-0 overflow-hidden mx-auto md:mx-0">
                   <img
                     src={p.image}
-                    alt={p.name}
+                    alt={p.alt || p.name}
                     className="w-full h-auto group-hover:scale-105 transition-all duration-700 rounded-lg"
                   />
                 </div>
