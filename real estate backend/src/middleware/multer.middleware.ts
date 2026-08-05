@@ -75,4 +75,5 @@ export const uploadProjectMedia = multer({
   { name: "floorPlans",    maxCount: 10 },
   { name: "flatImages",    maxCount: 20 },
   { name: "amenityImages", maxCount: 20 },
+  { name: "reraQrCode",    maxCount: 1 },
 ]);

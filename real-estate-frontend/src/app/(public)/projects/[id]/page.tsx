@@ -417,6 +417,22 @@ export default function ProjectDetailPage() {
                 )}
               </div>
 
+              {/* RERA Block */}
+              {(project.reraId || project.reraQrCode) && (
+                <div className="flex items-center gap-4 mb-8 p-4 border border-[#172033]/15 bg-gray-50 rounded-xl w-fit min-w-[250px]">
+                  {project.reraQrCode && (
+                    <div className="w-16 h-16 shrink-0 relative bg-white rounded-md border border-[#172033]/10 p-1 flex items-center justify-center">
+                      <Image src={project.reraQrCode} alt="RERA QR Code" fill className="object-contain p-1" />
+                    </div>
+                  )}
+                  <div>
+                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-0.5">RERA Registered</p>
+                    {project.reraId && (
+                      <p className="font-bold text-[#172033] text-sm">{project.reraId}</p>
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* Property Details Section Design */}
               <div className="border border-gray-200 rounded-2xl bg-white overflow-hidden shadow-sm">

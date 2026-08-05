@@ -20,6 +20,7 @@ export default function EditProjectPage() {
     flatImages: FileList | null;
     amenityImages: FileList | null;
     brochure: FileList | null;
+    reraQrCode: File | null;
     floorPlans: Record<string, File> | null;
   }>({
     coverImage: null,
@@ -27,6 +28,7 @@ export default function EditProjectPage() {
     flatImages: null,
     amenityImages: null,
     brochure: null,
+    reraQrCode: null,
     floorPlans: null,
   });
 
@@ -53,6 +55,7 @@ export default function EditProjectPage() {
       (files.flatImages && files.flatImages.length > 0) || 
       (files.amenityImages && files.amenityImages.length > 0) || 
       (files.brochure && files.brochure.length > 0) || 
+      files.reraQrCode ||
       (files.floorPlans && Object.keys(files.floorPlans).length > 0);
 
     if (!hasFiles) return;
@@ -79,6 +82,9 @@ export default function EditProjectPage() {
     if (files.brochure && files.brochure.length > 0) {
       formData.append("brochure", files.brochure[0]);
     }
+    if (files.reraQrCode) {
+      formData.append("reraQrCode", files.reraQrCode);
+    }
     if (files.floorPlans) {
       const configIds: string[] = [];
       Object.entries(files.floorPlans).forEach(([configId, file]) => {
@@ -99,6 +105,7 @@ export default function EditProjectPage() {
         flatImages: null,
         amenityImages: null,
         brochure: null,
+        reraQrCode: null,
         floorPlans: null
       });
       fetchProject();
@@ -196,12 +203,22 @@ export default function EditProjectPage() {
               />
             </div>
 
-            <div className="space-y-2 col-span-2">
+            <div className="space-y-2">
               <label className="text-sm font-semibold text-[#172033] block">Brochure (PDF)</label>
               <input 
                 type="file" 
                 accept="application/pdf"
                 onChange={(e) => setFiles({ ...files, brochure: e.target.files })}
+                className="w-full text-sm text-[#172033] file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-[#D4AF37]/10 file:text-[#D4AF37] hover:file:bg-[#D4AF37]/25"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-[#172033] block">RERA QR Code (Image)</label>
+              <input 
+                type="file" 
+                accept="image/*"
+                onChange={(e) => setFiles({ ...files, reraQrCode: e.target.files?.[0] || null })}
                 className="w-full text-sm text-[#172033] file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-[#D4AF37]/10 file:text-[#D4AF37] hover:file:bg-[#D4AF37]/25"
               />
             </div>
@@ -234,6 +251,15 @@ export default function EditProjectPage() {
         <div className="mt-6">
           <h4 className="text-md font-bold text-[#172033] mb-2">Existing Media</h4>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {project.reraQrCode && (
+              <div className="relative border border-[#172033]/10 rounded p-2 bg-[#F4F6F9] flex flex-col justify-between">
+                <div className="flex-1 flex items-center justify-center min-h-[96px]">
+                  <img src={project.reraQrCode} alt="RERA QR Code" className="max-h-24 max-w-full object-contain rounded" />
+                </div>
+                <div className="text-[10px] text-center mt-2 text-[#172033]/50 font-bold uppercase tracking-wider">RERA QR CODE</div>
+              </div>
+            )}
+            
             {project.media?.map((m: any) => {
               // Custom label if media is linked to configuration
               let label = m.type;

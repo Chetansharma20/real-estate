@@ -56,6 +56,8 @@ model Project {
   featured             Boolean                @default(false)
   status               ProjectStatus          @default(ACTIVE)
   townshipId           String?
+  reraId               String?
+  reraQrCode           String?
   createdAt            DateTime               @default(now())
   updatedAt            DateTime               @default(now()) @updatedAt
   leads                Lead[]

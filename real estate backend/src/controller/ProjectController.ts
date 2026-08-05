@@ -151,6 +151,14 @@ export const uploadMedia = asyncHandler(async (req: Request, res: Response) => {
     }
   }
 
+  // 7. Handle RERA QR Code
+  if (files["reraQrCode"] && files["reraQrCode"].length > 0) {
+    const file = files["reraQrCode"][0];
+    const url = `${BASE_URL}/uploads/${file.filename}`;
+    await ProjectService.updateProject(id as string, { reraQrCode: url });
+    uploadedMedia.push({ id: "reraQrCode", url, type: "RERA_QR_CODE" });
+  }
+
   res.status(201).json(new ApiResponse(201, uploadedMedia, "Media uploaded successfully"));
 });
 

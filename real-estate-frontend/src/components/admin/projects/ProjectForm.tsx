@@ -36,6 +36,7 @@ export function ProjectForm({ initialData, isEdit }: ProjectFormProps) {
     longitude: initialData?.longitude?.toString() || "",
     address: initialData?.address || "",
     googleMapUrl: initialData?.googleMapUrl || "",
+    reraId: initialData?.reraId || "",
   });
 
   const [selectedAmenities, setSelectedAmenities] = useState<string[]>(
@@ -232,6 +233,10 @@ export function ProjectForm({ initialData, isEdit }: ProjectFormProps) {
                 <SelectItem value="NONE">None</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#172033]">RERA Registration ID (Optional)</label>
+            <Input name="reraId" value={formData.reraId} onChange={handleInputChange} placeholder="e.g. P51800000000" className="text-[#172033] bg-white border-[#172033]/20" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-semibold text-[#172033]">Video URL (Optional)</label>

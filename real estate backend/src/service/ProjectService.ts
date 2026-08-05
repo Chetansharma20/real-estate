@@ -42,6 +42,7 @@ export const createProject = async (data: {
     longitude: (data as any).longitude ? parseFloat((data as any).longitude) : undefined,
     address: data.address,
     googleMapUrl: data.googleMapUrl,
+    reraId: (data as any).reraId,
   };
 
   if (data.townshipId && data.townshipId !== "null") {
@@ -94,6 +95,8 @@ export const updateProject = async (id: string, data: any) => {
     longitude: data.longitude !== undefined ? (data.longitude ? parseFloat(data.longitude) : null) : undefined,
     address: data.address !== undefined ? data.address : undefined,
     googleMapUrl: data.googleMapUrl !== undefined ? data.googleMapUrl : undefined,
+    reraId: data.reraId !== undefined ? data.reraId : undefined,
+    reraQrCode: data.reraQrCode !== undefined ? data.reraQrCode : undefined,
   };
 
   if (data.title && data.title !== existing.title) {

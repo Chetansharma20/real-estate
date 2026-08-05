@@ -146,9 +146,8 @@ export function Footer() {
         <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row items-center justify-between gap-6 text-[13px] text-white/40">
           <p>© {new Date().getFullYear()} Bricksage Properties. All rights reserved.</p>
           <div className="flex gap-8">
-            <Link href="#" className="hover:text-[#C9A84C] transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-[#C9A84C] transition-colors">Terms of Use</Link>
-            <Link href="#" className="hover:text-[#C9A84C] transition-colors">RERA</Link>
+            <Link href="/privacy-policy" className="hover:text-[#C9A84C] transition-colors">Privacy Policy</Link>
+            <Link href="/terms-of-use" className="hover:text-[#C9A84C] transition-colors">Terms of Use</Link>
           </div>
         </div>
       </div>
