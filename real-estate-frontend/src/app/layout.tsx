@@ -52,6 +52,38 @@ export default function RootLayout({
             `,
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "RealEstateAgent",
+              "name": "Bricksage Properties Advisory Pvt. Ltd.",
+              "url": "https://bricksage.in",
+              "logo": "https://bricksage.in/logo.png",
+              "telephone": "+919987510672",
+              "email": "business@bricksage.in",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Office No. 415, Avior Corporate Park, LBS Marg, Opposite Johnson & Johnson",
+                "addressLocality": "Mulund West",
+                "addressCity": "Mumbai",
+                "addressRegion": "Maharashtra",
+                "postalCode": "400080",
+                "addressCountry": "IN"
+              },
+              "areaServed": ["Mumbai", "Thane", "Mulund"],
+              "openingHours": "Mo-Sa 10:00-19:00",
+              "priceRange": "₹₹₹",
+              "sameAs": [
+                "https://www.instagram.com/bricksage.in",
+                "https://www.facebook.com/share/19vDAfmSKq/",
+                "https://www.linkedin.com/company/135105219/"
+              ],
+              "description": "Bricksage Properties Advisory offers end-to-end real estate project advisory across Mumbai & Thane, covering residential and commercial developments."
+            })
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden">
         <PageLoader />
