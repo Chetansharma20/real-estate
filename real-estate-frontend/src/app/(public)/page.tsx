@@ -1,4 +1,5 @@
 import { HomeSections } from "@/components/layout/home-sections";
+import { api } from "@/lib/api";
 
 export const metadata = {
   title: "Residential & Commercial Project Advisory in Mumbai & Thane | Bricksage",
@@ -37,7 +38,29 @@ const faqSchema = {
   ]
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Fetch initial data on the server for fast SSR and SEO
+  let initialProjects = [];
+  let statsCount = 17;
+
+  try {
+    const [projectsRes, statsRes] = await Promise.all([
+      api.get("/projects?limit=20&featured=true"),
+      api.get("/projects?limit=1")
+    ]);
+
+    if (projectsRes.data?.success) {
+      initialProjects = (projectsRes.data.data.projects || []).slice(0, 4);
+    }
+    
+    if (statsRes.data?.success) {
+      const responseData = statsRes.data.data.data || statsRes.data.data;
+      statsCount = responseData.pagination?.totalItems || responseData.length || 17;
+    }
+  } catch (error) {
+    console.error("Failed to fetch initial data for homepage:", error);
+  }
+
   return (
     <>
       <script
@@ -45,7 +68,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <h1 className="sr-only">Real Estate Project Advisory in Mumbai & Thane</h1>
-      <HomeSections />
+      <HomeSections initialProjects={initialProjects} initialStatsCount={statsCount} />
     </>
   );
 }

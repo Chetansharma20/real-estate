@@ -47,11 +47,11 @@ const STATS = [
 function Particles() {
   const dots = Array.from({ length: 20 }, (_, i) => ({
     id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 1.5 + 0.8,
-    duration: Math.random() * 10 + 14,
-    delay: Math.random() * 8,
+    x: ((i * 17) % 100),
+    y: ((i * 23) % 100),
+    size: ((i * 3) % 1.5) + 0.8,
+    duration: ((i * 7) % 10) + 14,
+    delay: ((i * 5) % 8),
   }));
 
   return (
@@ -133,7 +133,7 @@ export function HeroSection() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
-          style={isMobile ? undefined : { scale: bgScale }}
+          style={mounted && isMobile ? undefined : { scale: bgScale }}
         >
           <Image
             src={slide.image}

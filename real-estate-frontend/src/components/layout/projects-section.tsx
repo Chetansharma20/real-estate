@@ -141,28 +141,12 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
   );
 }
 
-export function ProjectsSection() {
-  const [projects, setProjects] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export function ProjectsSection({ initialProjects = [] }: { initialProjects?: any[] }) {
+  const [projects, setProjects] = useState<any[]>(initialProjects);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res = await api.get("/projects?limit=20&featured=true");
-        if (res.data.success) {
-          const items = res.data.data.projects || [];
-          setProjects(items.slice(0, 4));
-        }
-      } catch (error) {
-        console.error("Failed to fetch featured projects:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchProjects();
-  }, []);
+
 
   return (
     <section ref={ref} className="bg-[#F4F6F9] py-16 sm:py-20 lg:py-24 overflow-hidden">
@@ -194,20 +178,15 @@ export function ProjectsSection() {
         </motion.div>
 
         {/* 2×2 Grid */}
-        {isLoading ? (
-          <div className="flex flex-col items-center justify-center py-20 text-[#172033]/50">
-            <Loader2 className="w-8 h-8 animate-spin mb-4" />
-            <p>Loading projects...</p>
-          </div>
-        ) : projects.length === 0 ? (
-          <div className="text-center py-20 text-[#172033]/50 border border-dashed border-[#172033]/10">
-            No active projects found.
+        {projects.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
-            ))}
+          <div className="flex flex-col items-center justify-center py-20 text-[#172033]/50">
+            <p>No featured projects available</p>
           </div>
         )}
       </div>

@@ -31,26 +31,12 @@ function CountUp({ target, suffix, isInView }: { target: number; suffix: string;
   );
 }
 
-export function StatsSection() {
+export function StatsSection({ initialCount = 17 }: { initialCount?: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const [listingsCount, setListingsCount] = useState(17);
+  const [listingsCount, setListingsCount] = useState(initialCount);
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const res = await api.get("/projects?limit=1");
-        if (res.data.success) {
-          const responseData = res.data.data.data || res.data.data;
-          const total = responseData.pagination?.totalItems || responseData.length || 17;
-          setListingsCount(total);
-        }
-      } catch (error) {
-        console.error("Failed to fetch listings count for stats:", error);
-      }
-    };
-    fetchStats();
-  }, []);
+
 
   const statsList = [
     { value: 35, suffix: "+", label: "Years of Experience" },
