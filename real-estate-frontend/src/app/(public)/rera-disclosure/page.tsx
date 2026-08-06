@@ -164,7 +164,11 @@ export default async function ReraDisclosurePage() {
                           {project.reraQrCode && (
                             <div className="relative w-16 h-16 shrink-0 border border-[#172033]/10 rounded bg-white p-1">
                               <Image 
-                                src={project.reraQrCode.startsWith('http') ? project.reraQrCode : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:5000'}${project.reraQrCode}`} 
+                                src={
+                                  project.reraQrCode.startsWith('http') 
+                                    ? project.reraQrCode 
+                                    : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:5000'}${project.reraQrCode.startsWith('/') ? '' : '/'}${project.reraQrCode}`
+                                } 
                                 alt={`RERA QR Code for ${project.title}`} 
                                 fill 
                                 className="object-contain" 
