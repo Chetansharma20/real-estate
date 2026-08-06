@@ -125,7 +125,7 @@ export function HeroSection() {
       onTouchEnd={handleTouchEnd}
     >
       {/* ── Background Image Slider ── */}
-      <AnimatePresence mode="sync">
+      <AnimatePresence initial={false} mode="sync">
         <motion.div
           key={`bg-${activeIndex}`}
           className="absolute inset-0 z-0"
@@ -206,7 +206,7 @@ export function HeroSection() {
           style={mounted && isMobile ? undefined : { y: textY, opacity: textOpacity }}
           className="w-full max-w-5xl mx-auto px-6 text-center"
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={activeIndex}
               variants={containerVariants}
@@ -232,24 +232,21 @@ export function HeroSection() {
               </motion.div>
 
               {/* Headline */}
-              <motion.p
-                variants={itemVariants}
+              <p
                 className="font-serif font-extrabold leading-[0.92] text-white text-[2rem] sm:text-5xl md:text-7xl lg:text-[6.5rem] drop-shadow-[0_4px_32px_rgba(0,0,0,0.7)]"
               >
                 {slide.title1}
-              </motion.p>
-              <motion.p
-                variants={itemVariants}
+              </p>
+              <p
                 className="font-serif italic font-extrabold leading-[0.92] text-amber-400 text-[2rem] sm:text-5xl md:text-7xl lg:text-[6.5rem] drop-shadow-[0_0_40px_rgba(201,168,76,0.6)]"
               >
                 {slide.titleHighlight}
-              </motion.p>
-              <motion.p
-                variants={itemVariants}
+              </p>
+              <p
                 className="font-serif font-bold leading-[0.92] text-white/70 mb-4 text-[1.1rem] sm:text-3xl md:text-5xl lg:text-[3.8rem]"
               >
                 {slide.title2}
-              </motion.p>
+              </p>
 
               {/* Gold rule */}
               <motion.div variants={itemVariants} className="w-full mb-5">
