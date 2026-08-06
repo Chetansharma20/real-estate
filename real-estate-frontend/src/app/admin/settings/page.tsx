@@ -94,7 +94,7 @@ export default function SiteSettingsPage() {
               Valid up to
             </label>
             <Input 
-              placeholder="e.g. 15th August 2029"
+              type="date"
               value={settings.agentReraValidUpTo}
               onChange={(e) => setSettings({ ...settings, agentReraValidUpTo: e.target.value })}
             />

@@ -50,7 +50,14 @@ export default async function ReraDisclosurePage() {
   const reraProjects = allProjects.filter((p: any) => p.reraId || p.reraQrCode);
 
   const agentReraNumber = settings?.agentReraNumber || "[Not Available]";
-  const agentReraValidUpTo = settings?.agentReraValidUpTo || "[Not Available]";
+  
+  let agentReraValidUpTo = settings?.agentReraValidUpTo || "[Not Available]";
+  if (agentReraValidUpTo !== "[Not Available]" && agentReraValidUpTo.includes("-")) {
+    const d = new Date(agentReraValidUpTo);
+    if (!isNaN(d.getTime())) {
+      agentReraValidUpTo = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+  }
 
   return (
     <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 px-4 sm:px-6 xl:px-12">
