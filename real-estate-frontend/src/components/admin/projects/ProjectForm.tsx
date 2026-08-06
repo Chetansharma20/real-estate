@@ -205,7 +205,6 @@ export function ProjectForm({ initialData, isEdit }: ProjectFormProps) {
               <SelectTrigger className="text-[#172033] bg-white border-[#172033]/20"><SelectValue /></SelectTrigger>
               <SelectContent className="bg-white text-[#172033]">
                 <SelectItem value="APARTMENT">Apartment</SelectItem>
-                <SelectItem value="VILLA">Villa</SelectItem>
                 <SelectItem value="PLOT">Plot</SelectItem>
                 <SelectItem value="COMMERCIAL">Commercial</SelectItem>
               </SelectContent>

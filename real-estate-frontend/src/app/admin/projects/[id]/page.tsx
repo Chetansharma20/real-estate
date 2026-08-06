@@ -95,10 +95,11 @@ export default function EditProjectPage() {
     }
 
     try {
+      const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/admin/projects/${id}/media`, {
         method: "POST",
         body: formData,
-        credentials: "include"
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
 
       if (!res.ok) {

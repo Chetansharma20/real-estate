@@ -90,3 +90,26 @@
 .admin-theme button:not([class*="bg-"]):not([class*="text-"]) {
   color: #172033;
 }
+
+/* ─── Navbar slide-in (replaces framer-motion motion.header) ─── */
+@keyframes navbar-slide-in {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+.animate-navbar-slide {
+  animation: navbar-slide-in 0.7s ease-out;
+}
+
+/* ─── Ticker / Announcement bar marquee (replaces framer-motion marquee) ─── */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: inline-flex;
+  animation: ticker-scroll 20s linear infinite;
+  /* pause on hover for accessibility */
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}

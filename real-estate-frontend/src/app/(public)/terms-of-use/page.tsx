@@ -1,63 +1,112 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Terms of Use | Bricksage Properties Advisory",
-  description: "Terms of Use and conditions for using the Bricksage Properties Advisory Pvt. Ltd. website.",
+  description:
+    "Terms and conditions governing your use of the Bricksage Properties Advisory website and services.",
+  robots: { index: true, follow: true },
 };
 
 export default function TermsOfUsePage() {
   return (
-    <div className="bg-[#F4F6F9] min-h-screen pt-32 pb-20 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto bg-white border border-[#172033]/10 rounded-2xl shadow-sm p-8 sm:p-12 md:p-16">
-        
-        <div className="mb-12 border-b border-[#172033]/10 pb-8 text-center sm:text-left">
-          <span className="text-xs uppercase tracking-[0.35em] text-[#D4AF37] font-semibold block mb-2">— Legal</span>
-          <h1 className="font-serif text-3xl sm:text-4xl text-[#172033] font-bold">Terms of Use</h1>
-          <p className="text-sm text-[#172033]/50 mt-3 font-light">Last updated: August 2026</p>
+    <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 px-4 sm:px-6 xl:px-12">
+      <div className="max-w-3xl mx-auto">
+
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-2 text-xs text-[#172033]/40 font-medium mb-10">
+          <Link href="/" className="hover:text-[#172033] transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-[#172033]/70">Terms of Use</span>
+        </nav>
+
+        {/* Header */}
+        <div className="mb-10 space-y-3">
+          <span className="text-xs uppercase tracking-[0.35em] text-[#D4AF37] font-semibold">Legal</span>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold">
+            Terms of Use
+          </h1>
+          <p className="text-[#172033]/50 text-sm">Last updated: August 2026</p>
         </div>
 
-        <div className="text-[#172033]/70 text-sm sm:text-base leading-relaxed space-y-4">
-          <p>
-            Welcome to Bricksage Properties Advisory Pvt. Ltd. ("Company", "we", "our", "us"). These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Bricksage, concerning your access to and use of the bricksage.in website as well as any other media form related, linked, or otherwise connected thereto (collectively, the "Site").
+        {/* Intro */}
+        <div className="bg-white rounded-2xl border border-[#172033]/8 p-8 mb-4 shadow-sm">
+          <p className="text-[#172033]/70 leading-relaxed">
+            These Terms of Use (&quot;Terms&quot;) govern your access to and use of the Bricksage Properties
+            Advisory website (bricksage.in). By using this website, you agree to these Terms.
           </p>
-          <p>
-            By accessing the Site, you agree that you have read, understood, and agree to be bound by all of these Terms of Use. If you do not agree with all of these terms, then you are expressly prohibited from using the Site and you must discontinue use immediately.
-          </p>
+        </div>
 
-          <h2 className="text-2xl mt-10 mb-4 font-serif font-bold text-[#172033]">1. Intellectual Property Rights</h2>
-          <p>
-            Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the "Content") and the trademarks, service marks, and logos contained therein are owned or controlled by us or licensed to us, and are protected by copyright and trademark laws.
+        {/* Section 1 */}
+        <div className="bg-white rounded-2xl border border-[#172033]/8 p-8 mb-4 shadow-sm">
+          <h2 className="font-serif text-lg font-bold text-[#172033] mb-4">1. Nature of Services</h2>
+          <p className="text-[#172033]/70 leading-relaxed">
+            Bricksage currently acts as a real estate project advisory — we help buyers evaluate and connect with
+            residential and commercial projects across Mumbai and Thane. As of the date of these Terms, we do not
+            develop, construct, or sell property directly; property transactions are between the buyer and the
+            respective project developer/promoter, subject to that project&apos;s own terms and RERA registration.
+            Should Bricksage&apos;s role change (for example, becoming a channel partner, promoter, or developer
+            for a project), this section will be updated accordingly.
           </p>
+        </div>
 
-          <h2 className="text-2xl mt-10 mb-4 font-serif font-bold text-[#172033]">2. User Representations</h2>
-          <p>
-            By using the Site, you represent and warrant that: 
-          </p>
-          <ul className="list-disc pl-5 space-y-2 mb-6">
-            <li>All registration information you submit will be true, accurate, current, and complete.</li>
-            <li>You will maintain the accuracy of such information and promptly update it as necessary.</li>
-            <li>You have the legal capacity and you agree to comply with these Terms of Use.</li>
-            <li>You will not access the Site through automated or non-human means, whether through a bot, script, or otherwise.</li>
-            <li>You will not use the Site for any illegal or unauthorized purpose.</li>
+        {/* Section 2 */}
+        <div className="bg-white rounded-2xl border border-[#172033]/8 p-8 mb-4 shadow-sm">
+          <h2 className="font-serif text-lg font-bold text-[#172033] mb-4">2. Website Content</h2>
+          <ul className="list-disc list-outside ml-5 space-y-3 text-[#172033]/70 leading-relaxed">
+            <li>
+              Project information, images, pricing, and availability shown on this website are indicative and
+              subject to change without notice; please confirm current details with our advisory team before
+              making any decision.
+            </li>
+            <li>
+              All content, logos, and design on this website are the property of Bricksage Properties Advisory
+              Pvt. Ltd. and may not be copied or reused without permission.
+            </li>
           </ul>
+        </div>
 
-          <h2 className="text-2xl mt-10 mb-4 font-serif font-bold text-[#172033]">3. Disclaimers & RERA Compliance</h2>
-          <p>
-            Bricksage acts as a real estate advisory firm. Information provided on the Site regarding properties, pricing, availability, and specifications are for informational purposes only. While we strive to maintain accurate data, we make no representations or warranties of any kind regarding the completeness or accuracy of project details. 
+        {/* Section 3 */}
+        <div className="bg-white rounded-2xl border border-[#172033]/8 p-8 mb-4 shadow-sm">
+          <h2 className="font-serif text-lg font-bold text-[#172033] mb-4">3. No Investment or Legal Advice</h2>
+          <p className="text-[#172033]/70 leading-relaxed">
+            Information on this website is for general guidance only and does not constitute legal, financial, or
+            investment advice. Buyers are encouraged to independently verify project RERA registration, legal
+            documentation, and pricing before making a purchase decision.
           </p>
-          <p>
-            Users are advised to independently verify all details, including RERA registration numbers, approvals, and statutory compliances directly with the respective developers before making any purchasing decisions.
-          </p>
+        </div>
 
-          <h2 className="text-2xl mt-10 mb-4 font-serif font-bold text-[#172033]">4. Limitation of Liability</h2>
-          <p>
-            In no event will we or our directors, employees, or agents be liable to you or any third party for any direct, indirect, consequential, exemplary, incidental, special, or punitive damages, including lost profit, lost revenue, loss of data, or other damages arising from your use of the Site, even if we have been advised of the possibility of such damages.
+        {/* Section 4 */}
+        <div className="bg-white rounded-2xl border border-[#172033]/8 p-8 mb-4 shadow-sm">
+          <h2 className="font-serif text-lg font-bold text-[#172033] mb-4">4. Limitation of Liability</h2>
+          <p className="text-[#172033]/70 leading-relaxed">
+            Bricksage makes reasonable efforts to ensure information on this site is accurate but is not liable
+            for any loss arising from reliance on website content, technical errors, or third-party links.
           </p>
+        </div>
 
-          <h2 className="text-2xl mt-10 mb-4 font-serif font-bold text-[#172033]">5. Governing Law and Jurisdiction</h2>
-          <p>
-            These Terms shall be governed by and defined following the laws of India. Bricksage Properties Advisory Pvt. Ltd. and yourself irrevocably consent that the courts of Mumbai, Maharashtra shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms.
+        {/* Section 5 */}
+        <div className="bg-white rounded-2xl border border-[#172033]/8 p-8 mb-4 shadow-sm">
+          <h2 className="font-serif text-lg font-bold text-[#172033] mb-4">5. Governing Law</h2>
+          <p className="text-[#172033]/70 leading-relaxed">
+            These Terms are governed by the laws of India, subject to applicable laws and regulations.
           </p>
+        </div>
+
+        {/* Section 6 */}
+        <div className="bg-white rounded-2xl border border-[#172033]/8 p-8 mb-4 shadow-sm">
+          <h2 className="font-serif text-lg font-bold text-[#172033] mb-4">6. Changes to These Terms</h2>
+          <p className="text-[#172033]/70 leading-relaxed">
+            We may update these Terms from time to time; continued use of the website constitutes acceptance
+            of the updated Terms.
+          </p>
+        </div>
+
+        {/* Bottom Nav */}
+        <div className="mt-10 pt-8 border-t border-[#172033]/10 flex flex-wrap gap-6 text-sm text-[#172033]/50">
+          <Link href="/privacy-policy" className="hover:text-[#D4AF37] transition-colors">Privacy Policy →</Link>
+          <Link href="/rera-disclosure" className="hover:text-[#D4AF37] transition-colors">RERA Disclosure →</Link>
+          <Link href="/contact" className="hover:text-[#D4AF37] transition-colors">Contact Us →</Link>
         </div>
       </div>
     </div>

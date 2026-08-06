@@ -47,8 +47,19 @@ export default function PublicBlogPage() {
     return `${minutes} min read`;
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bricksage.in" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://bricksage.in/blog" }
+    ]
+  };
+
   return (
-    <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 px-4 sm:px-6">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Header Section */}
@@ -190,5 +201,6 @@ export default function PublicBlogPage() {
         )}
       </div>
     </div>
+    </>
   );
 }

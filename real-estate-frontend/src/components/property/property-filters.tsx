@@ -8,9 +8,6 @@ import { Card } from "@/components/ui/card";
 
 const PROPERTY_TYPES = [
   { label: "Flat / Apartment", value: "FLAT" },
-  { label: "Villa", value: "VILLA" },
-  { label: "Bungalow", value: "BUNGALOW" },
-  { label: "Row House", value: "ROW_HOUSE" },
   { label: "Commercial", value: "COMMERCIAL" },
   { label: "Plot", value: "PLOT" },
 ];

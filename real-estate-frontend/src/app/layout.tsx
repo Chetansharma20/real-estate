@@ -23,6 +23,28 @@ export const metadata: Metadata = {
   verification: {
     google: "Wyp0i-clPerynaT_ZKfDsoBWVYwI_Kz73yLy8QKdW9w",
   },
+  icons: {
+    icon: [
+      // Light mode: dark navy logo on white background
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/favicon-light.png",
+        href: "/favicon-light.png",
+        type: "image/png",
+      },
+      // Dark mode: white logo on dark navy background
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/favicon-dark.png",
+        href: "/favicon-dark.png",
+        type: "image/png",
+      },
+    ],
+    // Fallback shortcut icon for browsers that don't support media queries
+    shortcut: "/favicon-light.png",
+    // Apple touch icon — use dark version (solid background looks best on iOS home screen)
+    apple: "/favicon-dark.png",
+  },
 };
 
 import Script from "next/script";
@@ -60,14 +82,14 @@ export default function RootLayout({
               "@type": "RealEstateAgent",
               "name": "Bricksage Properties Advisory Pvt. Ltd.",
               "url": "https://bricksage.in",
-              "logo": "https://bricksage.in/logo.png",
-              "telephone": "+919987510672",
+              "logo": "https://bricksage.in/bricksage-properties-logo.png",
+              "image": "https://bricksage.in/bricksage-properties-logo.png",
+              "telephone": "+91-99875-10672",
               "email": "business@bricksage.in",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Office No. 415, Avior Corporate Park, LBS Marg, Opposite Johnson & Johnson",
-                "addressLocality": "Mulund West",
-                "addressCity": "Mumbai",
+                "addressLocality": "Mulund West, Mumbai",
                 "addressRegion": "Maharashtra",
                 "postalCode": "400080",
                 "addressCountry": "IN"

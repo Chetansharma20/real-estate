@@ -30,7 +30,7 @@ app.use(cors({
     // Allow any trycloudflare.com subdomain automatically
     if (origin.endsWith(".trycloudflare.com")) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error(`CORS: origin ${origin} not allowed`));
+    callback(null, false);
   },
   credentials: true
 }));

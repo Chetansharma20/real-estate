@@ -355,8 +355,52 @@ export default function ProjectDetailPage() {
     ? `${project.township.name} - ${project.title}` 
     : project.title;
 
+  // Schema.org: ApartmentComplex + BreadcrumbList
+  const coverImage = galleryImages[0]?.url || "";
+  const projectSlug = project.slug || params.id;
+  const projectUrl = `https://bricksage.in/projects/${projectSlug}`;
+
+  const apartmentComplexSchema = {
+    "@context": "https://schema.org",
+    "@type": project.propertyType === "COMMERCIAL" ? "LocalBusiness" : "ApartmentComplex",
+    "name": project.title,
+    "description": project.description || `${project.title} is a ${project.propertyType?.toLowerCase()} development in ${project.address || "Mumbai & Thane"} by Bricksage Properties Advisory.`,
+    "url": projectUrl,
+    ...(coverImage ? { "image": coverImage } : {}),
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": project.address || (project.township?.locality || project.township?.name) || "Mumbai",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    ...(project.configurations?.length > 0 ? { "numberOfAccommodationUnits": project.configurations.reduce((sum: number, c: any) => sum + (c.availableUnits || 0), 0) } : {}),
+    ...(project.amenities?.length > 0 ? {
+      "amenityFeature": project.amenities.map((a: any) => ({
+        "@type": "LocationFeatureSpecification",
+        "name": a.amenity?.name || a.name
+      }))
+    } : {}),
+    "provider": {
+      "@type": "RealEstateAgent",
+      "name": "Bricksage Properties Advisory Pvt. Ltd.",
+      "url": "https://bricksage.in"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bricksage.in" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://bricksage.in/projects" },
+      { "@type": "ListItem", "position": 3, "name": project.title, "item": projectUrl }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(apartmentComplexSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
         {/* Breadcrumb */}
@@ -417,15 +461,8 @@ export default function ProjectDetailPage() {
                 )}
               </div>
 
-              {/* RERA ID Block */}
-              {project.reraId && (
-                <div className="flex items-center gap-4 mb-8 p-4 border border-[#172033]/15 bg-gray-50 rounded-xl w-fit min-w-[250px]">
-                  <div>
-                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-0.5">RERA Registered</p>
-                    <p className="font-bold text-[#172033] text-sm">{project.reraId}</p>
-                  </div>
-                </div>
-              )}
+
+
 
               {/* Property Details Section Design */}
               <div className="border border-gray-200 rounded-2xl bg-white overflow-hidden shadow-sm">
@@ -700,16 +737,33 @@ export default function ProjectDetailPage() {
                 </div>
               </div>
 
-              {/* RERA QR Code Block (Bottom) */}
-              {project.reraQrCode && (
+              {/* RERA Disclosure Block (Bottom) */}
+              {(project.reraQrCode || project.reraId) && (
                 <div className="border border-gray-200 rounded-2xl bg-white overflow-hidden shadow-sm p-8 flex flex-col items-center justify-center text-center">
-                  <div className="w-40 h-40 relative bg-white rounded-xl border border-[#172033]/10 p-2 mb-6 shadow-sm">
-                    <Image src={project.reraQrCode} alt="RERA QR Code" fill className="object-contain p-2" />
-                  </div>
-                  <h4 className="text-xl font-bold text-[#172033] mb-2">Scan for RERA Details</h4>
-                  <p className="text-sm text-gray-500 max-w-md mx-auto">
-                    Scan this QR code with your smartphone to verify the official RERA registration details for this property.
+                  {project.reraQrCode && (
+                    <div className="w-40 h-40 relative bg-white rounded-xl border border-[#172033]/10 p-2 mb-6 shadow-sm">
+                      <Image src={project.reraQrCode} alt="RERA QR Code" fill className="object-contain p-2" />
+                    </div>
+                  )}
+                  <h4 className="text-xl font-bold text-[#172033] mb-2">RERA Details</h4>
+                  {project.reraId && (
+                    <p className="text-md font-semibold text-[#D4AF37] mb-2 uppercase tracking-wide">
+                      RERA ID: {project.reraId}
+                    </p>
+                  )}
+                  <p className="text-sm text-gray-500 max-w-md mx-auto mb-4">
+                    {project.reraQrCode 
+                      ? "Scan this QR code with your smartphone to verify the official RERA registration details for this property." 
+                      : "Verify the official RERA registration details using the ID above."}
                   </p>
+                  <a 
+                    href="https://maharera.maharashtra.gov.in" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-sm text-[#D4AF37] hover:text-[#172033] font-medium transition-colors underline underline-offset-2"
+                  >
+                    Visit MahaRERA Website
+                  </a>
                 </div>
               )}
 

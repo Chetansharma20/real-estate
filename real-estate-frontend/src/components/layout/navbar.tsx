@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, Phone } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -40,26 +39,19 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // suppress TS warning — isScrolled / isHome retained for future use
+  void isScrolled;
   const isHome = !mounted || pathname === "/";
+  void isHome;
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 flex flex-col shadow-sm"
+    <header
+      className="fixed top-0 left-0 right-0 z-50 flex flex-col shadow-sm animate-navbar-slide"
+      style={{ animationFillMode: "both" }}
     >
-      {/* Announcement Bar / Ticker */}
+      {/* Announcement Bar — CSS marquee, no JS */}
       <div className="bg-[#172033] w-full text-white py-1.5 overflow-hidden flex items-center border-b border-[#D4AF37]/20">
-        <motion.div
-          className="whitespace-nowrap flex items-center gap-8 text-[10px] sm:text-xs font-semibold uppercase tracking-widest"
-          animate={{ x: ["100vw", "-100%"] }}
-          transition={{
-            repeat: Infinity,
-            duration: 20,
-            ease: "linear",
-          }}
-        >
+        <div className="ticker-track whitespace-nowrap flex items-center gap-8 text-[10px] sm:text-xs font-semibold uppercase tracking-widest">
           <span className="text-[#D4AF37]">🚨 New Project Launch in City Center</span>
           <span>•</span>
           <span>Bookings Open Now!</span>
@@ -67,7 +59,15 @@ export function Navbar() {
           <span className="text-[#D4AF37]">Special Pre-Launch Offers Available</span>
           <span>•</span>
           <span>Contact us today for exclusive access</span>
-        </motion.div>
+          {/* Duplicate for seamless loop */}
+          <span className="text-[#D4AF37]">🚨 New Project Launch in City Center</span>
+          <span>•</span>
+          <span>Bookings Open Now!</span>
+          <span>•</span>
+          <span className="text-[#D4AF37]">Special Pre-Launch Offers Available</span>
+          <span>•</span>
+          <span>Contact us today for exclusive access</span>
+        </div>
       </div>
 
       {/* Main Navbar */}
@@ -81,7 +81,7 @@ export function Navbar() {
                 alt="Bricksage Properties Advisory logo — real estate project advisory Mumbai & Thane"
                 fill
                 sizes="56px"
-                className="object-contain object-left invert"
+                className="object-contain object-left"
                 priority
               />
             </div>
@@ -89,9 +89,6 @@ export function Navbar() {
               <span className="font-serif text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-[0.1em] text-[#172033]">
                 BRICKSAGE PROPERTIES
               </span>
-            {/* <span className="text-[8px] sm:text-[9px] lg:text-[10px] tracking-[0.2em] text-[#172033]/80 uppercase font-bold">
-               
-              </span> */}
             </div>
           </Link>
 
@@ -155,21 +152,19 @@ export function Navbar() {
 
               <nav className="flex flex-col gap-6 flex-1">
                 {navLinks.map((link, i) => (
-                  <AnimatePresence key={link.name}>
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: open ? 1 : 0, x: open ? 0 : 20 }}
-                      transition={{ delay: 0.05 * i }}
-                    >
-                      <Link
-                        href={link.href}
-                        className="text-lg font-serif text-[#172033]/70 hover:text-primary transition-colors duration-300 block font-medium"
-                        onClick={() => setOpen(false)}
-                      >
-                        {link.name}
-                      </Link>
-                    </motion.div>
-                  </AnimatePresence>
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="text-lg font-serif text-[#172033]/70 hover:text-primary transition-colors duration-300 block font-medium"
+                    onClick={() => setOpen(false)}
+                    style={{
+                      opacity: open ? 1 : 0,
+                      transform: open ? "translateX(0)" : "translateX(20px)",
+                      transition: `opacity 0.3s ease ${i * 0.05}s, transform 0.3s ease ${i * 0.05}s`,
+                    }}
+                  >
+                    {link.name}
+                  </Link>
                 ))}
               </nav>
 
@@ -197,6 +192,6 @@ export function Navbar() {
           </Sheet>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }

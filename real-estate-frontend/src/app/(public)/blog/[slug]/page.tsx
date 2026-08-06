@@ -62,8 +62,37 @@ export default function BlogDetailPage() {
     );
   }
 
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.metaDescription || post.content?.substring(0, 160) || post.title,
+    ...(post.coverImage ? { "image": post.coverImage } : {}),
+    "author": { "@type": "Organization", "name": "Bricksage Properties Advisory" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bricksage Properties Advisory",
+      "logo": { "@type": "ImageObject", "url": "https://bricksage.in/bricksage-properties-logo.png" }
+    },
+    "datePublished": post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
+    "dateModified": post.updatedAt ? new Date(post.updatedAt).toISOString() : post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://bricksage.in/blog/${slug}` }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bricksage.in" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://bricksage.in/blog" },
+      { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://bricksage.in/blog/${slug}` }
+    ]
+  };
+
   return (
     <div className="bg-[#F4F6F9] min-h-screen pt-24 pb-20 px-4 sm:px-6">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="max-w-4xl mx-auto space-y-6">
         
         {/* Back Link */}

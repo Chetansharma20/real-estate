@@ -95,6 +95,7 @@ export function PropertyImageSlider({ images, title, disableHoverPause = false, 
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
             priority={priority && currentIndex === 0}
+            loading={priority && currentIndex === 0 ? "eager" : "lazy"}
           />
         </motion.div>
       </AnimatePresence>

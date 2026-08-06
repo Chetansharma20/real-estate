@@ -39,10 +39,9 @@ const quickLinks = [
 ];
 
 const propertyTypes = [
-  { name: "Luxury Apartments", href: "/projects?propertyType=APARTMENT" },
-  { name: "Residential Plots", href: "/projects?propertyType=PLOT" },
+  { name: "Apartments & Flats", href: "/projects?propertyType=APARTMENT" },
   { name: "Commercial Spaces", href: "/projects?propertyType=COMMERCIAL" },
-  { name: "Villas & Bungalows", href: "/projects?propertyType=VILLA" },
+  { name: "Plots & Land", href: "/projects?propertyType=PLOT" },
   { name: "New Launches", href: "/projects?constructionStatus=NEW_LAUNCH" },
 ];
 
@@ -142,12 +141,22 @@ export function Footer() {
           </div>
         </div>
 
+        {/* MahaRERA Mandatory Disclaimer */}
+        <div className="border-t border-white/10 pt-8 pb-6">
+          <p className="text-[11px] text-white/30 leading-relaxed max-w-4xl">
+            This website is only for the purpose of information and Bricksage Properties Advisory Pvt. Ltd. is not responsible for any inaccuracy or discrepancy in respect of the information contained herein. All images, plans, and specifications are indicative and subject to change by the respective project developer/promoter. This is not an offer, invitation, or advertisement addressed to any specific person under RERA. Buyers are advised to verify all project details, including RERA registration, on the official MahaRERA website{" "}
+            <a href="https://maharera.maharashtra.gov.in" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[#C9A84C] transition-colors underline">maharera.maharashtra.gov.in</a>
+            {" "}before making any booking or payment.
+          </p>
+        </div>
+
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row items-center justify-between gap-6 text-[13px] text-white/40">
           <p>© {new Date().getFullYear()} Bricksage Properties. All rights reserved.</p>
           <div className="flex gap-8">
             <Link href="/privacy-policy" className="hover:text-[#C9A84C] transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-use" className="hover:text-[#C9A84C] transition-colors">Terms of Use</Link>
+            <Link href="/rera-disclosure" className="hover:text-[#C9A84C] transition-colors">RERA Disclosure</Link>
           </div>
         </div>
       </div>

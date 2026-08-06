@@ -110,8 +110,8 @@ function PropertiesPageContent() {
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold">
             Explore Our Residential & Commercial Projects
           </h1>
-          <p className="text-[#172033]/50 font-light text-sm sm:text-base">
-            Find your dream residential apartments, villas, row houses, or premium commercial spaces across major cities.
+          <p className="text-[#172033]/60 max-w-2xl text-lg font-light">
+            Find your dream residential apartments, plots, or premium commercial spaces across major cities.
           </p>
         </div>
 
@@ -214,13 +214,25 @@ function PropertiesPageContent() {
 }
 
 export default function PublicPropertiesPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bricksage.in" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://bricksage.in/projects" }
+    ]
+  };
+
   return (
-    <Suspense fallback={
-      <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 flex items-center justify-center text-[#172033]/60 font-semibold text-lg">
-        Loading properties...
-      </div>
-    }>
-      <PropertiesPageContent />
-    </Suspense>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Suspense fallback={
+        <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 flex items-center justify-center text-[#172033]/60 font-semibold text-lg">
+          Loading properties...
+        </div>
+      }>
+        <PropertiesPageContent />
+      </Suspense>
+    </>
   );
 }
