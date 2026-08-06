@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LayoutDashboard, Building2, Users, FileText, LogOut, Sparkles, MapPin } from "lucide-react";
+import { LayoutDashboard, Building2, Users, FileText, LogOut, Sparkles, MapPin, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
@@ -13,6 +13,7 @@ const SIDEBAR_LINKS = [
   { name: "Amenities", href: "/admin/amenities", icon: Sparkles },
   { name: "Leads", href: "/admin/leads", icon: Users },
   { name: "Blog Posts", href: "/admin/blogs", icon: FileText },
+  { name: "Settings", href: "/admin/settings", icon: Settings },
 ];
 
 export default function AdminLayout({

@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 async function getProjects() {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
-    // Fetch all projects (up to 100 for now to cover all)
     const res = await fetch(`${apiUrl}/projects?limit=100`, {
       next: { revalidate: 3600 } // Cache for 1 hour
     });
@@ -26,10 +25,32 @@ async function getProjects() {
   }
 }
 
+async function getSettings() {
+  try {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+    const res = await fetch(`${apiUrl}/settings`, {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.data;
+  } catch (err) {
+    console.error("Failed to fetch settings for RERA page", err);
+    return null;
+  }
+}
+
 export default async function ReraDisclosurePage() {
-  const allProjects = await getProjects();
+  const [allProjects, settings] = await Promise.all([
+    getProjects(),
+    getSettings()
+  ]);
+  
   // Only show projects that actually have RERA info added
   const reraProjects = allProjects.filter((p: any) => p.reraId || p.reraQrCode);
+
+  const agentReraNumber = settings?.agentReraNumber || "[Not Available]";
+  const agentReraValidUpTo = settings?.agentReraValidUpTo || "[Not Available]";
 
   return (
     <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 px-4 sm:px-6 xl:px-12">
@@ -65,11 +86,11 @@ export default async function ReraDisclosurePage() {
           <div className="bg-[#172033]/3 rounded-xl p-5 space-y-3 border border-[#172033]/8">
             <div className="flex items-start gap-3">
               <span className="text-[#172033]/50 text-sm font-semibold w-52 shrink-0">MahaRERA Agent Reg. No.:</span>
-              <span className="text-[#172033] font-bold text-sm">[INSERT REGISTRATION NUMBER]</span>
+              <span className="text-[#172033] font-bold text-sm">{agentReraNumber}</span>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-[#172033]/50 text-sm font-semibold w-52 shrink-0">Valid up to:</span>
-              <span className="text-[#172033] font-bold text-sm">[INSERT DATE]</span>
+              <span className="text-[#172033] font-bold text-sm">{agentReraValidUpTo}</span>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-[#172033]/50 text-sm font-semibold w-52 shrink-0">Verify at:</span>
