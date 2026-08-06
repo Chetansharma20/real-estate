@@ -213,3 +213,10 @@ enum PropertyView {
   CITY
   NONE
 }
+
+model SiteSettings {
+  id                 String   @id @default("global")
+  agentReraNumber    String?
+  agentReraValidUpTo String?
+  updatedAt          DateTime @updatedAt
+}

@@ -11,6 +11,7 @@ import adminRoutes from "./routes/admin.routes";
 import leadRoutes from "./routes/lead.routes";
 import blogRoutes from "./routes/blog.routes";
 import projectRoutes from "./routes/project.routes";
+import settingsRoutes from "./routes/settings.routes";
 import { errorHandler } from "./middleware/error.middleware";
 
 const app = express();
@@ -80,6 +81,7 @@ app.use("/api/admin/projects", projectRoutes);
 app.use("/api/projects", projectRoutes); // public alias
 app.use("/api/leads", leadLimiter, leadRoutes);
 app.use("/api/blog", blogRoutes);
+app.use("/api/settings", settingsRoutes);
 
 app.get("/", (req, res) => {
   res.json({
