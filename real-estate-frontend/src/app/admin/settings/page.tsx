@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import { api } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
+import { useToast } from "@/components/ui/use-toast";
 import { Building2, Save } from "lucide-react";
 
 export default function SiteSettingsPage() {
+  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [settings, setSettings] = useState({
@@ -30,7 +31,7 @@ export default function SiteSettingsPage() {
       }
     } catch (error) {
       console.error("Failed to fetch settings:", error);
-      toast.error("Failed to load settings");
+      toast({ title: "Error", description: "Failed to load settings", variant: "destructive" });
     } finally {
       setIsLoading(false);
     }
@@ -41,11 +42,11 @@ export default function SiteSettingsPage() {
       setIsSaving(true);
       const res = await api.put("/settings", settings);
       if (res.data.success) {
-        toast.success("Settings saved successfully!");
+        toast({ title: "Success", description: "Settings saved successfully!" });
       }
     } catch (error) {
       console.error("Failed to save settings:", error);
-      toast.error("Failed to save settings");
+      toast({ title: "Error", description: "Failed to save settings", variant: "destructive" });
     } finally {
       setIsSaving(false);
     }
