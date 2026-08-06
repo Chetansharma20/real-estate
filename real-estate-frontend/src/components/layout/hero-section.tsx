@@ -202,7 +202,7 @@ export function HeroSection() {
       {/* ── Main content ── */}
       <div className="relative z-20 flex-1 flex items-center justify-center pt-28 sm:pt-32 pb-32 md:pb-20 min-h-0">
         <motion.div
-          style={isMobile ? undefined : { y: textY, opacity: textOpacity }}
+          style={mounted && isMobile ? undefined : { y: textY, opacity: textOpacity }}
           className="w-full max-w-5xl mx-auto px-6 text-center"
         >
           <AnimatePresence mode="wait">

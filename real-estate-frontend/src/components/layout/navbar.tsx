@@ -50,7 +50,7 @@ export function Navbar() {
       style={{ animationFillMode: "both" }}
     >
       {/* Announcement Bar — CSS marquee, no JS */}
-      <div className="bg-[#172033] w-full text-white py-1.5 overflow-hidden flex items-center border-b border-[#D4AF37]/20">
+      <div className="bg-[#172033] w-full text-white h-[32px] overflow-hidden flex items-center border-b border-[#D4AF37]/20">
         <div className="ticker-track whitespace-nowrap flex items-center gap-8 text-[10px] sm:text-xs font-semibold uppercase tracking-widest">
           <span className="text-[#D4AF37]">🚨 New Project Launch in City Center</span>
           <span>•</span>
