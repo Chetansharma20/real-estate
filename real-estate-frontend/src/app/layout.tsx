@@ -28,22 +28,22 @@ export const metadata: Metadata = {
       // Light mode: dark navy logo on white background
       {
         media: "(prefers-color-scheme: light)",
-        url: "/favicon-light.png",
-        href: "/favicon-light.png",
+        url: "/favicon-light.webp",
+        href: "/favicon-light.webp",
         type: "image/png",
       },
       // Dark mode: white logo on dark navy background
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/favicon-dark.png",
-        href: "/favicon-dark.png",
+        url: "/favicon-dark.webp",
+        href: "/favicon-dark.webp",
         type: "image/png",
       },
     ],
     // Fallback shortcut icon for browsers that don't support media queries
-    shortcut: "/favicon-light.png",
+    shortcut: "/favicon-light.webp",
     // Apple touch icon — use dark version (solid background looks best on iOS home screen)
-    apple: "/favicon-dark.png",
+    apple: "/favicon-dark.webp",
   },
 };
 
@@ -82,8 +82,8 @@ export default function RootLayout({
               "@type": "RealEstateAgent",
               "name": "Bricksage Properties Advisory Pvt. Ltd.",
               "url": "https://bricksage.in",
-              "logo": "https://bricksage.in/bricksage-properties-logo.png",
-              "image": "https://bricksage.in/bricksage-properties-logo.png",
+              "logo": "https://bricksage.in/logo.webp",
+              "image": "https://bricksage.in/logo.webp",
               "telephone": "+91-99875-10672",
               "email": "business@bricksage.in",
               "address": {
@@ -108,7 +108,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden">
-        <PageLoader />
+        {/* <PageLoader /> - Removed to fix Lighthouse FCP/LCP */}
         {children}
       </body>
     </html>

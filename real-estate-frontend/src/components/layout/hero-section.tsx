@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const SLIDES = [
   {
-    image: "/images/hero-slide-1.png",
+    image: "/images/hero-slide-1.webp",
     eyebrow: "Residential Collection",
     title1: "Your Personal",
     titleHighlight: "Real Estate",
@@ -18,7 +18,7 @@ const SLIDES = [
     accent: "#C9A84C",
   },
   {
-    image: "/images/hero-slide-2.png",
+    image: "/images/hero-slide-2.webp",
     eyebrow: "Commercial Advisory",
     title1: "Premium",
     titleHighlight: "Commercial",
@@ -27,7 +27,7 @@ const SLIDES = [
     accent: "#60A5FA",
   },
   {
-    image: "/images/hero-slide-3.png",
+    image: "/images/hero-slide-3.webp",
     eyebrow: "Curated Portfolio",
     title1: "Exclusive",
     titleHighlight: "Luxury",
@@ -140,6 +140,7 @@ export function HeroSection() {
             alt={`Hero slide ${activeIndex + 1}`}
             fill
             priority
+            quality={60}
             className="object-cover"
             sizes="100vw"
           />
