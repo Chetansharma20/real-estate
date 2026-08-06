@@ -30,14 +30,14 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: light)",
         url: "/favicon-light.webp",
         href: "/favicon-light.webp",
-        type: "image/png",
+        type: "image/webp",
       },
       // Dark mode: white logo on dark navy background
       {
         media: "(prefers-color-scheme: dark)",
         url: "/favicon-dark.webp",
         href: "/favicon-dark.webp",
-        type: "image/png",
+        type: "image/webp",
       },
     ],
     // Fallback shortcut icon for browsers that don't support media queries
