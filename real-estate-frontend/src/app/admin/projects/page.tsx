@@ -15,6 +15,7 @@ interface Project {
   propertyType: string;
   status: string;
   township?: { name: string };
+  reraId?: string;
   createdAt: string;
 }
 
@@ -68,6 +69,7 @@ export default function ProjectsPage() {
               <TableHead className="font-bold text-[#172033] text-sm">Title</TableHead>
               <TableHead className="font-bold text-[#172033] text-sm">Township</TableHead>
               <TableHead className="font-bold text-[#172033] text-sm">Type</TableHead>
+              <TableHead className="font-bold text-[#172033] text-sm">RERA ID</TableHead>
               <TableHead className="font-bold text-[#172033] text-sm">Status</TableHead>
               <TableHead className="w-[100px] font-bold text-[#172033] text-sm">Actions</TableHead>
             </TableRow>
@@ -75,13 +77,13 @@ export default function ProjectsPage() {
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell colSpan={5} className="h-24 text-center">
+                <TableCell colSpan={6} className="h-24 text-center">
                   <Loader2 className="mx-auto h-6 w-6 animate-spin text-muted-foreground" />
                 </TableCell>
               </TableRow>
             ) : projects.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="h-24 text-center text-muted-foreground">
+                <TableCell colSpan={6} className="h-24 text-center text-muted-foreground">
                   No projects found.
                 </TableCell>
               </TableRow>
@@ -91,6 +93,7 @@ export default function ProjectsPage() {
                   <TableCell className="font-semibold text-[#172033]">{project.title}</TableCell>
                   <TableCell className="text-[#172033]">{project.township?.name || "-"}</TableCell>
                   <TableCell className="text-[#172033]">{project.propertyType}</TableCell>
+                  <TableCell className="text-[#172033] text-xs font-mono">{project.reraId || "-"}</TableCell>
                   <TableCell>
                     <Badge variant={project.status === 'ACTIVE' ? 'default' : 'secondary'}>
                       {project.status}
