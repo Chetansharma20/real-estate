@@ -141,9 +141,11 @@ export default function AboutPage() {
                 } gap-8 md:gap-14 items-center border-t border-[#172033]/10 py-12 first:border-t-0`}
               >
                 <div className="relative w-[280px] sm:w-[320px] md:w-[360px] shrink-0 overflow-hidden mx-auto md:mx-0">
-                  <img
+                  <Image
                     src={p.image}
                     alt={p.alt || p.name}
+                    width={400}
+                    height={400}
                     className="w-full h-auto group-hover:scale-105 transition-all duration-700 rounded-lg"
                   />
                 </div>
