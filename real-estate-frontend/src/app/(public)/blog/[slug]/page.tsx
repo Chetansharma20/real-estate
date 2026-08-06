@@ -72,7 +72,7 @@ export default function BlogDetailPage() {
     "publisher": {
       "@type": "Organization",
       "name": "Bricksage Properties Advisory",
-      "logo": { "@type": "ImageObject", "url": "https://bricksage.in/bricksage-properties-logo.png" }
+      "logo": { "@type": "ImageObject", "url": "https://bricksage.in/logo.webp" }
     },
     "datePublished": post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
     "dateModified": post.updatedAt ? new Date(post.updatedAt).toISOString() : post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
