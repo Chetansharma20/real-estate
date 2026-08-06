@@ -57,7 +57,7 @@ const nextConfig: NextConfig = {
 
   images: {
     // Enable Next.js image optimisation (WebP/AVIF conversion, responsive sizes)
-    unoptimized: true,
+    unoptimized: false,
     formats: ["image/avif", "image/webp"],
     // Sizes for srcset generation — matched to common breakpoints used in the app
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
@@ -72,31 +72,31 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "localhost",
         port: "5000",
-        pathname: "/uploads/**",
+        pathname: "/**",
       },
       {
         protocol: "http",
         hostname: "127.0.0.1",
         port: "5000",
-        pathname: "/uploads/**",
+        pathname: "/**",
       },
       // Cloudflare Tunnel (dev/staging)
       {
         protocol: "https",
         hostname: "*.trycloudflare.com",
-        pathname: "/uploads/**",
+        pathname: "/**",
       },
       // Production domain — bricksage.in
       {
         protocol: "https",
         hostname: "bricksage.in",
-        pathname: "/uploads/**",
+        pathname: "/**",
       },
       // Production domain — api subdomain if used
       {
         protocol: "https",
         hostname: "api.bricksage.in",
-        pathname: "/uploads/**",
+        pathname: "/**",
       },
     ],
   },
