@@ -20,7 +20,7 @@ const app = express();
 // Default to 1 (trust first proxy hop) to prevent ERR_ERL_PERMISSIVE_TRUST_PROXY error and IP spoofing.
 app.set("trust proxy", process.env.TRUST_PROXY ? (isNaN(Number(process.env.TRUST_PROXY)) ? process.env.TRUST_PROXY : Number(process.env.TRUST_PROXY)) : 1);
 
-const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:3000")
+const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:3000,https://bricksage.in,https://www.bricksage.in")
   .split(",")
   .map((o) => o.trim());
 
