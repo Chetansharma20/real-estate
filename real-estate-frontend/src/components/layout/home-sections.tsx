@@ -16,7 +16,6 @@ function createLazySection<T extends Record<string, unknown>>(
   return dynamic<T>(
     () => importFn().then((m) => m[exportName] as React.ComponentType<T>),
     {
-      ssr: false,
       loading: () => (
         <div className={`${skeletonHeight}${skeletonBg ? ` ${skeletonBg}` : ""}`} />
       ),
