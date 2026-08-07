@@ -30,7 +30,7 @@ export function WhatsAppFloater() {
         <span className="absolute right-16 bg-white text-[#172033] text-sm font-semibold py-1.5 px-4 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
           Chat with us
         </span>
-      </motion.a>
+      </a>
     </div>
   );
 }
