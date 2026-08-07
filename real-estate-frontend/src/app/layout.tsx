@@ -10,6 +10,7 @@ const cormorant = Cormorant({
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
+  preload: true,
 });
 
 const dmSans = DM_Sans({
@@ -17,6 +18,7 @@ const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {

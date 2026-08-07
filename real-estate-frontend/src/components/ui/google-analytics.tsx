@@ -7,21 +7,27 @@ export function GoogleAnalytics({ gaId }: { gaId: string }) {
   const [loadScript, setLoadScript] = useState(false);
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
     const handleInteraction = () => {
       setLoadScript(true);
-      window.removeEventListener("scroll", handleInteraction);
-      window.removeEventListener("mousemove", handleInteraction);
+      window.removeEventListener("mousedown", handleInteraction);
+      window.removeEventListener("keydown", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
+      clearTimeout(timeoutId);
     };
 
-    window.addEventListener("scroll", handleInteraction, { passive: true });
-    window.addEventListener("mousemove", handleInteraction, { passive: true });
+    window.addEventListener("mousedown", handleInteraction, { passive: true });
+    window.addEventListener("keydown", handleInteraction, { passive: true });
     window.addEventListener("touchstart", handleInteraction, { passive: true });
 
+    timeoutId = setTimeout(handleInteraction, 4000);
+
     return () => {
-      window.removeEventListener("scroll", handleInteraction);
-      window.removeEventListener("mousemove", handleInteraction);
+      window.removeEventListener("mousedown", handleInteraction);
+      window.removeEventListener("keydown", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
+      clearTimeout(timeoutId);
     };
   }, []);
 

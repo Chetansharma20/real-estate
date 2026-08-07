@@ -155,6 +155,7 @@ export function ServicesSection() {
                   src={SERVICES[activeIndex].image}
                   alt={SERVICES[activeIndex].title}
                   fill
+                  quality={50}
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   loading="lazy"
