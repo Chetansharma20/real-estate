@@ -152,7 +152,7 @@ export function HeroSection() {
       </AnimatePresence>
 
       {/* ── Particles ── */}
-      <Particles />
+      {mounted && !isMobile && <Particles />}
 
       {/* ── Corner accents ── */}
       <div className="absolute top-0 left-0 w-16 h-16 border-t border-l border-amber-400/20 pointer-events-none z-20" />

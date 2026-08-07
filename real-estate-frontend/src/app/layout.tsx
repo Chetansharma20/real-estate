@@ -57,6 +57,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${cormorant.variable} h-full antialiased`}>
       <head>
+        {/* Preconnect to Cloudinary to load Hero Image faster (Improves LCP) */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+
         {/* Google Analytics Tag */}
         <Script
           strategy="lazyOnload"
