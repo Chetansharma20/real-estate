@@ -1,12 +1,10 @@
 
-import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/layout/hero-section";
-
-const ProjectsSection = dynamic(() => import("@/components/layout/projects-section").then(mod => mod.ProjectsSection));
-const ServicesSection = dynamic(() => import("@/components/layout/services-section").then(mod => mod.ServicesSection));
-const TestimonialsSection = dynamic(() => import("@/components/layout/testimonials-section").then(mod => mod.TestimonialsSection));
-const StatsSection = dynamic(() => import("@/components/layout/stats-section").then(mod => mod.StatsSection));
-const CtaSection = dynamic(() => import("@/components/layout/cta-section").then(mod => mod.CtaSection));
+import { ProjectsSection } from "@/components/layout/projects-section";
+import { ServicesSection } from "@/components/layout/services-section";
+import { TestimonialsSection } from "@/components/layout/testimonials-section";
+import { StatsSection } from "@/components/layout/stats-section";
+import { CtaSection } from "@/components/layout/cta-section";
 
 export function HomeSections({
   initialProjects = [],
