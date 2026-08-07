@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const SLIDES = [
   {
-    image: "/images/hero-slide-1.webp",
+    image: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/hero/hero-slide-1.webp",
     eyebrow: "Residential Collection",
     title1: "Your Personal",
     titleHighlight: "Real Estate",
@@ -18,7 +18,7 @@ const SLIDES = [
     accent: "#C9A84C",
   },
   {
-    image: "/images/hero-slide-2.webp",
+    image: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/hero/hero-slide-2.webp",
     eyebrow: "Commercial Advisory",
     title1: "Premium",
     titleHighlight: "Commercial",
@@ -27,7 +27,7 @@ const SLIDES = [
     accent: "#60A5FA",
   },
   {
-    image: "/images/hero-slide-3.webp",
+    image: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/hero/hero-slide-3.webp",
     eyebrow: "Curated Portfolio",
     title1: "Exclusive",
     titleHighlight: "Luxury",

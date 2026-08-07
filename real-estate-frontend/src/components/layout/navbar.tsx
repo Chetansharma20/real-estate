@@ -77,7 +77,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-3 sm:gap-4 group shrink-0">
             <div className="relative w-12 h-12 sm:w-14 sm:h-14 transition-opacity duration-300 group-hover:opacity-80">
               <Image
-                src="/logo.webp"
+                src="https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/logo.webp"
                 alt="Bricksage Properties Advisory logo — real estate project advisory Mumbai & Thane"
                 fill
                 sizes="56px"

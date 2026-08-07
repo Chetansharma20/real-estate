@@ -1,73 +1,79 @@
 import multer from "multer";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import cloudinary from "../config/cloudinary";
 import path from "path";
-import fs from "fs";
-
-// Ensure uploads directory exists
-const uploadDir = "./uploads";
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadDir);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    let prefix = file.fieldname;
-    if (file.fieldname === "coverImage") prefix = "cover";
-    if (file.fieldname === "flatImages") prefix = "flat_images";
-    if (file.fieldname === "amenityImages") prefix = "amenities";
-    if (file.fieldname === "floorPlans") prefix = "floor_plan";
-    
-    cb(null, prefix + "-" + uniqueSuffix + path.extname(file.originalname));
-  }
-});
-
-export const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB limit
-  },
-  fileFilter: (req, file, cb) => {
-    const filetypes = /jpeg|jpg|png|webp/;
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = filetypes.test(file.mimetype);
-
-    if (mimetype && extname) {
-      return cb(null, true);
-    } else {
-      cb(new Error("Only images (.jpeg, .jpg, .png, .webp) are allowed"));
-    }
-  }
-});
 
 /**
- * Multi-field upload for project media:
- * - "images"        → gallery photos (IMAGE)
- * - "coverImage"    → project cover photo (IMAGE, isCover: true)
- * - "brochure"      → PDF brochure (BROCHURE)
- * - "floorPlans"    → floor plan images (FLOOR_PLAN)
- * - "flatImages"    → rooms / flat interior photos (IMAGE)
- * - "amenityImages" → amenities photos (IMAGE)
+ * DRY helper — builds a CloudinaryStorage instance for a given folder.
+ * `resourceType` defaults to "image"; use "raw" for PDFs.
  */
-export const uploadProjectMedia = multer({
-  storage: storage,
-  limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB limit
-  },
-  fileFilter: (req, file, cb) => {
-    const isImage = /jpeg|jpg|png|webp|svg|gif|heic|heif|jfif/.test(path.extname(file.originalname).toLowerCase());
-    const isPdf = /pdf/.test(path.extname(file.originalname).toLowerCase());
-    const mimetypeImg = /jpeg|jpg|png|webp|svg\+xml|gif|heic|heif|jfif/.test(file.mimetype);
-    const mimetypePdf = /pdf/.test(file.mimetype);
+function makeCloudinaryStorage(folder: string, resourceType: "image" | "raw" | "auto" = "image") {
+  return new CloudinaryStorage({
+    cloudinary,
+    params: {
+      folder,
+      resource_type: resourceType,
+      // Let Cloudinary auto-detect the format (WebP/AVIF delivery via URL)
+      format: async (_req: any, file: Express.Multer.File) => {
+        const ext = path.extname(file.originalname).toLowerCase().replace(".", "");
+        if (resourceType === "raw") return ext; // keep original for PDFs
+        // Always store as webp for images (Cloudinary converts on the fly)
+        return "webp";
+      },
+    } as any,
+  });
+}
 
-    if ((mimetypeImg && isImage) || (mimetypePdf && isPdf)) {
-      return cb(null, true);
-    } else {
-      cb(new Error("Only images (.jpeg, .jpg, .png, .webp, .svg, .gif, .heic) and PDF are allowed"));
-    }
-  }
+// ── Single-file upload (blog cover image) ────────────────────────────────────
+export const upload = multer({
+  storage: makeCloudinaryStorage("real-estate/blog"),
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    const valid = /jpeg|jpg|png|webp|gif/.test(
+      path.extname(file.originalname).toLowerCase().replace(".", "")
+    );
+    valid ? cb(null, true) : cb(new Error("Only images are allowed"));
+  },
+});
+
+// ── Multi-field project media upload ─────────────────────────────────────────
+// Each field gets its own Cloudinary folder for clean organisation.
+const projectMediaStorage = new CloudinaryStorage({
+  cloudinary,
+  params: async (_req: any, file: Express.Multer.File) => {
+    // Map field name → Cloudinary sub-folder
+    const folderMap: Record<string, string> = {
+      coverImage:    "real-estate/projects/covers",
+      images:        "real-estate/projects/gallery",
+      flatImages:    "real-estate/projects/flats",
+      amenityImages: "real-estate/projects/amenities",
+      floorPlans:    "real-estate/projects/floor-plans",
+      reraQrCode:    "real-estate/projects/rera",
+    };
+
+    const folder = folderMap[file.fieldname] ?? "real-estate/projects/misc";
+    const isPdf  = /pdf/.test(path.extname(file.originalname).toLowerCase().replace(".", ""));
+
+    return {
+      folder,
+      resource_type: isPdf ? "raw" : "image",
+      // Store images as webp; keep PDFs as-is
+      format: isPdf ? undefined : "webp",
+    };
+  },
+});
+
+export const uploadProjectMedia = multer({
+  storage: projectMediaStorage,
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase().replace(".", "");
+    const validImg = /jpeg|jpg|png|webp|svg|gif|heic|heif|jfif/.test(ext);
+    const validPdf = /pdf/.test(ext);
+    (validImg || validPdf)
+      ? cb(null, true)
+      : cb(new Error("Only images (.jpeg .jpg .png .webp .svg .gif .heic) and PDF are allowed"));
+  },
 }).fields([
   { name: "images",        maxCount: 20 },
   { name: "coverImage",    maxCount: 1 },

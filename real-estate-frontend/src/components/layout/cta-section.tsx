@@ -149,7 +149,7 @@ export function CtaSection() {
       <div className="w-full md:w-[55%] lg:w-[60%] relative h-[400px] md:h-auto overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/contact-bg.webp')" }}
+          style={{ backgroundImage: "url('https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/backgrounds/contact-bg.webp')" }}
         />
         {/* Subtle overlay for better blending */}
         <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent opacity-30 md:opacity-100 w-32" />

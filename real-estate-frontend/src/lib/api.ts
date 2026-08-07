@@ -23,11 +23,17 @@ api.interceptors.response.use(
 export const getMediaUrl = (url: string) => {
   if (!url) return "";
   
-  // If the url is already a remote URL (not localhost), return as is
+  // 1. If it's a Cloudinary URL, return exactly as is
+  if (url.includes("res.cloudinary.com")) {
+    return url;
+  }
+
+  // 2. If it's another remote URL (not localhost), return as is
   if (url.startsWith("http") && !url.includes("localhost:5000") && !url.includes("127.0.0.1:5000")) {
     return url;
   }
 
+  // 3. Fallback for any legacy local uploads
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
   const base = apiBaseUrl.replace(/\/api\/?$/, ""); // Remove "/api"
   

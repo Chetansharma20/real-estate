@@ -7,7 +7,7 @@ export default function AboutPage() {
     {
       name: "Kartik Mudaliar",
       role: "Director & Co-Founder",
-      image: "/kartik-mudaliar.webp",
+      image: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/team/kartik-mudaliar.webp",
       alt: "Kartik Mudaliar, Director & Co-Founder at Bricksage Properties Advisory, Mumbai & Thane",
       description:
         "With 30+ years of real estate experience, Kartik Mudaliar brings deep industry expertise and strategic leadership, driving growth with a customer-first approach.",
@@ -15,7 +15,7 @@ export default function AboutPage() {
     {
       name: "Akshay Mithiya",
       role: "Director & Co-Founder",
-      image: "/akshay-mithiya.webp",
+      image: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/team/akshay-mithiya.webp",
       alt: "Akshay Mithiya, Director & Co-Founder at Bricksage Properties Advisory, Mumbai & Thane",
       description:
         "Years of real estate expertise, driven by trust, integrity, and client-first advisory. Also the Real Estate Developer behind Trishika Elite, delivering quality developments with a commitment to excellence.",
@@ -23,7 +23,7 @@ export default function AboutPage() {
     {
       name: "Somen Ghosh",
       role: "Managing Director & Co-Founder",
-      image: "/somesh-ghosh.webp",
+      image: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/team/somesh-ghosh.webp",
       alt: "Somen Ghosh, Managing Director & Co-Founder at Bricksage Properties Advisory",
       description:
         "20+ years of expertise in housing finance and real estate, delivering trusted, client-first advisory.",
@@ -31,7 +31,7 @@ export default function AboutPage() {
     {
       name: "Shyam Mithiya",
       role: "Chief Operating Officer",
-      image: "/shyam-mithiya.webp",
+      image: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/team/shyam-mithiya.webp",
       alt: "Shyam Mithiya, Chief Operating Officer at Bricksage Properties Advisory",
       description:
         "Chartered Accountancy (CA) background and Co-founder of a 100X.VC-backed startup, with expertise in finance, strategy, and operations.",
@@ -39,7 +39,7 @@ export default function AboutPage() {
     {
       name: "Sandeep Raut",
       role: "Business Head",
-      image: "/sandeep-raut.webp",
+      image: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/team/sandeep-raut.webp",
       alt: "Sandeep Raut, Business Head at Bricksage Properties Advisory, Mumbai & Thane",
       description:
         "With 19+ years of real estate experience in sales & marketing, Sandeep Raut specializes in business development, sales strategy, and team leadership, driving growth with a client-first approach.",

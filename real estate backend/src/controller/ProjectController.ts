@@ -2,8 +2,7 @@ import { Request, Response } from "express";
 import * as ProjectService from "../service/ProjectService";
 import { asyncHandler } from "../utils/asyncHandler";
 import { ApiResponse } from "../utils/ApiResponse";
-import { MediaType } from "@prisma/client";
-import fs from "fs";
+import cloudinary from "../config/cloudinary";
 
 export const createProject = asyncHandler(async (req: Request, res: Response) => {
   const data = req.body;
@@ -83,78 +82,60 @@ export const deleteProject = asyncHandler(async (req: Request, res: Response) =>
 export const uploadMedia = asyncHandler(async (req: Request, res: Response) => {
   const { id } = req.params;
   const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-  
-  const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
 
+  // With Cloudinary, multer sets file.path to the full secure Cloudinary URL.
   const uploadedMedia: any[] = [];
 
-  // 1. Handle Cover Image
-  if (files["coverImage"] && files["coverImage"].length > 0) {
-    const file = files["coverImage"][0];
-    const url = `${BASE_URL}/uploads/${file.filename}`;
+  // 1. Cover Image
+  if (files["coverImage"]?.length > 0) {
+    const url = files["coverImage"][0].path;
     const media = await ProjectService.addProjectMedia(id as string, url, "IMAGE", undefined, true);
     uploadedMedia.push(media);
   }
 
-  // 2. Handle Gallery Images
-  if (files["images"] && files["images"].length > 0) {
-    for (const file of files["images"]) {
-      const url = `${BASE_URL}/uploads/${file.filename}`;
-      const media = await ProjectService.addProjectMedia(id as string, url, "IMAGE");
-      uploadedMedia.push(media);
-    }
-  }
-
-  // 3. Handle Flat Images (Rooms)
-  if (files["flatImages"] && files["flatImages"].length > 0) {
-    for (const file of files["flatImages"]) {
-      const url = `${BASE_URL}/uploads/${file.filename}`;
-      const media = await ProjectService.addProjectMedia(id as string, url, "IMAGE");
-      uploadedMedia.push(media);
-    }
-  }
-
-  // 4. Handle Amenity Images
-  if (files["amenityImages"] && files["amenityImages"].length > 0) {
-    for (const file of files["amenityImages"]) {
-      const url = `${BASE_URL}/uploads/${file.filename}`;
-      const media = await ProjectService.addProjectMedia(id as string, url, "IMAGE");
-      uploadedMedia.push(media);
-    }
-  }
-
-  // 5. Handle Brochure
-  if (files["brochure"] && files["brochure"].length > 0) {
-    const file = files["brochure"][0];
-    const url = `${BASE_URL}/uploads/${file.filename}`;
-    const media = await ProjectService.addProjectMedia(id as string, url, "BROCHURE");
+  // 2. Gallery Images
+  for (const file of files["images"] ?? []) {
+    const media = await ProjectService.addProjectMedia(id as string, file.path, "IMAGE");
     uploadedMedia.push(media);
   }
 
-  // 6. Handle Floor Plans (needs configId matching)
-  if (files["floorPlans"] && files["floorPlans"].length > 0) {
+  // 3. Flat Images
+  for (const file of files["flatImages"] ?? []) {
+    const media = await ProjectService.addProjectMedia(id as string, file.path, "IMAGE");
+    uploadedMedia.push(media);
+  }
+
+  // 4. Amenity Images
+  for (const file of files["amenityImages"] ?? []) {
+    const media = await ProjectService.addProjectMedia(id as string, file.path, "IMAGE");
+    uploadedMedia.push(media);
+  }
+
+  // 5. Brochure (PDF)
+  if (files["brochure"]?.length > 0) {
+    const media = await ProjectService.addProjectMedia(id as string, files["brochure"][0].path, "BROCHURE");
+    uploadedMedia.push(media);
+  }
+
+  // 6. Floor Plans
+  if (files["floorPlans"]?.length > 0) {
     let configIds: string[] = [];
     if (req.body.floorPlanConfigIds) {
-      if (typeof req.body.floorPlanConfigIds === "string") {
-        configIds = JSON.parse(req.body.floorPlanConfigIds);
-      } else {
-        configIds = req.body.floorPlanConfigIds;
-      }
+      configIds = typeof req.body.floorPlanConfigIds === "string"
+        ? JSON.parse(req.body.floorPlanConfigIds)
+        : req.body.floorPlanConfigIds;
     }
-
     for (let i = 0; i < files["floorPlans"].length; i++) {
-      const file = files["floorPlans"][i];
-      const url = `${BASE_URL}/uploads/${file.filename}`;
-      const configId = configIds[i] || undefined;
-      const media = await ProjectService.addProjectMedia(id as string, url, "FLOOR_PLAN", configId);
+      const media = await ProjectService.addProjectMedia(
+        id as string, files["floorPlans"][i].path, "FLOOR_PLAN", configIds[i]
+      );
       uploadedMedia.push(media);
     }
   }
 
-  // 7. Handle RERA QR Code
-  if (files["reraQrCode"] && files["reraQrCode"].length > 0) {
-    const file = files["reraQrCode"][0];
-    const url = `${BASE_URL}/uploads/${file.filename}`;
+  // 7. RERA QR Code
+  if (files["reraQrCode"]?.length > 0) {
+    const url = files["reraQrCode"][0].path;
     await ProjectService.updateProject(id as string, { reraQrCode: url });
     uploadedMedia.push({ id: "reraQrCode", url, type: "RERA_QR_CODE" });
   }
@@ -164,21 +145,21 @@ export const uploadMedia = asyncHandler(async (req: Request, res: Response) => {
 
 export const deleteMedia = asyncHandler(async (req: Request, res: Response) => {
   const mediaId = req.params.mediaId as string;
-  
+
   const deleted = await ProjectService.removeProjectMedia(mediaId);
-  
-  // Optionally remove file from disk
+
+  // Delete from Cloudinary using the public_id extracted from the URL
   try {
-    const filename = deleted.url.split("/uploads/")[1];
-    if (filename) {
-      const decodedFilename = decodeURIComponent(filename);
-      const fullPath = `./uploads/${decodedFilename}`;
-      if (fs.existsSync(fullPath)) {
-        fs.unlinkSync(fullPath);
+    if (deleted.url && deleted.url.includes("res.cloudinary.com")) {
+      // Extract public_id: everything between /upload/ and the file extension
+      const match = deleted.url.match(/\/upload\/(?:v\d+\/)?(.+)\.[a-z]+$/i);
+      if (match?.[1]) {
+        const resourceType = deleted.type === "BROCHURE" ? "raw" : "image";
+        await cloudinary.uploader.destroy(match[1], { resource_type: resourceType });
       }
     }
   } catch (error) {
-    console.warn("Could not delete file from disk", error);
+    console.warn("Could not delete file from Cloudinary", error);
   }
 
   res.status(200).json(new ApiResponse(200, null, "Media deleted successfully"));

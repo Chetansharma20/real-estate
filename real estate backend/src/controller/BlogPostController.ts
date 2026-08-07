@@ -48,7 +48,7 @@ export const getBlogPostBySlug = asyncHandler(async (req: Request, res: Response
 export const createBlogPost = asyncHandler(async (req: CustomRequest, res: Response) => {
   const authorId = req.user?.id!;
   const coverImage = req.file
-    ? `${process.env.BASE_URL || "http://localhost:5000"}/uploads/${req.file.filename}`
+    ? req.file.path  // Cloudinary URL
     : req.body.coverImage;
 
   const published = req.body.published !== undefined
@@ -73,7 +73,7 @@ export const createBlogPost = asyncHandler(async (req: CustomRequest, res: Respo
 export const updateBlogPost = asyncHandler(async (req: Request, res: Response) => {
   const id = req.params.id as string;
   const coverImage = req.file
-    ? `${process.env.BASE_URL || "http://localhost:5000"}/uploads/${req.file.filename}`
+    ? req.file.path  // Cloudinary URL
     : undefined;
 
   const published = req.body.published !== undefined
