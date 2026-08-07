@@ -157,7 +157,7 @@ export function ServicesSection() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 60vw"
-                  priority
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#172033]/90 via-transparent to-transparent" />
                 <motion.div
@@ -197,6 +197,7 @@ export function ServicesSection() {
                       fill
                       className="object-cover transition-transform duration-500 group-active:scale-105"
                       sizes="(max-width: 640px) 100vw, 50vw"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#172033]/90 via-[#172033]/30 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-4">

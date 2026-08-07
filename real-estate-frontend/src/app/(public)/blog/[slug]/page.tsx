@@ -111,6 +111,7 @@ export default function BlogDetailPage() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 80vw"
                 className="object-cover"
+                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             </div>

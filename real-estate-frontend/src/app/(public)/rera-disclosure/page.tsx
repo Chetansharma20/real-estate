@@ -172,6 +172,7 @@ export default async function ReraDisclosurePage() {
                                 alt={`RERA QR Code for ${project.title}`} 
                                 fill 
                                 className="object-contain" 
+                                loading="lazy"
                               />
                             </div>
                           )}

@@ -147,6 +147,8 @@ export default function AboutPage() {
                     width={400}
                     height={400}
                     className="w-full h-auto group-hover:scale-105 transition-all duration-700 rounded-lg"
+                    priority={i === 0}
+                    loading={i === 0 ? "eager" : "lazy"}
                   />
                 </div>
 

@@ -607,7 +607,7 @@ export default function ProjectDetailPage() {
                         <div className="lg:w-2/3">
                           <div className="rounded-2xl overflow-hidden border border-gray-100 bg-gray-50 flex items-center justify-center relative min-h-[400px] lg:min-h-[500px] h-full">
                             {currentFloorPlan ? (
-                              <Image src={getMediaUrl(currentFloorPlan.url)} alt="Floor Plan" fill sizes="(max-width: 768px) 100vw, 66vw" className="object-contain p-6" />
+                              <Image src={getMediaUrl(currentFloorPlan.url)} alt="Floor Plan" fill sizes="(max-width: 768px) 100vw, 66vw" className="object-contain p-6" loading="lazy" />
                             ) : (
                               <p className="text-gray-400 italic">No floor plan available</p>
                             )}
@@ -742,7 +742,7 @@ export default function ProjectDetailPage() {
                 <div className="border border-gray-200 rounded-2xl bg-white overflow-hidden shadow-sm p-8 flex flex-col items-center justify-center text-center">
                   {project.reraQrCode && (
                     <div className="w-40 h-40 relative bg-white rounded-xl border border-[#172033]/10 p-2 mb-6 shadow-sm">
-                      <Image src={project.reraQrCode} alt="RERA QR Code" fill className="object-contain p-2" />
+                      <Image src={project.reraQrCode} alt="RERA QR Code" fill className="object-contain p-2" loading="lazy" />
                     </div>
                   )}
                   <h4 className="text-xl font-bold text-[#172033] mb-2">RERA Details</h4>
