@@ -85,7 +85,7 @@ export function CtaSection() {
               <Label htmlFor="phone" className="text-[10px] uppercase tracking-widest text-[#172033]/60 font-semibold">Phone Number*</Label>
               <div className="flex border-b border-[#E5E7EB] h-12 focus-within:border-[#C9A84C] transition-colors">
                 <Select value={phoneCode} onValueChange={(val) => setPhoneCode(val || "+91")}>
-                  <SelectTrigger className="w-[85px] h-full rounded-none border-0 shadow-none focus:ring-0 focus:ring-offset-0 bg-transparent text-[#172033] px-0">
+                  <SelectTrigger aria-label="Country Code" className="w-[85px] h-full rounded-none border-0 shadow-none focus:ring-0 focus:ring-offset-0 bg-transparent text-[#172033] px-0">
                     <SelectValue placeholder="+91" />
                   </SelectTrigger>
                   <SelectContent>

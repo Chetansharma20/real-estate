@@ -73,6 +73,7 @@ export function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Visit our ${name} page`}
                   className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all duration-300 hover:bg-white/5"
                 >
                   <SocialIcon name={name} size={20} />
