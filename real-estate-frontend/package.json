@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "browserslist": [
-    "defaults",
+    "defaults and fully supports es6-module",
+    "not dead",
+    "> 0.3%",
     "not IE 11"
   ],
   "dependencies": {

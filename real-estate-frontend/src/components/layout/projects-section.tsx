@@ -71,6 +71,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
               alt={project.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
+              quality={50}
               className={`object-cover transition-transform duration-700 ${hovered ? "scale-110" : "scale-100"}`}
             />
             {/* Gradient overlay */}

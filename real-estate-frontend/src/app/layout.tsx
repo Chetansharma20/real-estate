@@ -2,18 +2,23 @@ import type { Metadata } from "next";
 import { DM_Sans, Cormorant } from "next/font/google";
 import "./globals.css";
 import { PageLoader } from "@/components/ui/page-loader";
+import { GoogleAnalytics } from "@/components/ui/google-analytics";
 
 const cormorant = Cormorant({
   variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
+  preload: true,
 });
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -61,23 +66,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
-        {/* Google Analytics Tag */}
-        <Script
-          strategy="lazyOnload"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-DRVPKEMSXX`}
-        />
-        <Script
-          id="google-analytics"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-DRVPKEMSXX');
-            `,
-          }}
-        />
+        {/* Google Analytics Tag (Lazy loaded on interaction to boost performance) */}
+        <GoogleAnalytics gaId="G-DRVPKEMSXX" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
