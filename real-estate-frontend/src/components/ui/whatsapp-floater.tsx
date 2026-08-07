@@ -6,13 +6,12 @@ import { motion } from "framer-motion";
 export function WhatsAppFloater() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <motion.a
+      <a
         href="https://wa.me/919987510672?text=Hi%20there!%20I'm%20interested%20in%20your%20properties."
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-xl hover:bg-[#20b858] transition-colors relative group"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        aria-label="Chat with us on WhatsApp"
+        className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-xl hover:bg-[#20b858] hover:scale-110 active:scale-95 transition-all duration-300 relative group"
       >
         <span className="absolute w-full h-full rounded-full bg-[#25D366] opacity-50 animate-ping" style={{ animationDuration: "3s" }} />
         
