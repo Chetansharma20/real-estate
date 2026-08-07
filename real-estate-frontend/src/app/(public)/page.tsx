@@ -1,6 +1,8 @@
 import { HomeSections } from "@/components/layout/home-sections";
 import { api } from "@/lib/api";
 
+export const revalidate = 3600; // Cache the homepage for 1 hour to stabilize Lighthouse scores
+
 export const metadata = {
   title: "Residential & Commercial Project Advisory in Mumbai & Thane | Bricksage",
   description:
