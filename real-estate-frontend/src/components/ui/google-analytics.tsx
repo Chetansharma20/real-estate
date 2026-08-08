@@ -14,19 +14,25 @@ export function GoogleAnalytics({ gaId }: { gaId: string }) {
       window.removeEventListener("mousedown", handleInteraction);
       window.removeEventListener("keydown", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
       clearTimeout(timeoutId);
     };
 
     window.addEventListener("mousedown", handleInteraction, { passive: true });
     window.addEventListener("keydown", handleInteraction, { passive: true });
     window.addEventListener("touchstart", handleInteraction, { passive: true });
+    window.addEventListener("scroll", handleInteraction, { passive: true });
+    window.addEventListener("mousemove", handleInteraction, { passive: true });
 
-    timeoutId = setTimeout(handleInteraction, 4000);
+    timeoutId = setTimeout(handleInteraction, 8500);
 
     return () => {
       window.removeEventListener("mousedown", handleInteraction);
       window.removeEventListener("keydown", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
       clearTimeout(timeoutId);
     };
   }, []);
