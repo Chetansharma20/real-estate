@@ -65,6 +65,7 @@ const nextConfig: NextConfig = {
     // Sizes for srcset generation — matched to common breakpoints used in the app
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 64, 128, 256, 384],
+    qualities: [50, 60, 75, 90, 100],
     remotePatterns: [
       {
         protocol: "https",
