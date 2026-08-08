@@ -134,64 +134,123 @@ export default async function ReraDisclosurePage() {
               </p>
             </div>
           ) : (
-            <div className="overflow-x-auto rounded-xl border border-[#172033]/10">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-[#172033] text-white">
-                    <th className="text-left px-5 py-4 font-semibold whitespace-nowrap">Project Name</th>
-                    <th className="text-left px-5 py-4 font-semibold whitespace-nowrap">Location</th>
-                    <th className="text-left px-5 py-4 font-semibold whitespace-nowrap">RERA Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {reraProjects.map((project: any) => (
-                    <tr key={project.id} className="border-t border-[#172033]/8 hover:bg-[#172033]/5 transition-colors">
-                      <td className="px-5 py-4 align-top">
-                        <Link href={`/projects/${project.id}`} className="font-bold text-[#172033] hover:text-[#D4AF37] transition-colors">
-                          {project.title}
-                        </Link>
-                        {project.township && (
-                          <div className="text-xs text-[#172033]/50 mt-1">
-                            Part of {project.township.name}
-                          </div>
-                        )}
-                      </td>
-                      <td className="px-5 py-4 align-top text-[#172033]/70">
-                        {project.locality || project.township?.locality || "Mumbai"}, {project.city || project.township?.city || "Maharashtra"}
-                      </td>
-                      <td className="px-5 py-4 align-top">
-                        <div className="flex flex-col sm:flex-row items-start gap-4">
-                          {project.reraQrCode && (
-                            <div className="relative w-16 h-16 shrink-0 border border-[#172033]/10 rounded bg-white p-1">
-                              <Image 
-                                src={
-                                  project.reraQrCode.startsWith('http') 
-                                    ? project.reraQrCode 
-                                    : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:5000'}${project.reraQrCode.startsWith('/') ? '' : '/'}${project.reraQrCode}`
-                                } 
-                                alt={`RERA QR Code for ${project.title}`} 
-                                fill 
-                                className="object-contain" 
-                                loading="lazy"
-                              />
+            <>
+              {/* Desktop Table View */}
+              <div className="hidden md:block overflow-x-auto rounded-xl border border-[#172033]/10">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-[#172033] text-white">
+                      <th className="text-left px-5 py-4 font-semibold whitespace-nowrap">Project Name</th>
+                      <th className="text-left px-5 py-4 font-semibold whitespace-nowrap">Location</th>
+                      <th className="text-left px-5 py-4 font-semibold whitespace-nowrap">RERA Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {reraProjects.map((project: any) => (
+                      <tr key={project.id} className="border-t border-[#172033]/8 hover:bg-[#172033]/5 transition-colors">
+                        <td className="px-5 py-4 align-top">
+                          <Link href={`/projects/${project.id}`} className="font-bold text-[#172033] text-base hover:text-[#D4AF37] transition-colors">
+                            {project.title}
+                          </Link>
+                          {project.township && (
+                            <div className="text-xs text-[#172033]/50 mt-1">
+                              Part of {project.township.name}
                             </div>
                           )}
-                          <div className="flex flex-col justify-center">
-                            {project.reraId ? (
-                              <span className="font-bold text-[#172033] text-sm tracking-wide bg-[#D4AF37]/10 px-2 py-1 rounded inline-block w-fit">
-                                {project.reraId}
-                              </span>
-                            ) : (
-                              <span className="text-[#172033]/40 text-xs italic">ID pending</span>
+                        </td>
+                        <td className="px-5 py-4 align-top text-[#172033]/70">
+                          {project.locality || project.township?.locality || "Mumbai"}, {project.city || project.township?.city || "Maharashtra"}
+                        </td>
+                        <td className="px-5 py-4 align-top">
+                          <div className="flex flex-col sm:flex-row items-start gap-4">
+                            {project.reraQrCode && (
+                              <div className="relative w-16 h-16 shrink-0 border border-[#172033]/10 rounded bg-white p-1">
+                                <Image 
+                                  src={
+                                    project.reraQrCode.startsWith('http') 
+                                      ? project.reraQrCode 
+                                      : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:5000'}${project.reraQrCode.startsWith('/') ? '' : '/'}${project.reraQrCode}`
+                                  } 
+                                  alt={`RERA QR Code for ${project.title}`} 
+                                  fill 
+                                  className="object-contain" 
+                                  loading="lazy"
+                                />
+                              </div>
                             )}
+                            <div className="flex flex-col justify-center">
+                              {project.reraId ? (
+                                <span className="font-bold text-[#172033] text-sm tracking-wide bg-[#D4AF37]/10 px-2 py-1 rounded inline-block w-fit">
+                                  {project.reraId}
+                                </span>
+                              ) : (
+                                <span className="text-[#172033]/40 text-xs italic">ID pending</span>
+                              )}
+                            </div>
                           </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card View */}
+              <div className="md:hidden space-y-4">
+                {reraProjects.map((project: any) => (
+                  <div key={project.id} className="bg-white border border-[#172033]/10 rounded-xl p-5 space-y-4">
+                    <div>
+                      <div className="text-[10px] text-[#172033]/50 mb-1 uppercase font-semibold tracking-wider">Project</div>
+                      <Link href={`/projects/${project.id}`} className="font-bold text-[#172033] text-base hover:text-[#D4AF37] transition-colors">
+                        {project.title}
+                      </Link>
+                      {project.township && (
+                        <div className="text-xs text-[#172033]/60 mt-1">
+                          Part of {project.township.name}
                         </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                      )}
+                    </div>
+                    
+                    <div>
+                      <div className="text-[10px] text-[#172033]/50 mb-1 uppercase font-semibold tracking-wider">Location</div>
+                      <div className="text-sm text-[#172033]/80">
+                        {project.locality || project.township?.locality || "Mumbai"}, {project.city || project.township?.city || "Maharashtra"}
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <div className="text-[10px] text-[#172033]/50 mb-2 uppercase font-semibold tracking-wider">RERA Details</div>
+                      <div className="flex items-center gap-4">
+                        {project.reraQrCode && (
+                          <div className="relative w-16 h-16 shrink-0 border border-[#172033]/10 rounded bg-white p-1">
+                            <Image 
+                              src={
+                                project.reraQrCode.startsWith('http') 
+                                  ? project.reraQrCode 
+                                  : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:5000'}${project.reraQrCode.startsWith('/') ? '' : '/'}${project.reraQrCode}`
+                              } 
+                              alt={`RERA QR Code for ${project.title}`} 
+                              fill 
+                              className="object-contain" 
+                              loading="lazy"
+                            />
+                          </div>
+                        )}
+                        <div>
+                          {project.reraId ? (
+                            <span className="font-bold text-[#172033] text-sm tracking-wide bg-[#D4AF37]/10 px-2 py-1 rounded inline-block">
+                              {project.reraId}
+                            </span>
+                          ) : (
+                            <span className="text-[#172033]/40 text-xs italic">ID pending</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
         </div>
 
