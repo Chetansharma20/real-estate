@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Cormorant } from "next/font/google";
 import "./globals.css";
-import { PageLoader } from "@/components/ui/page-loader";
 import { GoogleAnalytics } from "@/components/ui/google-analytics";
 
 // Cormorant Normal — preloaded (LCP headings, navbar, footer use bold/regular)
