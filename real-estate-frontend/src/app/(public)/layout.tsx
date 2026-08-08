@@ -2,10 +2,9 @@ import { Navbar } from "@/components/layout/navbar";
 import dynamic from "next/dynamic";
 import { WhatsAppFloater } from "@/components/ui/whatsapp-floater";
 
-// Lazy load Footer — it's below-the-fold, not LCP-critical, and was causing CLS 1.000
+// Lazy load Footer JS — SSR on (HTML mein rahega for SEO), sirf JS code-split hoga
 const Footer = dynamic(() => import("@/components/layout/footer").then(m => ({ default: m.Footer })), {
-  ssr: false,
-  loading: () => <div style={{ height: "480px", background: "#172033" }} aria-hidden="true" />,
+  ssr: true,
 });
 
 export default function PublicLayout({
