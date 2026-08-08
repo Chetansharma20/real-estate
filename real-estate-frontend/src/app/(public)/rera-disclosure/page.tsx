@@ -29,7 +29,7 @@ async function getSettings() {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
     const res = await fetch(`${apiUrl}/settings`, {
-      cache: 'no-store' // Always fetch fresh — admin can update anytime
+      next: { revalidate: 60 } // Refresh settings every 1 minute
     });
     if (!res.ok) return null;
     const data = await res.json();
