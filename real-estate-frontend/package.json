@@ -8,14 +8,7 @@
     "start": "next start",
     "lint": "eslint"
   },
-  "browserslist": [
-    "chrome >= 92",
-    "firefox >= 90",
-    "safari >= 15",
-    "edge >= 92",
-    "not dead",
-    "not IE 11"
-  ],
+
   "dependencies": {
     "@base-ui/react": "^1.6.0",
     "axios": "^1.18.1",
