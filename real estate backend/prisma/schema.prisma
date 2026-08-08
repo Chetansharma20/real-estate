@@ -65,6 +65,13 @@ model Project {
   amenities            ProjectAmenity[]
   configurations       ProjectConfiguration[]
   media                ProjectMedia[]
+
+  @@index([featured])              // homepage featured=true query
+  @@index([status])                // status=ACTIVE filter on all public queries
+  @@index([propertyType])          // category page property type filter
+  @@index([constructionStatus])    // NEW_LAUNCH / READY_TO_MOVE filter
+  @@index([townshipId])            // township join filter
+  @@index([createdAt])             // orderBy createdAt desc
 }
 
 model ProjectMedia {
@@ -78,6 +85,9 @@ model ProjectMedia {
   createdAt       DateTime              @default(now())
   configuration   ProjectConfiguration? @relation(fields: [configurationId], references: [id], onDelete: Cascade)
   project         Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, type])   // cover image lookup + sortOrder findFirst query
+  @@index([projectId, isCover]) // cover image filter
 }
 
 model Amenity {
@@ -94,6 +104,8 @@ model ProjectAmenity {
   createdAt DateTime @default(now())
   amenity   Amenity  @relation(fields: [amenityId], references: [id], onDelete: Cascade)
   project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])   // join query when loading project amenities
 }
 
 model Lead {

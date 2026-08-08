@@ -310,14 +310,6 @@ export const addProjectMedia = async (projectId: string, url: string, type: "IMA
   });
   const sortOrder = maxOrderMedia ? maxOrderMedia.sortOrder + 1 : 0;
 
-  if (isCover) {
-    // Reset other cover images for this project
-    await prisma.projectMedia.updateMany({
-      where: { projectId, type: "IMAGE", isCover: true },
-      data: { isCover: false }
-    });
-  }
-
   return prisma.projectMedia.create({
     data: {
       projectId,
