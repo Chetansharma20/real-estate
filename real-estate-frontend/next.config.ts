@@ -59,8 +59,8 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    // Enable Next.js image optimisation (WebP/AVIF conversion, responsive sizes)
-    unoptimized: false,
+    // Enable Next.js image optimisation only in production, disable in dev to bypass SSRF localhost blocks
+    unoptimized: process.env.NODE_ENV === 'development',
     formats: ["image/avif", "image/webp"],
     // Sizes for srcset generation — matched to common breakpoints used in the app
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
