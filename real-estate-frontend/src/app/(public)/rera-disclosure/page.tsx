@@ -82,30 +82,30 @@ export default async function ReraDisclosurePage() {
         </div>
 
         {/* Section 1 — Agent Registration */}
-        <div className="bg-white rounded-2xl border border-[#172033]/8 p-8 mb-4 shadow-sm">
+        <div className="bg-white rounded-2xl border border-[#172033]/8 p-5 sm:p-8 mb-4 shadow-sm">
           <h2 className="font-serif text-lg font-bold text-[#172033] mb-4">
             1. Real Estate Agent Registration
           </h2>
-          <p className="text-[#172033]/70 leading-relaxed mb-6">
+          <p className="text-[#172033]/70 leading-relaxed mb-6 text-sm sm:text-base">
             Bricksage Properties Advisory Pvt. Ltd. is a registered real estate agent under the
             Real Estate (Regulation and Development) Act, 2016.
           </p>
-          <div className="bg-[#172033]/3 rounded-xl p-5 space-y-3 border border-[#172033]/8">
-            <div className="flex items-start gap-3">
-              <span className="text-[#172033]/50 text-sm font-semibold w-52 shrink-0">MahaRERA Agent Reg. No.:</span>
+          <div className="bg-[#172033]/3 rounded-xl p-4 sm:p-5 space-y-4 sm:space-y-3 border border-[#172033]/8">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-3">
+              <span className="text-[#172033]/50 text-xs sm:text-sm font-semibold sm:w-52 shrink-0">MahaRERA Agent Reg. No.:</span>
               <span className="text-[#172033] font-bold text-sm">{agentReraNumber}</span>
             </div>
-            <div className="flex items-start gap-3">
-              <span className="text-[#172033]/50 text-sm font-semibold w-52 shrink-0">Valid up to:</span>
+            <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-3">
+              <span className="text-[#172033]/50 text-xs sm:text-sm font-semibold sm:w-52 shrink-0">Valid up to:</span>
               <span className="text-[#172033] font-bold text-sm">{agentReraValidUpTo}</span>
             </div>
-            <div className="flex items-start gap-3">
-              <span className="text-[#172033]/50 text-sm font-semibold w-52 shrink-0">Verify at:</span>
+            <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-3">
+              <span className="text-[#172033]/50 text-xs sm:text-sm font-semibold sm:w-52 shrink-0">Verify at:</span>
               <a
                 href="https://maharera.maharashtra.gov.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#D4AF37] hover:underline text-sm flex items-center gap-1 font-medium"
+                className="text-[#D4AF37] hover:underline text-sm flex items-center w-fit gap-1 font-medium"
               >
                 maharera.maharashtra.gov.in
                 <ExternalLink size={12} />
@@ -115,7 +115,7 @@ export default async function ReraDisclosurePage() {
         </div>
 
         {/* Section 2 — Project-wise RERA */}
-        <div className="bg-white rounded-2xl border border-[#172033]/8 p-8 mb-4 shadow-sm">
+        <div className="bg-white rounded-2xl border border-[#172033]/8 p-5 sm:p-8 mb-4 shadow-sm">
           <h2 className="font-serif text-lg font-bold text-[#172033] mb-2">
             2. Project-wise RERA Registration
           </h2>
@@ -125,8 +125,8 @@ export default async function ReraDisclosurePage() {
           </p>
 
           {reraProjects.length === 0 ? (
-            <div className="flex gap-3 bg-amber-50 border border-amber-200 rounded-xl p-5 mb-4">
-              <AlertTriangle size={18} className="text-amber-600 mt-0.5 shrink-0" />
+            <div className="flex flex-col sm:flex-row gap-3 bg-amber-50 border border-amber-200 rounded-xl p-4 sm:p-5 mb-4">
+              <AlertTriangle size={18} className="text-amber-600 sm:mt-0.5 shrink-0" />
               <p className="text-amber-800 text-sm leading-relaxed">
                 Project-specific MahaRERA registration numbers will be displayed here once confirmed.
                 For immediate verification, please request the MahaRERA certificate from our advisory
@@ -255,7 +255,7 @@ export default async function ReraDisclosurePage() {
         </div>
 
         {/* Section 3 — Mandatory Disclaimer */}
-        <div className="bg-[#172033] rounded-2xl p-8 mb-4 shadow-sm">
+        <div className="bg-[#172033] rounded-2xl p-5 sm:p-8 mb-4 shadow-sm">
           <h2 className="font-serif text-lg font-bold text-white mb-4">
             3. Mandatory Disclaimer
           </h2>
@@ -271,10 +271,10 @@ export default async function ReraDisclosurePage() {
             href="https://maharera.maharashtra.gov.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-5 text-[#D4AF37] hover:underline text-sm font-medium"
+            className="inline-flex items-center gap-2 mt-5 text-[#D4AF37] hover:underline text-sm font-medium break-all sm:break-normal"
           >
             Verify on MahaRERA Official Website
-            <ExternalLink size={13} />
+            <ExternalLink size={13} className="shrink-0" />
           </a>
         </div>
 
