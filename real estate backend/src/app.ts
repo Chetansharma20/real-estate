@@ -70,7 +70,7 @@ const leadLimiter = rateLimit({
 app.use("/api/", globalLimiter);
 
 
-app.use("/uploads", express.static("uploads"));
+// Note: /uploads static serving removed — all media is served via Cloudinary CDN
 
 app.use("/api/auth", authRoutes);
 app.use("/api/townships", townshipRoutes);
