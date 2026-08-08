@@ -4,15 +4,27 @@ import "./globals.css";
 import { PageLoader } from "@/components/ui/page-loader";
 import { GoogleAnalytics } from "@/components/ui/google-analytics";
 
+// Cormorant Normal — preloaded (LCP headings, navbar, footer use bold/regular)
 const cormorant = Cormorant({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["400", "600", "700"],   // 300 unused in normal, 500 unused
+  style: ["normal"],
   display: "swap",
   preload: true,
 });
 
+// Cormorant Italic — NOT preloaded (only CTA + about page use it, not LCP-critical)
+const cormorantItalic = Cormorant({
+  variable: "--font-cormorant-italic",
+  subsets: ["latin"],
+  weight: ["300", "400"],          // cta uses font-light italic, about uses italic
+  style: ["italic"],
+  display: "swap",
+  preload: false,
+});
+
+// DM Sans — all 5 weights kept (font-light/normal/medium/semibold/bold all used site-wide)
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
@@ -60,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${cormorant.variable} h-full antialiased`}>
+    <html lang="en" className={`${dmSans.variable} ${cormorant.variable} ${cormorantItalic.variable} h-full antialiased`}>
       <head>
         {/* Preconnect to Cloudinary to load Hero Image faster (Improves LCP) */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
