@@ -25,7 +25,7 @@ export function GoogleAnalytics({ gaId }: { gaId: string }) {
     window.addEventListener("scroll", handleInteraction, { passive: true });
     window.addEventListener("mousemove", handleInteraction, { passive: true });
 
-    timeoutId = setTimeout(handleInteraction, 8500);
+    timeoutId = setTimeout(handleInteraction, 18000);
 
     return () => {
       window.removeEventListener("mousedown", handleInteraction);
