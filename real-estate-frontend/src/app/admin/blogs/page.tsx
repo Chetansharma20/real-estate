@@ -85,10 +85,12 @@ export default function AdminBlogsPage() {
       }
 
       let res;
+      const config = { headers: { "Content-Type": "multipart/form-data" } };
+      
       if (editId) {
-        res = await api.patch(`/admin/blog/${editId}`, fd);
+        res = await api.patch(`/admin/blog/${editId}`, fd, config);
       } else {
-        res = await api.post("/admin/blog", fd);
+        res = await api.post("/admin/blog", fd, config);
       }
 
       if (res.data.success) {
