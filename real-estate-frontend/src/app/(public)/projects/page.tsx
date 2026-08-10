@@ -189,9 +189,9 @@ function PropertiesPageContent() {
                       }}
                       onClick={() => {
                         if (item._isProject) {
-                          router.push(`/projects/${item.id}`);
+                          router.push(`/projects/${item.slug}`);
                         } else {
-                          router.push(`/projects/${item.id}`);
+                          router.push(`/projects/${item.slug}`);
                         }
                       }}
                     />

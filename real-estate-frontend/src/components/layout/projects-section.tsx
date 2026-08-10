@@ -58,7 +58,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
     >
-      <Link href={`/projects/${project.id}`} className="block group">
+      <Link href={`/projects/${project.slug}`} className="block group">
         <div
           className="relative overflow-hidden bg-[#172033] rounded-none shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
           onMouseEnter={() => setHovered(true)}

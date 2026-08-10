@@ -14,7 +14,7 @@ async function getProjects() {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
     const res = await fetch(`${apiUrl}/projects?limit=100`, {
-      next: { revalidate: 60 } // Cache for 1 minute instead of 1 hour
+      cache: 'no-store' // Always fetch fresh data so QR codes show immediately after upload
     });
     if (!res.ok) return [];
     const data = await res.json();
@@ -29,7 +29,7 @@ async function getSettings() {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
     const res = await fetch(`${apiUrl}/settings`, {
-      next: { revalidate: 60 } // Refresh settings every 1 minute
+      cache: 'no-store' // Always fetch fresh settings
     });
     if (!res.ok) return null;
     const data = await res.json();
@@ -45,12 +45,12 @@ export default async function ReraDisclosurePage() {
     getProjects(),
     getSettings()
   ]);
-  
+
   // Only show projects that actually have RERA info added
   const reraProjects = allProjects.filter((p: any) => p.reraId || p.reraQrCode);
 
   const agentReraNumber = settings?.agentReraNumber || "[Not Available]";
-  
+
   let agentReraValidUpTo = settings?.agentReraValidUpTo || "[Not Available]";
   if (agentReraValidUpTo !== "[Not Available]" && agentReraValidUpTo.includes("-")) {
     const d = new Date(agentReraValidUpTo);
@@ -149,7 +149,7 @@ export default async function ReraDisclosurePage() {
                     {reraProjects.map((project: any) => (
                       <tr key={project.id} className="border-t border-[#172033]/8 hover:bg-[#172033]/5 transition-colors">
                         <td className="px-5 py-4 align-top">
-                          <Link href={`/projects/${project.id}`} className="font-bold text-[#172033] text-base hover:text-[#D4AF37] transition-colors">
+                          <Link href={`/projects/${project.slug}`} className="font-bold text-[#172033] text-base hover:text-[#D4AF37] transition-colors">
                             {project.title}
                           </Link>
                           {project.township && (
@@ -165,15 +165,15 @@ export default async function ReraDisclosurePage() {
                           <div className="flex flex-col sm:flex-row items-start gap-4">
                             {project.reraQrCode && (
                               <div className="relative w-16 h-16 shrink-0 border border-[#172033]/10 rounded bg-white p-1">
-                                <Image 
+                                <Image
                                   src={
-                                    project.reraQrCode.startsWith('http') 
-                                      ? project.reraQrCode 
+                                    project.reraQrCode.startsWith('http')
+                                      ? project.reraQrCode
                                       : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:5000'}${project.reraQrCode.startsWith('/') ? '' : '/'}${project.reraQrCode}`
-                                  } 
-                                  alt={`RERA QR Code for ${project.title}`} 
-                                  fill 
-                                  className="object-contain" 
+                                  }
+                                  alt={`RERA QR Code for ${project.title}`}
+                                  fill
+                                  className="object-contain"
                                   loading="lazy"
                                 />
                               </div>
@@ -201,7 +201,7 @@ export default async function ReraDisclosurePage() {
                   <div key={project.id} className="bg-white border border-[#172033]/10 rounded-xl p-5 space-y-4">
                     <div>
                       <div className="text-[10px] text-[#172033]/50 mb-1 uppercase font-semibold tracking-wider">Project</div>
-                      <Link href={`/projects/${project.id}`} className="font-bold text-[#172033] text-base hover:text-[#D4AF37] transition-colors">
+                      <Link href={`/projects/${project.slug}`} className="font-bold text-[#172033] text-base hover:text-[#D4AF37] transition-colors">
                         {project.title}
                       </Link>
                       {project.township && (
@@ -210,28 +210,28 @@ export default async function ReraDisclosurePage() {
                         </div>
                       )}
                     </div>
-                    
+
                     <div>
                       <div className="text-[10px] text-[#172033]/50 mb-1 uppercase font-semibold tracking-wider">Location</div>
                       <div className="text-sm text-[#172033]/80">
                         {project.locality || project.township?.locality || "Mumbai"}, {project.city || project.township?.city || "Maharashtra"}
                       </div>
                     </div>
-                    
+
                     <div>
                       <div className="text-[10px] text-[#172033]/50 mb-2 uppercase font-semibold tracking-wider">RERA Details</div>
                       <div className="flex items-center gap-4">
                         {project.reraQrCode && (
                           <div className="relative w-16 h-16 shrink-0 border border-[#172033]/10 rounded bg-white p-1">
-                            <Image 
+                            <Image
                               src={
-                                project.reraQrCode.startsWith('http') 
-                                  ? project.reraQrCode 
+                                project.reraQrCode.startsWith('http')
+                                  ? project.reraQrCode
                                   : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:5000'}${project.reraQrCode.startsWith('/') ? '' : '/'}${project.reraQrCode}`
-                              } 
-                              alt={`RERA QR Code for ${project.title}`} 
-                              fill 
-                              className="object-contain" 
+                              }
+                              alt={`RERA QR Code for ${project.title}`}
+                              fill
+                              className="object-contain"
                               loading="lazy"
                             />
                           </div>
