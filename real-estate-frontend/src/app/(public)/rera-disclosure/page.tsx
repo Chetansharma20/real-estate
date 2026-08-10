@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+export const dynamic = "force-dynamic";
+
 async function getProjects() {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
