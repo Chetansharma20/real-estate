@@ -47,12 +47,12 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // Cache static assets (fonts, icons, images) aggressively for 1 year
+        // Cache static assets, but not aggressively during development phase (1 hour max-age)
         source: "/:path*(png|jpg|jpeg|webp|avif|svg|woff|woff2|ttf|ico)",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: "public, max-age=3600, must-revalidate",
           },
         ],
       },
