@@ -69,6 +69,15 @@ const leadLimiter = rateLimit({
 // Apply global rate limiter to all API routes
 app.use("/api/", globalLimiter);
 
+// Prevent Cloudflare / Edge CDNs from caching dynamic API responses
+app.use("/api/", (req, res, next) => {
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
+  res.setHeader("Surrogate-Control", "no-store");
+  next();
+});
+
 
 import path from "path";
 // Re-enable /uploads static serving because some legacy images in DB haven't been migrated to Cloudinary yet.
