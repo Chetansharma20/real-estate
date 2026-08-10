@@ -16,8 +16,10 @@ import {
 import { Plus } from "lucide-react";
 import BlogForm from "@/components/admin/blogs/blog-form";
 import BlogList from "@/components/admin/blogs/blog-list";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function AdminBlogsPage() {
+  const { toast } = useToast();
   const {
     data: posts,
     isLoading,
@@ -84,22 +86,24 @@ export default function AdminBlogsPage() {
 
       let res;
       if (editId) {
-        res = await api.patch(`/admin/blog/${editId}`, fd, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        res = await api.patch(`/admin/blog/${editId}`, fd);
       } else {
-        res = await api.post("/admin/blog", fd, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        res = await api.post("/admin/blog", fd);
       }
 
       if (res.data.success) {
+        toast({ title: "Success", description: `Blog post ${editId ? "updated" : "created"} successfully.` });
         setIsModalOpen(false);
         resetForm();
         fetchPosts(currentPage);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to save blog post:", error);
+      toast({ 
+        title: "Error", 
+        description: error.response?.data?.message || "Failed to save blog post", 
+        variant: "destructive" 
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -110,10 +114,16 @@ export default function AdminBlogsPage() {
       try {
         const res = await api.delete(`/admin/blog/${postId}`);
         if (res.data.success) {
+          toast({ title: "Success", description: "Blog post deleted successfully." });
           fetchPosts(currentPage);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Failed to delete blog post:", error);
+        toast({ 
+          title: "Error", 
+          description: error.response?.data?.message || "Failed to delete blog post", 
+          variant: "destructive" 
+        });
       }
     }
   };
