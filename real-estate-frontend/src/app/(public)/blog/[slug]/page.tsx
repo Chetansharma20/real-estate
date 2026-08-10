@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Loader2, Calendar, Clock, ChevronLeft, User, ExternalLink, ArrowRight } from "lucide-react";
+import { Loader2, Calendar, Clock, ChevronLeft, User, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -56,7 +56,7 @@ export default function BlogDetailPage() {
         <h2 className="text-2xl font-serif font-bold text-[#172033]">Article Not Found</h2>
         <p className="text-sm max-w-sm">The blog article you are looking for does not exist or has been removed.</p>
         <Link href="/blog">
-          <Button className="bg-[#172033] text-white">Back to Blogs</Button>
+          <Button className="bg-[#172033] text-white hover:bg-primary">Back to Blogs</Button>
         </Link>
       </div>
     );
@@ -65,62 +65,53 @@ export default function BlogDetailPage() {
   const blogPostingSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.metaDescription || post.content?.substring(0, 160) || post.title,
-    ...(post.coverImage ? { "image": post.coverImage } : {}),
-    "author": { "@type": "Organization", "name": "Bricksage Properties Advisory" },
-    "publisher": {
+    headline: post.title,
+    description: post.metaDescription || post.content?.substring(0, 160) || post.title,
+    ...(post.coverImage ? { image: post.coverImage } : {}),
+    author: { "@type": "Organization", name: "Bricksage Properties Advisory" },
+    publisher: {
       "@type": "Organization",
-      "name": "Bricksage Properties Advisory",
-      "logo": { "@type": "ImageObject", "url": "https://bricksage.in/logo.webp" }
+      name: "Bricksage Properties Advisory",
+      logo: { "@type": "ImageObject", url: "https://bricksage.in/logo.webp" },
     },
-    "datePublished": post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
-    "dateModified": post.updatedAt ? new Date(post.updatedAt).toISOString() : post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
-    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://bricksage.in/blog/${slug}` }
+    datePublished: post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
+    dateModified: post.updatedAt ? new Date(post.updatedAt).toISOString() : (post.createdAt ? new Date(post.createdAt).toISOString() : undefined),
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://bricksage.in/blog/${slug}` },
   };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bricksage.in" },
-      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://bricksage.in/blog" },
-      { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://bricksage.in/blog/${slug}` }
-    ]
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://bricksage.in" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://bricksage.in/blog" },
+      { "@type": "ListItem", position: 3, name: post.title, item: `https://bricksage.in/blog/${slug}` },
+    ],
   };
 
   return (
-    <div className="bg-[#F4F6F9] min-h-screen pt-24 pb-20 px-4 sm:px-6">
+    <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 px-4 sm:px-6">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <div className="max-w-4xl mx-auto space-y-6">
+      
+      <div className="max-w-6xl mx-auto space-y-8">
         
         {/* Back Link */}
-        <Link href="/blog" className="inline-flex items-center text-sm font-medium text-[#172033]/60 hover:text-[#172033] transition-colors gap-1">
-          <ChevronLeft className="w-4 h-4" />
-          Back to Insights
-        </Link>
+        <div className="mb-4">
+          <Link href="/blog" className="inline-flex items-center text-xs font-semibold tracking-wider uppercase text-[#172033]/50 hover:text-[#D4AF37] transition-colors gap-2">
+            <ChevronLeft className="w-4 h-4" />
+            Back to Journal
+          </Link>
+        </div>
 
-        {/* Article Cover & Header Card */}
-        <Card className="border border-[#172033]/10 rounded-2xl bg-white shadow-sm overflow-hidden">
-          {post.coverImage && (
-            <div className="relative h-64 sm:h-96 w-full">
-              <Image
-                src={post.coverImage}
-                alt={post.title}
-                fill
-                sizes="(max-width: 1024px) 100vw, 80vw"
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-            </div>
-          )}
-
-          <div className="p-6 sm:p-10 space-y-4">
-            {/* Meta */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#172033]/40 font-bold uppercase tracking-wider">
-              <span className="flex items-center gap-1">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          
+          {/* LEFT SIDE: Heading & Paragraph */}
+          <div className="lg:col-span-7 order-2 lg:order-1 space-y-6">
+            
+            {/* Meta Info */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[10px] sm:text-xs text-[#172033]/50 font-bold uppercase tracking-widest">
+              <span className="flex items-center gap-1.5">
                 <Calendar className="w-4 h-4 text-[#D4AF37]" />
                 {new Date(post.createdAt).toLocaleDateString("en-IN", {
                   day: "numeric",
@@ -128,49 +119,67 @@ export default function BlogDetailPage() {
                   year: "numeric",
                 })}
               </span>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1.5">
                 <Clock className="w-4 h-4 text-[#D4AF37]" />
                 {calculateReadTime(post.content)}
               </span>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1.5">
                 <User className="w-4 h-4 text-[#D4AF37]" />
                 By {post.author?.name || "Bricksage Advisor"}
               </span>
             </div>
 
-            {/* Title */}
-            <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl text-[#172033] font-bold leading-tight">
+            {/* Title / Heading */}
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold leading-[1.15]">
               {post.title}
             </h1>
-            
-            <Separator className="bg-[#172033]/5 pt-2" />
 
-            {/* Content */}
-            <div className="prose prose-slate max-w-none text-[#172033]/80 font-light leading-relaxed text-sm sm:text-base pt-4 whitespace-pre-line space-y-4">
+            <Separator className="bg-[#D4AF37]/20 w-24 h-1 my-4" />
+
+            {/* Paragraph / Content */}
+            <div className="prose prose-slate prose-lg max-w-none text-[#172033]/70 font-light leading-relaxed whitespace-pre-line pt-2">
               {post.content}
             </div>
-          </div>
-        </Card>
 
-        {/* Promo CTA Banner */}
-        <Card className="border-none rounded-2xl bg-[#172033] text-white shadow-lg overflow-hidden p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative">
-          <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-          
-          <div className="space-y-1 relative z-10 text-center md:text-left">
-            <h3 className="font-serif text-lg sm:text-xl font-bold">Looking to Buy, Sell or Invest?</h3>
-            <p className="text-xs text-white/60 font-light max-w-lg">
-              Explore our premium residential flats, plots, and bespoke commercial listings across major cities.
-            </p>
           </div>
-          <Link href="/projects" className="relative z-10 w-full md:w-auto">
-            <Button className="w-full md:w-auto bg-[#D4AF37] hover:bg-white text-[#172033] font-semibold text-xs uppercase tracking-widest h-11 px-6 rounded-lg transition-all duration-300">
-              Browse Projects
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
-        </Card>
+
+          {/* RIGHT SIDE: Image (Sticky) */}
+          <div className="lg:col-span-5 order-1 lg:order-2 lg:sticky lg:top-28">
+            <div className="relative rounded-2xl overflow-hidden border-4 border-white shadow-xl bg-white group">
+              {post.coverImage ? (
+                <div className="relative w-full aspect-[4/5] sm:aspect-square lg:aspect-[3/4]">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#172033]/40 to-transparent" />
+                </div>
+              ) : (
+                <div className="w-full aspect-[4/5] sm:aspect-square lg:aspect-[3/4] flex items-center justify-center bg-[#172033]/5 text-[#172033]/20 font-serif text-xl">
+                  Bricksage Properties
+                </div>
+              )}
+            </div>
+
+            {/* Optional Small Promo under image */}
+            <Card className="border border-[#172033]/10 rounded-2xl bg-white shadow-sm overflow-hidden p-6 mt-8 flex flex-col items-center text-center gap-3">
+              <h3 className="font-serif text-lg font-bold text-[#172033]">Find Your Dream Home</h3>
+              <p className="text-xs text-[#172033]/50 font-light leading-relaxed">
+                Explore our premium listings and exclusive real estate projects today.
+              </p>
+              <Link href="/projects" className="w-full mt-2">
+                <Button className="w-full bg-[#172033] hover:bg-primary hover:text-[#172033] text-white transition-all text-xs uppercase tracking-wider font-semibold">
+                  Browse Projects
+                </Button>
+              </Link>
+            </Card>
+          </div>
+
+        </div>
 
       </div>
     </div>
