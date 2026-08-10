@@ -87,7 +87,7 @@ export default function BlogList({
                 <TableCell className="text-right">
                   <div className="flex justify-end gap-1.5">
                     <a
-                      href={`/blogs/${post.slug}`}
+                      href={`/blog/${post.slug}`}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center justify-center h-8 w-8 text-[#172033]/50 hover:text-[#172033]"
