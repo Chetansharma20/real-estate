@@ -6,7 +6,7 @@ export const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 5000, // 5 second timeout — never wait forever if backend is down
+  timeout: 30000, // 30 second timeout to allow image uploads to Cloudinary
 });
 
 // Redirect to /login if API returns 401 Unauthorized (session expired or invalid token)
