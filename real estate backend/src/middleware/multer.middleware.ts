@@ -10,17 +10,20 @@ import path from "path";
 function makeCloudinaryStorage(folder: string, resourceType: "image" | "raw" | "auto" = "image") {
   return new CloudinaryStorage({
     cloudinary,
-    params: {
-      folder,
-      resource_type: resourceType,
-      // Let Cloudinary auto-detect the format (WebP/AVIF delivery via URL)
-      format: async (_req: any, file: Express.Multer.File) => {
-        const ext = path.extname(file.originalname).toLowerCase().replace(".", "");
-        if (resourceType === "raw") return ext; // keep original for PDFs
-        // Always store as webp for images (Cloudinary converts on the fly)
-        return "webp";
-      },
-    } as any,
+    params: async (_req: any, file: Express.Multer.File) => {
+      const ext = path.extname(file.originalname).toLowerCase().replace(".", "");
+      
+      let format = "webp";
+      if (resourceType === "raw") {
+        format = ext; // keep original for PDFs
+      }
+
+      return {
+        folder,
+        resource_type: resourceType,
+        format,
+      };
+    },
   });
 }
 
