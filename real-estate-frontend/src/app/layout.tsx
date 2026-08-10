@@ -41,25 +41,28 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/favicon.ico", type: "image/x-icon", sizes: "32x32" },
       // Light mode: dark navy logo on white background
       {
         media: "(prefers-color-scheme: light)",
-        url: "/favicon-light.webp",
-        href: "/favicon-light.webp",
-        type: "image/webp",
+        url: "/favicon-light.png",
+        href: "/favicon-light.png",
+        type: "image/png",
+        sizes: "192x192"
       },
       // Dark mode: white logo on dark navy background
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/favicon-dark.webp",
-        href: "/favicon-dark.webp",
-        type: "image/webp",
+        url: "/favicon-dark.png",
+        href: "/favicon-dark.png",
+        type: "image/png",
+        sizes: "192x192"
       },
     ],
     // Fallback shortcut icon for browsers that don't support media queries
-    shortcut: "/favicon-light.webp",
+    shortcut: "/favicon-light.png",
     // Apple touch icon — use dark version (solid background looks best on iOS home screen)
-    apple: "/favicon-dark.webp",
+    apple: "/favicon-dark.png",
   },
 };
 
