@@ -153,7 +153,7 @@ function CategoryPageContent({
                     _isProject: true,
                     _variants: item.configurations,
                   }}
-                  onClick={() => router.push(`/projects/${item.id}`)}
+                  onClick={() => router.push(`/projects/${item.slug || item.id}`)}
                 />
               ))}
             </div>
