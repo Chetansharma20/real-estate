@@ -55,8 +55,19 @@ export const createBlogPost = asyncHandler(async (req: CustomRequest, res: Respo
     ? req.body.published === "true" || req.body.published === true
     : undefined;
 
+  let tags: string[] = [];
+  if (req.body.tags) {
+    try {
+      tags = typeof req.body.tags === "string" ? JSON.parse(req.body.tags) : req.body.tags;
+    } catch (e) {
+      // fallback if it's comma separated
+      tags = req.body.tags.split(",").map((t: string) => t.trim());
+    }
+  }
+
   const post = await blogPostService.createBlogPost({ 
     ...req.body, 
+    tags,
     published,
     coverImage, 
     authorId 
@@ -80,10 +91,20 @@ export const updateBlogPost = asyncHandler(async (req: Request, res: Response) =
     ? req.body.published === "true" || req.body.published === true
     : undefined;
 
+  let tags: string[] | undefined;
+  if (req.body.tags !== undefined) {
+    try {
+      tags = typeof req.body.tags === "string" ? JSON.parse(req.body.tags) : req.body.tags;
+    } catch (e) {
+      tags = typeof req.body.tags === "string" ? req.body.tags.split(",").map((t: string) => t.trim()) : [];
+    }
+  }
+
   const post = await blogPostService.updateBlogPost(id, { 
     ...req.body, 
     ...(published !== undefined ? { published } : {}),
-    ...(coverImage ? { coverImage } : {}) 
+    ...(coverImage ? { coverImage } : {}),
+    ...(tags !== undefined ? { tags } : {})
   });
 
   res.status(200).json(

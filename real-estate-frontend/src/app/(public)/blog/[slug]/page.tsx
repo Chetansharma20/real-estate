@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Loader2, Calendar, Clock, ChevronLeft, User, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import DOMPurify from "isomorphic-dompurify";
 
 export default function BlogDetailPage() {
   const { slug } = useParams();
@@ -137,9 +138,15 @@ export default function BlogDetailPage() {
             <Separator className="bg-[#D4AF37]/20 w-24 h-1 my-4" />
 
             {/* Paragraph / Content */}
-            <div className="prose prose-slate prose-lg max-w-none text-[#172033]/70 font-light leading-relaxed whitespace-pre-line pt-2">
-              {post.content}
-            </div>
+            <article 
+              className="prose prose-slate prose-lg max-w-none prose-headings:font-serif prose-headings:text-[#172033] prose-p:text-[#172033]/70 prose-p:font-light prose-p:leading-relaxed prose-a:text-[#D4AF37] prose-a:no-underline hover:prose-a:underline pt-2"
+              dangerouslySetInnerHTML={{ 
+                __html: DOMPurify.sanitize(post.content, {
+                  ALLOWED_TAGS: ['p', 'h2', 'h3', 'ul', 'ol', 'li', 'strong', 'em', 'a', 'br'],
+                  ALLOWED_ATTR: ['href', 'target', 'rel'],
+                }) 
+              }}
+            />
 
           </div>
 

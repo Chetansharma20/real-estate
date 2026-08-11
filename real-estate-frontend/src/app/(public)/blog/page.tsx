@@ -94,7 +94,10 @@ export default function PublicBlogPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
-              <Card key={post.id} className="overflow-hidden flex flex-col bg-white border border-[#172033]/10 shadow-sm hover:shadow-md transition-all rounded-xl group h-full">
+              <Card key={post.id} className="relative overflow-hidden flex flex-col bg-white border border-[#172033]/10 shadow-sm hover:shadow-md transition-all rounded-xl group h-full">
+                <Link href={`/blog/${post.slug}`} className="absolute inset-0 z-10">
+                  <span className="sr-only">Read {post.title}</span>
+                </Link>
                 {/* Cover Image */}
                 <div className="relative h-48 overflow-hidden bg-[#172033]/5">
                   {post.coverImage ? (
@@ -136,8 +139,14 @@ export default function PublicBlogPage() {
 
                 <CardContent className="px-5 py-2 flex-grow">
                   <p className="text-[#172033]/60 text-xs sm:text-sm font-light leading-relaxed line-clamp-3">
-                    {post.content.replace(/[#*`_\[\]-]/g, "")}
+                    {post.excerpt || post.content.replace(/<[^>]*>?/gm, "").substring(0, 160)}
                   </p>
+                  {post.locality && (
+                    <div className="mt-3 flex items-center gap-1.5 text-[10px] uppercase font-semibold text-[#172033]/50">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                      {post.locality}
+                    </div>
+                  )}
                 </CardContent>
 
                 {/* Card Footer */}
@@ -148,12 +157,10 @@ export default function PublicBlogPage() {
                     </div>
                     <span className="truncate max-w-[120px] font-medium">{post.author?.name || "Advisor"}</span>
                   </div>
-                  <Link href={`/blog/${post.slug}`}>
-                    <Button variant="ghost" className="text-[#172033] hover:text-[#D4AF37] hover:bg-transparent p-0 text-xs font-semibold uppercase tracking-wider group transition-colors gap-1.5">
-                      Read Article
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
+                  <div className="text-[#172033] flex items-center p-0 text-xs font-semibold uppercase tracking-wider transition-colors gap-1.5 group-hover:text-[#D4AF37]">
+                    Read Article
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </CardFooter>
               </Card>
             ))}

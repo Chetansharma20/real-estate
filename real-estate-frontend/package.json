@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tiptap/extension-link": "^3.30.0",
+    "@tiptap/react": "^3.30.0",
+    "@tiptap/starter-kit": "^3.30.0",
     "axios": "^1.18.1",
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.10.0",
@@ -17,6 +21,7 @@
     "critters": "^0.0.23",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.42.2",
+    "isomorphic-dompurify": "^3.19.0",
     "lucide-react": "^1.23.0",
     "next": "16.2.10",
     "react": "19.2.4",

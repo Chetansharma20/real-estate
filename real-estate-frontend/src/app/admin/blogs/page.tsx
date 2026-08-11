@@ -5,21 +5,15 @@ import { api } from "@/lib/api";
 import { usePaginationFetch } from "@/hooks/use-pagination-fetch";
 import { Pagination } from "@/components/ui/pagination";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
-import BlogForm from "@/components/admin/blogs/blog-form";
 import BlogList from "@/components/admin/blogs/blog-list";
 import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function AdminBlogsPage() {
   const { toast } = useToast();
+  const router = useRouter();
   const {
     data: posts,
     isLoading,
@@ -28,87 +22,8 @@ export default function AdminBlogsPage() {
     fetchData: fetchPosts,
   } = usePaginationFetch<any>({ endpoint: "/admin/blog", limit: 8, dataKey: "posts" });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [editId, setEditId] = useState<string | null>(null);
-
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [imageFile, setImageFile] = useState<File | null>(null);
-
-  const [formData, setFormData] = useState({
-    title: "",
-    slug: "",
-    content: "",
-    published: false,
-  });
-
-  const resetForm = () => {
-    setFormData({
-      title: "",
-      slug: "",
-      content: "",
-      published: false,
-    });
-    if (imagePreview && imagePreview.startsWith("blob:")) {
-      URL.revokeObjectURL(imagePreview);
-    }
-    setImagePreview(null);
-    setImageFile(null);
-    setEditId(null);
-  };
-
-  const openEditModal = (post: any) => {
-    setEditId(post.id);
-    setFormData({
-      title: post.title || "",
-      slug: post.slug || "",
-      content: post.content || "",
-      published: post.published || false,
-    });
-    setImagePreview(post.coverImage || null);
-    setImageFile(null);
-    setIsModalOpen(true);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const fd = new FormData();
-      fd.append("title", formData.title);
-      fd.append("slug", formData.slug);
-      fd.append("content", formData.content);
-      fd.append("published", String(formData.published));
-      if (imageFile) {
-        fd.append("coverImage", imageFile);
-      }
-
-      let res;
-      const config = { headers: { "Content-Type": "multipart/form-data" } };
-      
-      if (editId) {
-        res = await api.patch(`/admin/blog/${editId}`, fd, config);
-      } else {
-        res = await api.post("/admin/blog", fd, config);
-      }
-
-      if (res.data.success) {
-        toast({ title: "Success", description: `Blog post ${editId ? "updated" : "created"} successfully.` });
-        setIsModalOpen(false);
-        resetForm();
-        fetchPosts(currentPage);
-      }
-    } catch (error: any) {
-      console.error("Failed to save blog post:", error);
-      toast({ 
-        title: "Error", 
-        description: error.response?.data?.message || "Failed to save blog post", 
-        variant: "destructive" 
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+  const openEditPage = (post: any) => {
+    router.push(`/admin/blogs/${post.id}`);
   };
 
   const handleDelete = async (postId: string) => {
@@ -140,50 +55,15 @@ export default function AdminBlogsPage() {
           </p>
         </div>
 
-        <Dialog
-          open={isModalOpen}
-          onOpenChange={(open) => {
-            if (!open) resetForm();
-            setIsModalOpen(open);
-          }}
-        >
-          <DialogTrigger
-            render={
-              <Button className="bg-[#172033] hover:bg-primary text-white hover:text-[#172033]">
-                <Plus className="w-4 h-4 mr-2" />
-                New Post
-              </Button>
-            }
-          />
-
-          <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-white text-[#172033] border-[#172033]/10">
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-serif text-[#172033]">
-                {editId ? "Edit Blog Post" : "Create Blog Post"}
-              </DialogTitle>
-              <DialogDescription>Write compelling content to publish on your website.</DialogDescription>
-            </DialogHeader>
-
-            <BlogForm
-              formData={formData}
-              setFormData={setFormData}
-              imagePreview={imagePreview}
-              setImagePreview={setImagePreview}
-              imageFile={imageFile}
-              setImageFile={setImageFile}
-              isSubmitting={isSubmitting}
-              onSubmit={handleSubmit}
-              onCancel={() => {
-                resetForm();
-                setIsModalOpen(false);
-              }}
-              isEdit={!!editId}
-            />
-          </DialogContent>
-        </Dialog>
+        <Link href="/admin/blogs/new">
+          <Button className="bg-[#172033] hover:bg-primary text-white hover:text-[#172033]">
+            <Plus className="w-4 h-4 mr-2" />
+            New Post
+          </Button>
+        </Link>
       </div>
 
-      <BlogList posts={posts} isLoading={isLoading} onEdit={openEditModal} onDelete={handleDelete} />
+      <BlogList posts={posts} isLoading={isLoading} onEdit={openEditPage} onDelete={handleDelete} />
 
       <Pagination
         currentPage={currentPage}

@@ -59,8 +59,10 @@ export default function BlogList({
                     </div>
                   )}
                 </TableCell>
-                <TableCell className="font-medium text-[#172033]">
-                  {post.title}
+                <TableCell className="font-medium text-[#172033] max-w-[250px] lg:max-w-[350px]">
+                  <div className="line-clamp-2" title={post.title}>
+                    {post.title}
+                  </div>
                   <div className="text-[10px] text-[#172033]/40 font-normal mt-0.5">
                     {new Date(post.createdAt).toLocaleDateString("en-IN", {
                       day: "numeric",
@@ -69,7 +71,11 @@ export default function BlogList({
                     })}
                   </div>
                 </TableCell>
-                <TableCell className="text-[#172033]/60 text-sm">{post.slug}</TableCell>
+                <TableCell className="text-[#172033]/60 text-sm max-w-[200px] lg:max-w-[300px]">
+                  <div className="truncate" title={post.slug}>
+                    {post.slug}
+                  </div>
+                </TableCell>
                 <TableCell>
                   <span
                     className={`px-2 py-0.5 rounded text-[10px] font-bold ${

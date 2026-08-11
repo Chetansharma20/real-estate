@@ -11,6 +11,11 @@ export const createBlogPost = async (data: {
   authorId: string;
   coverImage?: string;
   published?: boolean;
+  metaTitle?: string;
+  metaDescription?: string;
+  excerpt?: string;
+  locality?: string;
+  tags?: string[];
 }) => {
   if (!data.title || !data.slug || !data.content || !data.authorId) {
     throw new ApiError(400, "Title, slug, content and authorId are required");
@@ -27,6 +32,11 @@ export const createBlogPost = async (data: {
     slug: data.slug,
     content: data.content,
     coverImage: data.coverImage,
+    metaTitle: data.metaTitle,
+    metaDescription: data.metaDescription,
+    excerpt: data.excerpt,
+    locality: data.locality,
+    tags: data.tags || [],
     published: data.published ?? false,
     publishedAt: data.published ? new Date() : undefined,
     author: { connect: { id: data.authorId } },
@@ -104,6 +114,11 @@ export const updateBlogPost = async (
     content?: string;
     coverImage?: string;
     published?: boolean;
+    metaTitle?: string;
+    metaDescription?: string;
+    excerpt?: string;
+    locality?: string;
+    tags?: string[];
   }
 ) => {
   const post = await BlogPostRepository.findById(id);
