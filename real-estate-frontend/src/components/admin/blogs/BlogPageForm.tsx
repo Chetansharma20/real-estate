@@ -146,12 +146,12 @@ export default function BlogPageForm({ initialData }: BlogPageFormProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <Label htmlFor="title">Post Title <span className="text-red-500">*</span></Label>
-            <Input id="title" required value={formData.title} onChange={handleInputChange} />
+            <Input id="title" required value={formData.title} onChange={handleInputChange} className="border-[#172033]/20" />
           </div>
           
           <div className="space-y-2">
             <Label htmlFor="slug">Slug URL <span className="text-red-500">*</span></Label>
-            <Input id="slug" required value={formData.slug} onChange={handleInputChange} />
+            <Input id="slug" required value={formData.slug} onChange={handleInputChange} className="border-[#172033]/20" />
           </div>
 
           <div className="space-y-2 md:col-span-2">
@@ -201,12 +201,12 @@ export default function BlogPageForm({ initialData }: BlogPageFormProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="metaTitle">Meta Title (SEO)</Label>
-              <Input id="metaTitle" value={formData.metaTitle} onChange={handleInputChange} placeholder="Optimal length 50-60 characters" />
+              <Input id="metaTitle" value={formData.metaTitle} onChange={handleInputChange} placeholder="Optimal length 50-60 characters" className="border-[#172033]/20" />
             </div>
             
             <div className="space-y-2">
               <Label htmlFor="locality">Locality / Area</Label>
-              <Input id="locality" value={formData.locality} onChange={handleInputChange} placeholder="e.g. Bandra West, Mumbai" />
+              <Input id="locality" value={formData.locality} onChange={handleInputChange} placeholder="e.g. Bandra West, Mumbai" className="border-[#172033]/20" />
             </div>
 
             <div className="space-y-2 md:col-span-2">
@@ -232,7 +232,7 @@ export default function BlogPageForm({ initialData }: BlogPageFormProps) {
 
             <div className="space-y-2 md:col-span-2">
               <Label htmlFor="tags">Tags (Comma-separated)</Label>
-              <Input id="tags" value={formData.tags} onChange={handleInputChange} placeholder="e.g. Real Estate, Investment, Mumbai" />
+              <Input id="tags" value={formData.tags} onChange={handleInputChange} placeholder="e.g. Real Estate, Investment, Mumbai" className="border-[#172033]/20" />
             </div>
           </div>
         </div>
