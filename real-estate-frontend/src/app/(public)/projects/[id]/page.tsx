@@ -263,7 +263,8 @@ export default function ProjectDetailPage() {
            urlLower.includes('flat%20image') || 
            urlLower.includes('flat image') ||
            urlLower.includes('flat_images') ||
-           urlLower.includes('flat-images');
+           urlLower.includes('flat-images') ||
+           urlLower.includes('/flats/');
   };
 
   const flatImages = projectMedia
