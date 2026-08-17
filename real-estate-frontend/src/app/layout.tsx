@@ -42,25 +42,25 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon", sizes: "32x32" },
-      // Light mode: dark navy logo on white background
+      // Light mode: dark navy logo on white background (needs the dark-colored blue logo)
       {
         media: "(prefers-color-scheme: light)",
-        url: "/favicon-light.png",
-        href: "/favicon-light.png",
-        type: "image/png",
-        sizes: "192x192"
-      },
-      // Dark mode: white logo on dark navy background
-      {
-        media: "(prefers-color-scheme: dark)",
         url: "/favicon-dark.png",
         href: "/favicon-dark.png",
         type: "image/png",
         sizes: "192x192"
       },
+      // Dark mode: white logo on dark navy background (needs the light-colored white logo)
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/favicon-light.png",
+        href: "/favicon-light.png",
+        type: "image/png",
+        sizes: "192x192"
+      },
     ],
     // Fallback shortcut icon for browsers that don't support media queries
-    shortcut: "/favicon-light.png",
+    shortcut: "/favicon-dark.png",
     // Apple touch icon — use dark version (solid background looks best on iOS home screen)
     apple: "/favicon-dark.png",
   },
