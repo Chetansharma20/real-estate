@@ -1,15 +1,13 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Residential & Commercial Projects in Mumbai & Thane | Bricksage",
-  description:
-    "Explore residential and commercial projects across Mumbai & Thane with Bricksage. RERA-approved developments with expert project advisory support.",
+  title: "Projects in Mumbai & Thane | Bricksage Properties Advisory",
+  description: "Browse premium residential flats, apartments, luxury villas, and commercial spaces for sale across Mumbai, Thane, and Mulund.",
+  alternates: {
+    canonical: "https://bricksage.in/projects",
+  },
 };
 
-export default function ProjectsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

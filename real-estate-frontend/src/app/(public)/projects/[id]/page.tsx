@@ -517,10 +517,10 @@ export default function ProjectDetailPage() {
                       About the Home
                     </button>
                     <button onClick={() => scrollToSection("floor-plan")} className={`whitespace-nowrap px-6 py-4 text-sm font-bold tracking-wider uppercase border-b-2 transition-colors ${activeTab === 'floor-plan' ? 'border-[#D4AF37] text-[#D4AF37]' : 'border-transparent text-gray-500 hover:text-gray-900'}`}>
-                      Floor Plan and Area
+                      {project.propertyType === "PLOT" ? "Plot Layouts" : project.propertyType === "COMMERCIAL" ? "Office Floor Plans" : "Floor Plan and Area"}
                     </button>
                     <button onClick={() => scrollToSection("flat-images")} className={`whitespace-nowrap px-6 py-4 text-sm font-bold tracking-wider uppercase border-b-2 transition-colors ${activeTab === 'flat-images' ? 'border-[#D4AF37] text-[#D4AF37]' : 'border-transparent text-gray-500 hover:text-gray-900'}`}>
-                      Flat Images
+                      {project.propertyType === "PLOT" ? "Plot/Land Images" : project.propertyType === "COMMERCIAL" ? "Office/Shop Images" : "Flat Images"}
                     </button>
                     <button onClick={() => scrollToSection("amenities")} className={`whitespace-nowrap px-6 py-4 text-sm font-bold tracking-wider uppercase border-b-2 transition-colors ${activeTab === 'amenities' ? 'border-[#D4AF37] text-[#D4AF37]' : 'border-transparent text-gray-500 hover:text-gray-900'}`}>
                       Amenities
@@ -600,7 +600,9 @@ export default function ProjectDetailPage() {
 
                   {/* FLOOR PLAN AND AREA */}
                   <div id="floor-plan" className="scroll-mt-32">
-                    <h3 className="text-xl font-bold text-[#172033] uppercase tracking-wider mb-6">Floor Plan and Area</h3>
+                    <h3 className="text-xl font-bold text-[#172033] uppercase tracking-wider mb-6">
+                      {project.propertyType === "PLOT" ? "Plot Layouts" : project.propertyType === "COMMERCIAL" ? "Office Floor Plans" : "Floor Plan and Area"}
+                    </h3>
 
                     {allFloorPlans.length > 0 ? (
                       <div className="flex flex-col lg:flex-row gap-8">
@@ -646,12 +648,14 @@ export default function ProjectDetailPage() {
 
                   {/* FLAT IMAGES */}
                   <div id="flat-images" className="scroll-mt-32">
-                    <h3 className="text-xl font-bold text-[#172033] mb-6 uppercase tracking-wider">Flat Images</h3>
+                    <h3 className="text-xl font-bold text-[#172033] mb-6 uppercase tracking-wider">
+                      {project.propertyType === "PLOT" ? "Plot/Land Images" : project.propertyType === "COMMERCIAL" ? "Office/Shop Images" : "Flat Images"}
+                    </h3>
                     {flatImages.length > 0 ? (
-                      <TruvaGallery images={flatImages} title="Flat Images" />
+                      <TruvaGallery images={flatImages} title={project.propertyType === "PLOT" ? "Plot Images" : project.propertyType === "COMMERCIAL" ? "Office Images" : "Flat Images"} />
                     ) : (
                       <div className="bg-gray-50 rounded-2xl border border-gray-100 p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
-                        <p className="text-gray-500 italic">No flat images available at the moment.</p>
+                        <p className="text-gray-500 italic">No images available at the moment.</p>
                       </div>
                     )}
                   </div>

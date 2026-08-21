@@ -95,16 +95,14 @@ export default function EditProjectPage() {
     }
 
     try {
-      const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/admin/projects/${id}/media`, {
-        method: "POST",
-        body: formData,
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      const res = await api.post(`/admin/projects/${id}/media`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(`Upload failed (${res.status}): ${errorText}`);
+      if (!res.data.success) {
+        throw new Error(`Upload failed: ${res.data.message || "Unknown error"}`);
       }
 
       toast({ title: "Success", description: "Media uploaded successfully" });
@@ -196,7 +194,13 @@ export default function EditProjectPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-[#172033] block">Flat Images (Rooms / Interiors)</label>
+              <label className="text-sm font-semibold text-[#172033] block">
+                {project.propertyType === "PLOT" 
+                  ? "Plot/Land Images" 
+                  : project.propertyType === "COMMERCIAL" 
+                    ? "Office/Shop Images" 
+                    : "Flat Images (Rooms / Interiors)"}
+              </label>
               <input 
                 type="file" 
                 multiple 
@@ -237,15 +241,21 @@ export default function EditProjectPage() {
               />
             </div>
 
-            {/* Flat-specific Floor Plans */}
+            {/* Floor Plans */}
             {project.configurations && project.configurations.length > 0 && (
               <div className="col-span-2 border-t border-gray-200 pt-4 space-y-4">
-                <h4 className="text-sm font-bold text-[#172033]">Flat Floor Plans (Upload per configuration)</h4>
+                <h4 className="text-sm font-bold text-[#172033]">
+                  {project.propertyType === "PLOT" 
+                    ? "Plot Layouts (Upload per configuration)" 
+                    : project.propertyType === "COMMERCIAL" 
+                      ? "Office Floor Plans (Upload per configuration)" 
+                      : "Flat Floor Plans (Upload per configuration)"}
+                </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {project.configurations.map((config: any) => (
                     <div key={config.id} className="space-y-2 p-3 border border-gray-200 rounded-lg bg-white">
                       <label className="text-xs font-bold text-[#172033] block">
-                        {config.bhk} BHK - {config.label || `${config.carpetArea} sq.ft`}
+                        {project.propertyType === "PLOT" ? "Layout" : project.propertyType === "COMMERCIAL" ? "Unit" : `${config.bhk} BHK`} - {config.label || `${config.carpetArea} sq.ft`}
                       </label>
                       <input 
                         type="file" 
@@ -280,7 +290,11 @@ export default function EditProjectPage() {
               if (m.type === "FLOOR_PLAN" && m.configurationId) {
                 const config = project.configurations?.find((c: any) => c.id === m.configurationId);
                 if (config) {
-                  label = `Floor Plan (${config.bhk} BHK)`;
+                  label = project.propertyType === "PLOT" 
+                    ? `Layout` 
+                    : project.propertyType === "COMMERCIAL" 
+                      ? `Unit Plan` 
+                      : `Floor Plan (${config.bhk} BHK)`;
                 }
               }
               if (m.type === "IMAGE" && m.isCover) {

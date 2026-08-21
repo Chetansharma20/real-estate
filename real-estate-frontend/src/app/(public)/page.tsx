@@ -1,5 +1,4 @@
 import { HomeSections } from "@/components/layout/home-sections";
-import { api } from "@/lib/api";
 
 export const revalidate = 3600; // Cache the homepage for 1 hour to stabilize Lighthouse scores
 
@@ -46,18 +45,31 @@ export default async function HomePage() {
   let statsCount = 17;
 
   try {
+    // Use 127.0.0.1 instead of localhost — Node.js 18+ resolves localhost to IPv6 (::1)
+    // but the backend listens on IPv4 (127.0.0.1), causing ECONNREFUSED
+    let apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:5000/api";
+    if (apiUrl.includes("localhost")) {
+      apiUrl = apiUrl.replace("localhost", "127.0.0.1");
+    }
+
     const [projectsRes, statsRes] = await Promise.all([
-      api.get("/projects?limit=20&featured=true"),
-      api.get("/projects?limit=1")
+      fetch(`${apiUrl}/projects?limit=20&featured=true`, { next: { revalidate: 3600 } }),
+      fetch(`${apiUrl}/projects?limit=1`, { next: { revalidate: 3600 } }),
     ]);
 
-    if (projectsRes.data?.success) {
-      initialProjects = (projectsRes.data.data.projects || []).slice(0, 4);
+    if (projectsRes.ok) {
+      const projectsData = await projectsRes.json();
+      if (projectsData?.success) {
+        initialProjects = (projectsData.data.projects || []).slice(0, 4);
+      }
     }
-    
-    if (statsRes.data?.success) {
-      const responseData = statsRes.data.data.data || statsRes.data.data;
-      statsCount = responseData.pagination?.totalItems || responseData.length || 17;
+
+    if (statsRes.ok) {
+      const statsData = await statsRes.json();
+      if (statsData?.success) {
+        const responseData = statsData.data.data || statsData.data;
+        statsCount = responseData.pagination?.totalItems || responseData.length || 17;
+      }
     }
   } catch (error) {
     console.error("Failed to fetch initial data for homepage:", error);

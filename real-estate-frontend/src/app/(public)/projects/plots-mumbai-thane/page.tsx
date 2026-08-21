@@ -2,18 +2,23 @@ import { Metadata } from "next";
 import ProjectsCategoryPage from "@/components/property/projects-category-page";
 
 export const metadata: Metadata = {
-  title: "Plots for Sale in Mumbai & Thane | Bricksage",
+  title: "Plots For Sale In Thane & Mumbai | Bricksage",
   description:
-    "Explore residential and investment plots for sale in Mumbai & Thane. Secure your land in prime locations with trusted advisory from Bricksage Properties.",
+    "Buy residential and commercial NA plots in Thane, Mumbai & peripheral growth corridors. Clear titles, gated communities & high appreciation potential.",
+  alternates: {
+    canonical: "https://bricksage.in/projects/plots-mumbai-thane",
+  },
 };
 
 export default function PlotsMumbaiThanePage() {
   return (
     <ProjectsCategoryPage
-      heading="Plots for Sale in Mumbai & Thane"
-      subheading="— Residential & Investment Plots"
-      description="Explore prime land and plot listings across Mumbai and Thane. Whether you are looking to build your dream home or make a long-term land investment, find the right plot with Bricksage."
+      heading="Plots & Land For Sale"
+      subheading="Plots & Land in Thane & Mumbai"
+      h2="Plots & Land in Thane & Mumbai"
+      description="Invest in clear-title NA plots, villa land, and strategic commercial land parcels in emerging growth corridors across Thane and Mumbai MMR."
       defaultTypeFilter={["PLOT"]}
+      categorySlug="plots-mumbai-thane"
     />
   );
 }

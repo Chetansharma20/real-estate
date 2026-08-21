@@ -4,8 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Terms of Use | Bricksage Properties Advisory",
   description:
-    "Terms and conditions governing your use of the Bricksage Properties Advisory website and services.",
+    "Read the terms of use and service agreements for using the Bricksage Properties Advisory website and consulting services.",
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: "https://bricksage.in/terms-of-use",
+  },
 };
 
 export default function TermsOfUsePage() {

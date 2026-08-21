@@ -9,6 +9,7 @@ import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import PropertyCard from "@/components/property/property-card";
 import Link from "next/link";
+import { CategorySeoGuides } from "@/components/property/category-seo-guides";
 
 interface ProjectItem {
   id: string;
@@ -19,23 +20,26 @@ interface ProjectItem {
 interface ProjectsCategoryPageProps {
   heading: string;
   subheading: string;
+  h2?: string;
   description: string;
   defaultTypeFilter?: string[];
   defaultConstructionStatusFilter?: string;
+  categorySlug?: string;
 }
 
 function CategoryPageContent({
   heading,
   subheading,
+  h2,
   description,
   defaultTypeFilter = [],
   defaultConstructionStatusFilter,
+  categorySlug,
 }: ProjectsCategoryPageProps) {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
 
-  // Debounce search
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
@@ -43,11 +47,10 @@ function CategoryPageContent({
     return () => clearTimeout(handler);
   }, [search]);
 
-  // Derive endpoint directly — no extra state or cascading render
   const endpoint = useMemo(() => {
     const params = new URLSearchParams();
     if (defaultTypeFilter.length > 0) {
-      params.append("type", defaultTypeFilter.join(","));
+      params.append("propertyType", defaultTypeFilter.join(","));
     }
     if (defaultConstructionStatusFilter) {
       params.append("constructionStatus", defaultConstructionStatusFilter);
@@ -77,8 +80,6 @@ function CategoryPageContent({
   return (
     <div className="bg-[#F4F6F9] min-h-screen pt-28 pb-20 px-4 sm:px-6 xl:px-12">
       <div className="max-w-[1600px] mx-auto space-y-8">
-
-        {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-[#172033]/40 font-medium">
           <Link href="/" className="hover:text-[#172033] transition-colors">Home</Link>
           <span>/</span>
@@ -87,7 +88,6 @@ function CategoryPageContent({
           <span className="text-[#172033]/70">{heading}</span>
         </nav>
 
-        {/* Header */}
         <div className="max-w-3xl space-y-3">
           <span className="text-xs uppercase tracking-[0.35em] text-[#D4AF37] font-semibold">
             {subheading}
@@ -95,12 +95,16 @@ function CategoryPageContent({
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold">
             {heading}
           </h1>
+          {h2 && (
+            <h2 className="text-[#172033]/70 font-medium text-base sm:text-lg">
+              {h2}
+            </h2>
+          )}
           <p className="text-[#172033]/50 font-light text-sm sm:text-base leading-relaxed">
             {description}
           </p>
         </div>
 
-        {/* Search Bar */}
         <form
           onSubmit={handleSearchSubmit}
           className="bg-white p-2 border border-[#172033]/10 rounded-xl flex items-center shadow-sm max-w-2xl"
@@ -117,7 +121,6 @@ function CategoryPageContent({
           </Button>
         </form>
 
-        {/* Listings */}
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
@@ -166,7 +169,8 @@ function CategoryPageContent({
           </>
         )}
 
-        {/* Browse other categories */}
+        <CategorySeoGuides categorySlug={categorySlug} />
+
         <div className="pt-8 border-t border-[#172033]/10">
           <p className="text-xs uppercase tracking-widest text-[#172033]/40 font-bold mb-4">Browse Other Categories</p>
           <div className="flex flex-wrap gap-3">

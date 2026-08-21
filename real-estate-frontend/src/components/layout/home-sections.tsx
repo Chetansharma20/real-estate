@@ -6,6 +6,7 @@ const ServicesSection = dynamic(() => import("@/components/layout/services-secti
 const TestimonialsSection = dynamic(() => import("@/components/layout/testimonials-section").then(mod => mod.TestimonialsSection));
 const StatsSection = dynamic(() => import("@/components/layout/stats-section").then(mod => mod.StatsSection));
 const CtaSection = dynamic(() => import("@/components/layout/cta-section").then(mod => mod.CtaSection));
+const SeoHomepageContent = dynamic(() => import("@/components/layout/seo-homepage-content").then(mod => mod.SeoHomepageContent));
 
 export function HomeSections({
   initialProjects = [],
@@ -22,6 +23,7 @@ export function HomeSections({
       <TestimonialsSection />
       <StatsSection initialCount={initialStatsCount} />
       <CtaSection />
+      <SeoHomepageContent />
     </>
   );
 }

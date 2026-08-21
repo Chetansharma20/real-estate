@@ -4,10 +4,13 @@ import Image from "next/image";
 import { ExternalLink, AlertTriangle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "RERA Disclosure | Bricksage Properties Advisory",
+  title: "RERA Disclosure & Legal Compliance | Bricksage",
   description:
-    "RERA registration details for Bricksage Properties Advisory and the residential & commercial projects listed on our website.",
+    "Review RERA registration details and real estate regulatory compliance disclosures for Bricksage Properties Advisory.",
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: "https://bricksage.in/rera-disclosure",
+  },
 };
 
 export const dynamic = "force-dynamic";

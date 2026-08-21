@@ -39,10 +39,10 @@ const quickLinks = [
 ];
 
 const propertyTypes = [
-  { name: "Apartments & Flats", href: "/projects?propertyType=APARTMENT" },
-  { name: "Commercial Spaces", href: "/projects?propertyType=COMMERCIAL" },
-  { name: "Plots & Land", href: "/projects?propertyType=PLOT" },
-  { name: "New Launches", href: "/projects?constructionStatus=NEW_LAUNCH" },
+  { name: "Apartments & Flats", href: "/projects/apartments-mumbai-thane" },
+  { name: "Commercial Spaces", href: "/projects/commercial-projects-mumbai-thane" },
+  { name: "Plots & Land", href: "/projects/plots-mumbai-thane" },
+  { name: "New Launches", href: "/projects/new-launch-projects-mumbai-thane" },
 ];
 
 export function Footer() {
