@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import ProjectsCategoryPage from "@/components/property/projects-category-page";
 
 export const metadata: Metadata = {
-  title: "Plots For Sale In Thane & Mumbai | Bricksage",
+  title: "New Projects in Thane Under 30 Lakhs – Latest Projects",
   description:
-    "Buy residential and commercial NA plots in Thane, Mumbai & peripheral growth corridors. Clear titles, gated communities & high appreciation potential.",
+    "Explore new projects in Thane priced under ₹30 lakhs with Bricksage. Learn about upcoming real estate developments and suitable property options in Thane.",
   alternates: {
     canonical: "https://bricksage.in/projects/plots-mumbai-thane",
   },

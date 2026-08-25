@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import ProjectsCategoryPage from "@/components/property/projects-category-page";
 
 export const metadata: Metadata = {
-  title: "Commercial Property In Thane & Mumbai | Bricksage",
+  title: "New Projects in Thane Under 40 Lakhs – Explore Now",
   description:
-    "Explore premium commercial office spaces, retail shops & IT parks for sale and lease across Mumbai & Thane. Verified commercial real estate with high ROI.",
+    "Discover new projects in Thane priced under ₹40 lakhs with Bricksage. Find the right real estate options and information on upcoming projects in Thane.",
   alternates: {
     canonical: "https://bricksage.in/projects/commercial-projects-mumbai-thane",
   },

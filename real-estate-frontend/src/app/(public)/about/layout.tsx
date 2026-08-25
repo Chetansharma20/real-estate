@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us | Bricksage Properties Advisory",
-  description: "Learn about Bricksage Properties Advisory — one of India's fastest-growing real estate advisory firms based in Mulund, Mumbai.",
+  title: "Redevelopment Projects in Mulund West – Advisory & Expertise",
+  description: "Learn about Bricksage and our expertise in redevelopment projects in Mulund West, as well as upcoming residential developments and real estate opportunities.",
   alternates: {
     canonical: "https://bricksage.in/about",
   },

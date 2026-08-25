@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import ProjectsCategoryPage from "@/components/property/projects-category-page";
 
 export const metadata: Metadata = {
-  title: "Upcoming Residential Projects In Mumbai | Bricksage",
+  title: "Upcoming Real Estate Projects in Thane West – New Launches",
   description:
-    "Discover upcoming & new launch residential projects in Mumbai & Thane. Avail early-bird pricing, flexible payment plans & verified RERA registered properties.",
+    "Discover upcoming real estate projects in Thane West with Bricksage. Explore new projects and future opportunities in the area.",
   alternates: {
     canonical: "https://bricksage.in/projects/new-launch-projects-mumbai-thane",
   },

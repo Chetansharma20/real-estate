@@ -3,9 +3,9 @@ import { HomeSections } from "@/components/layout/home-sections";
 export const revalidate = 3600; // Cache the homepage for 1 hour to stabilize Lighthouse scores
 
 export const metadata = {
-  title: "Residential & Commercial Project Advisory in Mumbai & Thane | Bricksage",
+  title: "Upcoming Residential Projects in Mulund West – New Developments",
   description:
-    "Bricksage Properties Advisory offers end-to-end real estate project advisory across Mumbai & Thane — residential & commercial developments. Trusted, RERA-compliant advisory.",
+    "Discover upcoming residential projects in Mulund West with Bricksage. Explore new constructions, ongoing developments, and future real estate opportunities.",
 };
 
 const faqSchema = {
