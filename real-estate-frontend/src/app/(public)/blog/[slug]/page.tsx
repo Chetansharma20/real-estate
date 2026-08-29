@@ -1,66 +1,44 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { api } from "@/lib/api";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Loader2, Calendar, Clock, ChevronLeft, User, ArrowRight } from "lucide-react";
+import { notFound } from "next/navigation";
+import { Calendar, Clock, ChevronLeft, User } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import DOMPurify from "isomorphic-dompurify";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
-export default function BlogDetailPage() {
-  const { slug } = useParams();
-  const router = useRouter();
+const calculateReadTime = (content: string) => {
+  const wordsPerMinute = 200;
+  const words = content.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+};
 
-  const [post, setPost] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
+export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        setIsLoading(true);
-        const res = await api.get(`/blog/${slug}`);
-        if (res.data.success) {
-          setPost(res.data.data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch blog post details:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    if (slug) fetchPost();
-  }, [slug]);
+  let post = null;
 
-  const calculateReadTime = (content: string) => {
-    const wordsPerMinute = 200;
-    const words = content.split(/\s+/).length;
-    const minutes = Math.ceil(words / wordsPerMinute);
-    return `${minutes} min read`;
-  };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-[#172033]/50 bg-[#F4F6F9]">
-        <Loader2 className="w-8 h-8 animate-spin mb-4" />
-        <p className="text-sm font-medium">Loading article details...</p>
-      </div>
-    );
-  }
-
-  if (!post) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-[#172033]/50 bg-[#F4F6F9] px-4 text-center space-y-4">
-        <h2 className="text-2xl font-serif font-bold text-[#172033]">Article Not Found</h2>
-        <p className="text-sm max-w-sm">The blog article you are looking for does not exist or has been removed.</p>
-        <Link href="/blog">
-          <Button className="bg-[#172033] text-white hover:bg-primary">Back to Blogs</Button>
-        </Link>
-      </div>
-    );
+  try {
+    let apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:5000/api";
+    if (apiUrl.includes("localhost")) {
+      apiUrl = apiUrl.replace("localhost", "127.0.0.1");
+    }
+    const res = await fetch(`${apiUrl}/blog/${slug}`, { next: { revalidate: 3600 } });
+    
+    if (!res.ok) {
+      if (res.status === 404) return notFound();
+    }
+    
+    const data = await res.json();
+    if (data.success && data.data) {
+      post = data.data;
+    } else {
+      return notFound();
+    }
+  } catch (error) {
+    console.error("Failed to fetch blog post details:", error);
+    return notFound();
   }
 
   const blogPostingSchema = {
