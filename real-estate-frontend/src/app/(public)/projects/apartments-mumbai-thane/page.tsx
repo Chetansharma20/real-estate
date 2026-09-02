@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "New Projects in Thane Under 50 Lakhs – Latest Options",
   description:
     "Explore new projects in Thane priced under ₹50 lakhs with Bricksage. Learn about apartments and upcoming real estate developments in Thane and its surrounding areas.",
+  alternates: {
+    canonical: "https://bricksage.in/projects/apartments-mumbai-thane",
+  },
 };
 
 export default function ApartmentsMumbaiThanePage() {

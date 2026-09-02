@@ -31,6 +31,9 @@ export async function generateMetadata(
         return {
           title,
           description,
+          alternates: {
+            canonical: `https://bricksage.in/projects/${project.slug || id}`,
+          },
           openGraph: {
             title,
             description,
