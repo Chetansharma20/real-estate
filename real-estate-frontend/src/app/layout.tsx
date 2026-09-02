@@ -42,31 +42,30 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon", sizes: "32x32" },
+      { url: "/favicon-light.png", type: "image/png", sizes: "32x32" },
       // Light mode: dark navy logo on white background (needs the dark-colored blue logo)
       {
         media: "(prefers-color-scheme: light)",
-        url: "/favicon-dark.png",
-        href: "/favicon-dark.png",
+        url: "/favicon-light.png",
         type: "image/png",
         sizes: "192x192"
       },
       // Dark mode: white logo on dark navy background (needs the light-colored white logo)
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/favicon-light.png",
-        href: "/favicon-light.png",
+        url: "/favicon-dark.png",
         type: "image/png",
         sizes: "192x192"
       },
     ],
     // Fallback shortcut icon for browsers that don't support media queries
-    shortcut: "/favicon-dark.png",
-    // Apple touch icon — use dark version (solid background looks best on iOS home screen)
-    apple: "/favicon-dark.png",
+    shortcut: "/favicon-light.png",
+    // Apple touch icon — 180x180 is the ideal size for iOS home screen
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
   },
 };
 
-import Script from "next/script";
+
 
 export default function RootLayout({
   children,
