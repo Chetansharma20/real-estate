@@ -231,22 +231,24 @@ export function HeroSection() {
                 </span>
               </motion.div>
 
-              {/* Headline */}
-              <p
-                className="font-serif font-extrabold leading-[0.92] text-white text-[2rem] sm:text-5xl md:text-7xl lg:text-[6.5rem] drop-shadow-[0_4px_32px_rgba(0,0,0,0.7)]"
-              >
-                {slide.title1}
-              </p>
-              <p
-                className="font-serif italic font-extrabold leading-[0.92] text-amber-400 text-[2rem] sm:text-5xl md:text-7xl lg:text-[6.5rem] drop-shadow-[0_0_40px_rgba(201,168,76,0.6)]"
-              >
-                {slide.titleHighlight}
-              </p>
-              <p
-                className="font-serif font-bold leading-[0.92] text-white/70 mb-4 text-[1.1rem] sm:text-3xl md:text-5xl lg:text-[3.8rem]"
-              >
-                {slide.title2}
-              </p>
+              {/* Headline — h1 for SEO, spans for multi-line styling */}
+              <h1 className="flex flex-col items-center gap-0">
+                <span
+                  className="font-serif font-extrabold leading-[0.92] text-white text-[2rem] sm:text-5xl md:text-7xl lg:text-[6.5rem] drop-shadow-[0_4px_32px_rgba(0,0,0,0.7)]"
+                >
+                  {slide.title1}
+                </span>
+                <span
+                  className="font-serif italic font-extrabold leading-[0.92] text-amber-400 text-[2rem] sm:text-5xl md:text-7xl lg:text-[6.5rem] drop-shadow-[0_0_40px_rgba(201,168,76,0.6)]"
+                >
+                  {slide.titleHighlight}
+                </span>
+                <span
+                  className="font-serif font-bold leading-[0.92] text-white/70 mb-4 text-[1.1rem] sm:text-3xl md:text-5xl lg:text-[3.8rem]"
+                >
+                  {slide.title2}
+                </span>
+              </h1>
 
               {/* Gold rule */}
               <motion.div variants={itemVariants} className="w-full mb-5">

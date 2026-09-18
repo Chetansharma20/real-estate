@@ -112,7 +112,6 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <h1 className="sr-only">Upcoming Residential Projects in Mulund West & Thane</h1>
       <HomeSections initialProjects={initialProjects} initialStatsCount={statsCount} />
     </>
   );
