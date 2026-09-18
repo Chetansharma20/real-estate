@@ -139,6 +139,21 @@ export function Footer() {
                 </a>
               </li>
             </ul>
+            
+            {/* Footer Local SEO Code */}
+            <div className="footer-local-seo" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '15px', marginTop: '15px' }}>
+              <h4 style={{ fontSize: '14px', color: '#D4AF37', marginBottom: '5px' }}>📍 Local Advisory HQ</h4>
+              <p style={{ fontSize: '12px', lineHeight: 1.6, color: '#ffffff' }}>
+                <a href="https://google.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }} className="hover:underline">
+                  <strong>Bricksage Properties Advisory Pvt. Ltd.</strong><br/>
+                  Office No. 415, Avior Corporate Park, Lal Bahadur Shastri Marg,<br/>
+                  Opposite Johnson & Johnson Ltd, Asha Nagar, Mulund West, Mumbai, Maharashtra 400080
+                </a>
+              </p>
+              <p style={{ fontSize: '12px', marginTop: '5px' }}>
+                📞 Phone: <a href="tel:+919987510672" style={{ color: '#D4AF37', textDecoration: 'none' }}>+91 99875 10672</a>
+              </p>
+            </div>
           </div>
         </div>
 
