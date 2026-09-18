@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | Bricksage Properties Advisory",
+  title: "Terms of Use | Bricksage Properties Advisory Mumbai",
   description:
-    "Read the terms of use and service agreements for using the Bricksage Properties Advisory website and consulting services.",
+    "Review the Terms of Use for bricksage.in. Understand the nature of our real estate project advisory services across Mumbai and Thane.",
   robots: { index: true, follow: true },
   alternates: {
     canonical: "https://bricksage.in/terms-of-use",

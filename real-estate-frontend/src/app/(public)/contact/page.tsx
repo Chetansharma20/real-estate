@@ -268,6 +268,27 @@ export default function ContactPage() {
 
         </div>
 
+        {/* Google Map Embed — placed below the form for Local SEO signals */}
+        <div className="rounded-2xl overflow-hidden border border-[#172033]/10 shadow-sm">
+          <div className="bg-[#172033] px-6 py-4 flex items-center gap-3">
+            <span className="text-[#D4AF37] text-lg">📍</span>
+            <div>
+              <p className="text-white font-semibold text-sm">Find Us at Avior Corporate Park</p>
+              <p className="text-white/50 text-xs font-light">Office No. 415, LBS Marg, Mulund West, Mumbai 400080</p>
+            </div>
+          </div>
+          <iframe
+            title="Bricksage Properties Advisory — Avior Corporate Park, Mulund West"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.6887338889777!2d72.94185!3d19.17285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b9b5e8b3f4c5%3A0x0!2sAvior%20Corporate%20Park%2C%20LBS%20Marg%2C%20Mulund%20West%2C%20Mumbai%2C%20Maharashtra%20400080!5e0!3m2!1sen!2sin!4v1694000000000!5m2!1sen!2sin"
+            width="100%"
+            height="380"
+            style={{ border: 0, display: "block" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+
       </div>
     </div>
     </>

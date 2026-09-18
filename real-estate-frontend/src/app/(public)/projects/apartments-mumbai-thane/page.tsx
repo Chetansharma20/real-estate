@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import ProjectsCategoryPage from "@/components/property/projects-category-page";
 
 export const metadata: Metadata = {
-  title: "New Projects in Thane Under 50 Lakhs – Latest Options",
+  title: "Under Construction Flats & Apartments in Mumbai & Thane",
   description:
-    "Explore new projects in Thane priced under ₹50 lakhs with Bricksage. Learn about apartments and upcoming real estate developments in Thane and its surrounding areas.",
+    "Find residential apartments and under-construction flats for sale in Mumbai, Thane, and Mulund West. Filter by configurations and premium amenities.",
   alternates: {
     canonical: "https://bricksage.in/projects/apartments-mumbai-thane",
   },
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function ApartmentsMumbaiThanePage() {
   return (
     <ProjectsCategoryPage
-      heading="Apartments for Sale in Mumbai & Thane"
+      heading="Residential Apartments & Flats for Sale in Mumbai & Thane"
       subheading="— Residential Apartments"
       description="Discover curated residential apartments across Mumbai and Thane — from compact 1 BHK homes to spacious 4 BHK luxury flats, in the city's most sought-after neighbourhoods."
       defaultTypeFilter={["FLAT"]}

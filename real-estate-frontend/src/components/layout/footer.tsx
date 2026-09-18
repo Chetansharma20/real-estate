@@ -142,6 +142,34 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Local SEO — Google Business Profile Address Block */}
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "15px", marginTop: "15px" }} className="mb-6">
+          <h4 className="text-sm font-semibold mb-2" style={{ color: "#D4AF37" }}>📍 Local Advisory HQ</h4>
+          <p className="text-xs leading-relaxed" style={{ color: "#ffffff" }}>
+            <a
+              href="https://maps.google.com/?q=Avior+Corporate+Park,+Lal+Bahadur+Shastri+Marg,+Mulund+West,+Mumbai,+Maharashtra+400080"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+              style={{ color: "#ffffff", textDecoration: "none" }}
+            >
+              <strong>Bricksage Properties Advisory Pvt. Ltd.</strong><br />
+              Office No. 415, Avior Corporate Park, Lal Bahadur Shastri Marg,<br />
+              Opposite Johnson &amp; Johnson Ltd, Asha Nagar, Mulund West, Mumbai, Maharashtra 400080
+            </a>
+          </p>
+          <p className="text-xs mt-2">
+            📞 Phone:{" "}
+            <a
+              href="tel:+919987510672"
+              className="hover:underline"
+              style={{ color: "#D4AF37", textDecoration: "none" }}
+            >
+              +91 99875 10672
+            </a>
+          </p>
+        </div>
+
         {/* MahaRERA Mandatory Disclaimer */}
         <div className="border-t border-white/10 pt-8 pb-6">
           <p className="text-[11px] text-white/30 leading-relaxed max-w-4xl">

@@ -4,9 +4,9 @@ import Image from "next/image";
 import { ExternalLink, AlertTriangle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "RERA Disclosure & Legal Compliance | Bricksage",
+  title: "MahaRERA Agent Registration & Compliance | Bricksage",
   description:
-    "Review RERA registration details and real estate regulatory compliance disclosures for Bricksage Properties Advisory.",
+    "View the MahaRERA agent registration details and project compliances for Bricksage Properties Advisory Pvt. Ltd. (Reg No: A1500000000).",
   robots: { index: true, follow: true },
   alternates: {
     canonical: "https://bricksage.in/rera-disclosure",

@@ -1,11 +1,15 @@
+import { Metadata } from "next";
 import { HomeSections } from "@/components/layout/home-sections";
 
 export const revalidate = 3600; // Cache the homepage for 1 hour to stabilize Lighthouse scores
 
-export const metadata = {
-  title: "Upcoming Residential Projects in Mulund West – New Developments",
+export const metadata: Metadata = {
+  title: "Upcoming Residential Projects in Mulund West | Bricksage",
   description:
-    "Discover upcoming residential projects in Mulund West with Bricksage. Explore new constructions, ongoing developments, and future real estate opportunities.",
+    "Discover upcoming residential projects in Mulund West & Thane with Bricksage Properties. Trusted real estate advisory in Mumbai with 0% brokerage.",
+  alternates: {
+    canonical: "https://bricksage.in/",
+  },
 };
 
 const faqSchema = {
@@ -81,7 +85,7 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <h1 className="sr-only">Real Estate Project Advisory in Mumbai & Thane</h1>
+      <h1 className="sr-only">Upcoming Residential Projects in Mulund West & Thane</h1>
       <HomeSections initialProjects={initialProjects} initialStatsCount={statsCount} />
     </>
   );

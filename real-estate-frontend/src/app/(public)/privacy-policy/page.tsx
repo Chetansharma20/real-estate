@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Bricksage Properties Advisory",
+  title: "Privacy Policy | Bricksage Properties Advisory Mumbai",
   description:
-    "Learn how Bricksage Properties Advisory collects, uses, and safeguards your personal information.",
+    "Read the Privacy Policy of Bricksage Properties Advisory Pvt. Ltd. Learn how we collect, use, and protect your personal property advisory data.",
   robots: { index: true, follow: true },
   alternates: {
     canonical: "https://bricksage.in/privacy-policy",

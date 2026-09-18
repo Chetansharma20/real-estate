@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Real Estate Insights & News | Bricksage Blog",
-  description: "Stay updated with the latest trends, investment insights, and market news about Mumbai and Thane real estate from Bricksage experts.",
+  title: "Real Estate Insights & Property Buying Guides Mumbai | Bricksage",
+  description:
+    "Read the latest real estate insights, property buying guides, and market trends in Mumbai and Thane. Make informed property investment decisions.",
   alternates: {
     canonical: "https://bricksage.in/blog",
   },

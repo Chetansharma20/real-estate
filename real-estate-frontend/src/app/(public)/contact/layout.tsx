@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "New Construction in Thane Low Budget – Get Expert Guidance",
-  description: "Connect with Bricksage for budget-friendly new construction options in Thane. Get advice on new projects and upcoming real estate opportunities in the area.",
+  title: "Contact Real Estate Office in Mulund West | Bricksage",
+  description:
+    "Contact Bricksage Properties Advisory in Mulund West, Mumbai. Call +91 99875 10672 for premium under-construction and new project site visits.",
   alternates: {
     canonical: "https://bricksage.in/contact",
   },

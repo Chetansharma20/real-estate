@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Top 10 Residential Projects in Thane – Projects to Explore",
-  description: "Check out the top 10 residential projects in Thane with Bricksage. Get information on upcoming real estate developments and new projects in the area.",
+  title: "New Residential Projects in Mumbai & Thane West | Bricksage",
+  description:
+    "Browse new residential projects in Mumbai and Thane West. Find verified RERA registered flats, ready to move apartments, and under-construction options.",
   alternates: {
     canonical: "https://bricksage.in/projects",
   },
