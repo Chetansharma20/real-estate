@@ -83,9 +83,9 @@ export function SeoHomepageContent() {
             <span className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-bold flex items-center gap-2">
               <Sparkles className="w-4 h-4" /> Market Insights & Guide
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#172033] font-bold leading-tight">
-              Upcoming Residential & Commercial Projects in Mumbai & Thane
-            </h2>
+            <h1 className="font-serif text-3xl sm:text-4xl text-[#172033] font-bold leading-tight">
+              Upcoming Residential Projects in Mulund West &amp; Thane
+            </h1>
             <p className="text-[#172033]/70 text-base leading-relaxed">
               Mumbai and Thane represent India&apos;s most dynamic real estate corridors. Whether you are searching for 
               <strong> upcoming residential projects in Mumbai</strong>, high-yielding <strong>commercial space for sale in Mumbai</strong>, 

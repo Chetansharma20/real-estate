@@ -112,15 +112,7 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      {/* Static H1 — always visible, matches canonical keyword, never changes with carousel */}
-      <div className="bg-[#F4F6F9] pt-14 pb-2 px-4 text-center">
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#172033] font-bold leading-tight">
-          Upcoming Residential Projects in Mulund West &amp; Thane
-        </h1>
-        <p className="text-[#172033]/55 font-light max-w-2xl mx-auto mt-3 text-base sm:text-lg">
-          Trusted real estate advisory in Mumbai — zero brokerage, verified RERA projects.
-        </p>
-      </div>
+      <h1 className="sr-only">Upcoming Residential Projects in Mulund West &amp; Thane</h1>
       <HomeSections initialProjects={initialProjects} initialStatsCount={statsCount} />
     </>
   );
