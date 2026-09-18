@@ -10,6 +10,33 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://bricksage.in/",
   },
+  openGraph: {
+    type: "website",
+    url: "https://bricksage.in/",
+    siteName: "Bricksage Properties Advisory",
+    title: "Upcoming Residential Projects in Mulund West | Bricksage",
+    description:
+      "Discover upcoming residential projects in Mulund West & Thane with Bricksage Properties. Trusted real estate advisory in Mumbai with 0% brokerage.",
+    images: [
+      {
+        url: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/hero/hero-slide-1.webp",
+        width: 1200,
+        height: 630,
+        alt: "Bricksage Properties Advisory — Upcoming Residential Projects in Mulund West & Thane",
+      },
+    ],
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@bricksage",
+    title: "Upcoming Residential Projects in Mulund West | Bricksage",
+    description:
+      "Discover upcoming residential projects in Mulund West & Thane with Bricksage Properties. Trusted real estate advisory in Mumbai with 0% brokerage.",
+    images: [
+      "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/hero/hero-slide-1.webp",
+    ],
+  },
 };
 
 const faqSchema = {

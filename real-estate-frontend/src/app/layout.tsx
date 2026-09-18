@@ -39,6 +39,32 @@ export const metadata: Metadata = {
   verification: {
     google: "Wyp0i-clPerynaT_ZKfDsoBWVYwI_Kz73yLy8QKdW9w",
   },
+  openGraph: {
+    type: "website",
+    siteName: "Bricksage Properties Advisory",
+    title: "Bricksage Properties Advisory Pvt. Ltd.",
+    description:
+      "One of India's fastest growing real estate advisory companies. Discover exquisite residences and bespoke commercial spaces.",
+    images: [
+      {
+        url: "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/hero/hero-slide-1.webp",
+        width: 1200,
+        height: 630,
+        alt: "Bricksage Properties Advisory — Real Estate Projects in Mumbai & Thane",
+      },
+    ],
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@bricksage",
+    title: "Bricksage Properties Advisory Pvt. Ltd.",
+    description:
+      "One of India's fastest growing real estate advisory companies. Discover exquisite residences and bespoke commercial spaces.",
+    images: [
+      "https://res.cloudinary.com/duvw71tdz/image/upload/real-estate/frontend/hero/hero-slide-1.webp",
+    ],
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon", sizes: "32x32" },
