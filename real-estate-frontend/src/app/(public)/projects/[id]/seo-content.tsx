@@ -12,7 +12,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "Check pricing and layouts for Dosti Mezzo 22 in Sion/Thane. Find premium 2 & 3 BHK flats for sale with exclusive spot booking discounts through Bricksage.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti Mezzo 22 Sion Mumbai – Premium Residential Project & Investment Deals</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti Mezzo 22 Sion Mumbai – Premium Residential Project & Investment Deals</h2>
         <p>Welcome to Dosti Mezzo 22, an iconic under-construction residential landmark located in the strategic, highly connected hub of Sion, Mumbai. Built for modern lifestyle buyers, this architectural masterpiece brings together premium execution, exceptional high-rise views, and unparalleled comfort. Whether you are looking to purchase a beautiful family home or seeking a high-growth real estate asset in Mumbai, Dosti Mezzo 22 delivers massive potential. Partnering with <Link href="/" className="text-[#D4AF37] hover:underline">Bricksage Properties Advisory</Link> gives you exclusive benefits under our strict 0% brokerage policy, assuring you get competitive price cuts, official payment flexibility, and direct-from-developer inventory booking.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti Mezzo 22 Price List, Layouts & Apartment Configurations</h2>
@@ -42,7 +42,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "Explore Dosti Willow in Balkum, Thane West. Get verified floor plans, 2 & 3 BHK configuration price sheets, lifestyle amenities, and site visit bookings.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti Willow Balkum Thane – Elegant Homes at Prime Real Estate Hubs</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti Willow Balkum Thane – Elegant Homes at Prime Real Estate Hubs</h2>
         <p>Introducing Dosti Willow, a pristine cluster of luxury residential towers tucked inside the highly sought-after neighborhood of Balkum, Thane West. This under-construction marvel is engineered to fulfill your desires for an opulent lifestyle, combining global design standards with world-class residential amenities. At <Link href="/" className="text-[#D4AF37] hover:underline">Bricksage Properties Advisory</Link>, we feature Dosti Willow with our signature 0% brokerage offer, allowing home seekers to connect directly with inventory selections, structural breakdowns, and verified financial packages without hidden consultation overheads.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti Willow Unit Configurations, Layout Blueprints & Pricing</h2>
@@ -72,7 +72,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "View Dosti Tulip at Balkum, Thane West. Access real-time price lists, smart 2 BHK floor layouts, construction updates, and zero-brokerage deals.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti Tulip Thane West – Smartly Designed Residential Apartments</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti Tulip Thane West – Smartly Designed Residential Apartments</h2>
         <p>Welcome to Dosti Tulip, a master-planned community structure delivering premium yet highly practical residential options in Balkum, Thane West. Designed for families who refuse to compromise on lifestyle and accessibility, Dosti Tulip matches beautiful architecture with extensive health and fitness amenities. Presented through <Link href="/" className="text-[#D4AF37] hover:underline">Bricksage Properties Advisory</Link>, this high-potential project comes with complete client transparency and a 0% brokerage charge, protecting your hard-earned investments and granting direct developer deals.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti Tulip Floor Layouts, Carpet Measurements & Price Sheets</h2>
@@ -102,7 +102,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "Explore Dosti Planet North in Shilphata. Get continuous updates on 1 & 2 BHK flat prices, sample flat tours, carpet area layouts, and project location.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti Planet North Shilphata – Affordable Luxury 1 & 2 BHK Flats for Sale</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti Planet North Shilphata – Affordable Luxury 1 & 2 BHK Flats for Sale</h2>
         <p>Discover Dosti Planet North, a massive premium township project strategically situated along the rapidly growing corridor of Shilphata, Thane. If you are looking to secure a beautiful home at an affordable entry price point or seeking a high-yield real estate investment, this development stands out as a prime destination. Dosti Planet North combines vast open green spaces with ultra-modern smart lifestyle amenities. Backed by <Link href="/about" className="text-[#D4AF37] hover:underline">Bricksage Properties Advisory&apos;s verified 0% brokerage structure</Link>, we guide you straight to the absolute best deals, direct inventory allocations, and customized payment solutions.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti Planet North Price Structure, Floor Plans & Configurations</h2>
@@ -132,7 +132,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "Check Dosti Pine at Shilphata, Thane. View affordable 1 & 2 BHK residential apartment options, layout plans, pricing charts, and site visit schedules.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti Pine Shilphata – Modern Budget-Friendly Living Spaces</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti Pine Shilphata – Modern Budget-Friendly Living Spaces</h2>
         <p>Welcome to Dosti Pine, an exclusive residential phase situated within the grand township landscape of Shilphata, Thane. Designed explicitly for buyers who seek a modern community lifestyle at an accessible investment point, Dosti Pine delivers smart apartments without compromising on architectural durability or security. Bricksage Properties Advisory brings this asset to you with our trusted <Link href="/" className="text-[#D4AF37] hover:underline">0% brokerage assistance</Link>, delivering direct developer pricing, transparent structural charts, and hassle-free booking pathways.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti Pine Apartment Typologies, Carpet Area & Pricing Breakdown</h2>
@@ -162,7 +162,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "View Dosti Olive at Shilphata, Thane. Access detailed cost sheets, 1 & 2 BHK configurations, contemporary lifestyle features, and booking updates.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti Olive Shilphata – Contemporary Living in an Integrated Township</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti Olive Shilphata – Contemporary Living in an Integrated Township</h2>
         <p>Discover Dosti Olive, a premium residential phase located inside the thriving master-township at Shilphata, Thane. Engineered to provide home buyers with a serene lifestyle away from core city pollution while keeping urban luxuries close, Dosti Olive offers an unmatched value proposition. Handled by the <Link href="/about" className="text-[#D4AF37] hover:underline">professional advisory team</Link> at Bricksage Properties Advisory with a strict 0% brokerage policy, we ensure you navigate your property acquisition journey smoothly, accessing priority pricing slots and prime unit allocations.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti Olive Pricing Matrix, Unit Floor Layouts & Configurations</h2>
@@ -192,7 +192,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "Explore Dosti Nest at Balkum, Thane West. Find verified pricing, smart 1 BHK space configurations, modern amenities, and zero-brokerage booking deals.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti Nest Balkum Thane – Premium Smart Apartments for Modern Buyers</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti Nest Balkum Thane – Premium Smart Apartments for Modern Buyers</h2>
         <p>Welcome to Dosti Nest, an outstanding residential haven offering beautifully designed smart living options in the <Link href="/projects" className="text-[#D4AF37] hover:underline">premium zone of Balkum, Thane West</Link>. Tailored meticulously for first-time homebuyers and smart property investors, Dosti Nest redefines compact luxury by combining efficient homes with premium township perks. Presented by Bricksage Properties Advisory with a client-first 0% brokerage promise, we offer complete pricing transparency and direct inventory access.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti Nest Configurations, Carpet Areas & Detailed Price Sheets</h2>
@@ -222,7 +222,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "Discover Dosti Greater Thane in Kalwa. Access 1 & 2 BHK flat pricing charts, mega township layouts, modern amenities, and site tour bookings.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti Greater Thane Kalwa – The Ultimate Mega Township Experience</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti Greater Thane Kalwa – The Ultimate Mega Township Experience</h2>
         <p>Step into Dosti Greater Thane, a revolutionary mega township development located along the highly profitable and rapidly growing belt of Kalwa, Thane. This self-sustained mega project is crafted to provide a true city-within-a-city lifestyle, offering thousands of <Link href="/projects" className="text-[#D4AF37] hover:underline">families premium housing</Link> options surrounded by spectacular natural landscapes and global amenities. Brought to you by Bricksage Properties Advisory under our strict 0% brokerage framework, we connect you directly with premier higher-floor developer inventories and verified project pricing charts.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti Greater Thane Configurations, Carpet Matrix & Pricing Options</h2>
@@ -252,7 +252,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "Explore Dosti Eden in Thane. Get verified details on flat price lists, floor plans, configurations, luxury amenities, and current construction status.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti Eden Thane West – Premium New Launch Residential Projects</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti Eden Thane West – Premium New Launch Residential Projects</h2>
         <p>Welcome to Dosti Eden, an ultra-premium <Link href="/projects/new-launch-projects-mumbai-thane" className="text-[#D4AF37] hover:underline">upcoming residential development</Link> strategically positioned in the heart of Thane West. Designed for modern urban families, this high-end project seamlessly blends contemporary architectural styles with absolute structural safety and elite comfort. Whether you are searching for your dream home or looking to make a high-yield real estate investment in the Mumbai Metropolitan Region, Dosti Eden stands out as a top-tier choice. Curated by Bricksage Properties Advisory with a strict 0% brokerage policy, we ensure you secure the absolute best direct-from-developer deals, complete pricing sheets, and smooth inventory booking.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti Eden Price List, Floor Plans & Carpet Area Configurations</h2>
@@ -282,7 +282,7 @@ const seoDataMap: Record<string, SEOData> = {
     description: "View Dosti 604 in Thane West. Access real-time price sheets, premium apartment layouts, modern lifestyle specifications, and site tour details.",
     content: (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-[#172033]/80 space-y-6">
-        <h1 className="text-3xl font-bold text-[#172033] font-serif">Dosti 604 Thane West – Elite Residential Spaces for Modern City Living</h1>
+        <h2 className="text-3xl font-bold text-[#172033] font-serif">Dosti 604 Thane West – Elite Residential Spaces for Modern City Living</h2>
         <p>Welcome to Dosti 604, a specialized premium <Link href="/projects/plots-mumbai-thane" className="text-[#D4AF37] hover:underline">residential development</Link> designed to offer extreme privacy and modern standard living frameworks in Thane West. Built for home seekers who value quiet living inside an active urban neighborhood, Dosti 604 delivers strong design metrics, durable construction quality, and an abundance of recreational spaces. Bricksage Properties Advisory guides you through this landmark project with a 0% brokerage mandate, offering absolute clarity on true developer costs, pricing tiers, and premium unit availability.</p>
         
         <h2 className="text-2xl font-bold text-[#172033] mt-8 font-serif">Dosti 604 Unit Configurations, Floor Plans & Cost Structures</h2>
